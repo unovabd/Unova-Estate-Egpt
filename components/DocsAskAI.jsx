@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.estate.unova.app';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api-estate-unova.free.laravel.cloud';
 
 const GeminiIcon = ({ className = 'w-4 h-4' }) => (
   <svg className={className} viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
