@@ -142,6 +142,7 @@ export default function LandingPage() {
               </button>
             ))}
             <button onClick={() => goToDemo(null)} className="hover:text-white transition-colors">Contact</button>
+            <Link href="/docs" className="hover:text-white transition-colors">Docs</Link>
             <AskAI onOpenChange={setAiOpen} />
           </div>
 
@@ -528,6 +529,7 @@ export default function LandingPage() {
               <li><button onClick={() => scrollTo('features')} className="hover:text-white transition-colors">Features</button></li>
               <li><button onClick={() => scrollTo('how-it-works')} className="hover:text-white transition-colors">How It Works</button></li>
               <li><button onClick={() => scrollTo('pricing')} className="hover:text-white transition-colors">Pricing</button></li>
+              <li><Link href="/docs" className="hover:text-white transition-colors">Documentation</Link></li>
             </ul>
           </div>
 
@@ -545,6 +547,7 @@ export default function LandingPage() {
             <ul className="space-y-2.5">
               <li><Link href={`${APP_URL}/login`} className="hover:text-white transition-colors">Sign In</Link></li>
               <li><Link href={`${APP_URL}/company-register`} className="hover:text-white transition-colors">Register Company</Link></li>
+              <li><Link href="/docs" className="hover:text-white transition-colors">Documentation</Link></li>
               <li>
                 <a href="https://wa.me/8801711432284" target="_blank" rel="noopener noreferrer"
                   className="hover:text-white transition-colors">Contact Support</a>
