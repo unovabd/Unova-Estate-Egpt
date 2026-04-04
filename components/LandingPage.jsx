@@ -88,7 +88,7 @@ const faqs = [
   { q: 'Can I track which marketing channel brought in a lead?', a: 'Yes. Every lead has a Source field (Website, Facebook, Referral, etc.). Create a separate lead capture form for each channel, and every submission is automatically tagged to that source. You can then filter and report on lead quality by source.' },
 ];
 
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://app.estate.unova.app';
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://app-estate-unova.vercel.app';
 
 export default function LandingPage() {
   const [openFaq, setOpenFaq]           = useState(null);
@@ -444,7 +444,7 @@ export default function LandingPage() {
           </div>
           <div className="space-y-3">
             {faqs.map((faq, i) => (
-              <div key={i} className="bg-white/[0.03] border border-white/8 rounded-2xl overflow-hidden">
+              <div key={i} className="bg-white/[0.03] border border-white/[0.06] rounded-2xl overflow-hidden">
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   className="w-full flex items-center justify-between px-6 py-5 text-left">

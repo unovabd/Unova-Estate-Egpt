@@ -24,6 +24,11 @@ export const metadata = {
     title: 'Unova Estate — Real Estate ERP',
     description: "Bangladesh's first AI-powered real estate ERP.",
   },
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
   robots: {
     index: true,
     follow: true,
