@@ -147,7 +147,7 @@ export default function LandingPage() {
           </div>
 
           <div className="flex items-center gap-3">
-            <Link href={`${APP_URL}/login`} className="text-sm font-medium text-gray-400 hover:text-white transition-colors hidden sm:block">
+            <Link href="https://rems.unova.bd/login" className="text-sm font-medium text-gray-400 hover:text-white transition-colors hidden sm:block">
               Sign in
             </Link>
             <button onClick={() => goToDemo('demo')}
@@ -545,7 +545,7 @@ export default function LandingPage() {
           <div>
             <h4 className="text-white font-semibold mb-4 text-xs uppercase tracking-widest">Company</h4>
             <ul className="space-y-2.5">
-              <li><Link href={`${APP_URL}/login`} className="hover:text-white transition-colors">Sign In</Link></li>
+              <li><Link href="https://rems.unova.bd/login" className="hover:text-white transition-colors">Sign In</Link></li>
               <li><Link href={`${APP_URL}/company-register`} className="hover:text-white transition-colors">Register Company</Link></li>
               <li><Link href="/docs" className="hover:text-white transition-colors">Documentation</Link></li>
               <li>
