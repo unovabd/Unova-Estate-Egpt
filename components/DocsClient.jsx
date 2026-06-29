@@ -963,9 +963,9 @@ const SECTIONS = {
         <p className="text-sm text-gray-400 mb-5">Our support team is available Sunday – Thursday, 9 am – 6 pm (Bangladesh Standard Time).</p>
         <div className="grid sm:grid-cols-2 gap-3">
           {[
-            { icon: '💬', label: 'WhatsApp', value: '+880 1711-432284', href: 'https://wa.me/8801711432284', desc: 'Fastest response — usually within minutes' },
+            { icon: '💬', label: 'WhatsApp', value: '+880 1766-774016', href: 'https://wa.me/8801766774016', desc: 'Fastest response — usually within minutes' },
             { icon: '📧', label: 'Email Support', value: 'support@unovaestate.com', href: 'mailto:support@unovaestate.com', desc: 'For detailed technical queries' },
-            { icon: '📞', label: 'Phone', value: '+880 1711-432285', href: 'tel:+8801711432285', desc: 'Available during office hours' },
+            { icon: '📞', label: 'Phone', value: '+880 1766-774016', href: 'tel:+8801766774016', desc: 'Available during office hours' },
             { icon: '📍', label: 'Office', value: 'House 12, Road 5, Banani, Dhaka-1213', href: null, desc: 'By appointment only' },
           ].map((c, i) => (
             <div key={i} className="bg-white/[0.04] border border-white/10 rounded-xl p-4">

@@ -8,11 +8,11 @@ const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'YOUR
 const EMAILJS_PUBLIC_KEY  = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY  || 'YOUR_PUBLIC_KEY';
 
 const CONTACT = {
-  phones:   [{ label: 'Sales', number: '+880 1711-432284' }, { label: 'Support', number: '+880 1711-432285' }],
+  phones:   [{ label: 'Sales', number: '+880 1766-774016' }, { label: 'Support', number: '+880 1766-774016' }],
   emails:   [{ label: 'Sales', address: 'sales@unovaestate.com' }, { label: 'Support', address: 'support@unovaestate.com' }],
   location: 'House 12, Road 5, Banani, Dhaka-1213, Bangladesh',
   hours:    'Sunday – Thursday (09 am – 06 pm)',
-  whatsapp: 'https://wa.me/8801711432284',
+  whatsapp: 'https://wa.me/8801766774016',
 };
 
 const PhoneIcon = () => (
