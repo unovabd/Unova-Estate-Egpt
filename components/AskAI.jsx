@@ -102,8 +102,8 @@ export default function AskAI({ onOpenChange }) {
       {/* Nav trigger */}
       <button
         onClick={() => toggle(v => !v)}
-        className={`flex items-center gap-0.5 text-sm font-medium transition-colors ${
-          open ? 'text-indigo-400' : 'text-gray-400 hover:text-white'
+        className={`flex items-center gap-0.5 text-sm font-semibold transition-colors ${
+          open ? 'text-indigo-600' : 'text-slate-600 hover:text-slate-950'
         }`}
       >
         <GeminiIcon />
@@ -113,29 +113,29 @@ export default function AskAI({ onOpenChange }) {
       {/* Overlay */}
       {open && (
         <div
-          className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm"
+          className="fixed inset-0 z-40 bg-slate-900/10 backdrop-blur-sm"
           onClick={() => toggle(false)}
         />
       )}
 
       {/* Drawer */}
-      <div className={`fixed top-0 right-0 z-50 h-screen w-[380px] flex flex-col bg-[#0b0b18] border-l border-white/[0.06] shadow-2xl transition-transform duration-300 ${
+      <div className={`fixed top-0 right-0 z-50 h-screen w-[380px] flex flex-col bg-white border-l border-slate-200 shadow-2xl transition-transform duration-300 ${
         open ? 'translate-x-0' : 'translate-x-full'
       }`}>
 
         {/* Header */}
-        <div className="flex items-center gap-3 px-5 py-4 border-b border-white/[0.05] bg-gradient-to-r from-indigo-600/15 to-violet-600/8 flex-shrink-0">
-          <div className="w-9 h-9 rounded-lg bg-indigo-500/15 flex items-center justify-center text-indigo-400 flex-shrink-0">
+        <div className="flex items-center gap-3 px-5 py-4 border-b border-slate-100 bg-gradient-to-r from-indigo-50/50 to-violet-50/20 flex-shrink-0">
+          <div className="w-9 h-9 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600 flex-shrink-0">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8"
                 d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-3 3v-3z" />
             </svg>
           </div>
           <div className="flex-1">
-            <p className="text-xs font-black text-white">Unova AI Assistant</p>
-            <p className="text-[10px] text-indigo-400">Ask anything about the software</p>
+            <p className="text-xs font-black text-slate-900">Unova AI Assistant</p>
+            <p className="text-[10px] text-indigo-600">Ask anything about the software</p>
           </div>
-          <button onClick={() => toggle(false)} className="text-gray-500 hover:text-white transition-colors p-1">
+          <button onClick={() => toggle(false)} className="text-slate-400 hover:text-slate-800 transition-colors p-1">
             <CloseIcon />
           </button>
         </div>
@@ -145,16 +145,16 @@ export default function AskAI({ onOpenChange }) {
           {messages.map((m, i) => (
             <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
               {m.role !== 'user' && (
-                <div className="w-6 h-6 rounded-md bg-indigo-500/15 flex items-center justify-center flex-shrink-0 mr-2 mt-0.5">
+                <div className="w-6 h-6 rounded-md bg-indigo-50 flex items-center justify-center flex-shrink-0 mr-2 mt-0.5">
                   <GeminiIcon className="w-3.5 h-3.5" />
                 </div>
               )}
               <div className={`max-w-[80%] px-3.5 py-2 rounded-xl leading-relaxed whitespace-pre-wrap text-xs ${
                 m.role === 'user'
-                  ? 'bg-indigo-600/90 text-white rounded-br-sm'
+                  ? 'bg-indigo-600 text-white rounded-br-sm shadow-sm'
                   : m.role === 'error'
-                  ? 'bg-rose-500/10 text-rose-300 border border-rose-500/15 rounded-bl-sm'
-                  : 'bg-white/[0.05] text-gray-300 border border-white/[0.06] rounded-bl-sm'
+                  ? 'bg-rose-50 text-rose-800 border border-rose-100 rounded-bl-sm'
+                  : 'bg-slate-100 text-slate-700 border border-slate-200 rounded-bl-sm'
               }`}>
                 {m.text}
               </div>
@@ -164,10 +164,10 @@ export default function AskAI({ onOpenChange }) {
           {/* Loading dots */}
           {loading && (
             <div className="flex justify-start">
-              <div className="w-6 h-6 rounded-md bg-indigo-500/15 flex items-center justify-center flex-shrink-0 mr-2 mt-0.5">
+              <div className="w-6 h-6 rounded-md bg-indigo-50 flex items-center justify-center flex-shrink-0 mr-2 mt-0.5">
                 <GeminiIcon className="w-3.5 h-3.5" />
               </div>
-              <div className="bg-white/[0.05] border border-white/[0.06] rounded-xl rounded-bl-sm px-4 py-3 flex gap-1.5 items-center">
+              <div className="bg-slate-100 border border-slate-200 rounded-xl rounded-bl-sm px-4 py-3 flex gap-1.5 items-center">
                 {[0, 1, 2].map(i => (
                   <span key={i} className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-bounce"
                     style={{ animationDelay: `${i * 0.15}s` }} />
@@ -179,10 +179,10 @@ export default function AskAI({ onOpenChange }) {
           {/* Suggestions */}
           {messages.length === 1 && !loading && (
             <div className="space-y-2 pt-2">
-              <p className="text-[10px] text-gray-600 font-semibold uppercase tracking-wider">Try asking:</p>
+              <p className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Try asking:</p>
               {SUGGESTIONS.map((s, i) => (
                 <button key={i} onClick={() => send(s)}
-                  className="block w-full text-left text-xs text-gray-500 bg-white/[0.03] hover:bg-indigo-500/10 hover:text-indigo-300 border border-white/[0.06] hover:border-indigo-500/20 rounded-lg px-3.5 py-2 transition-all">
+                  className="block w-full text-left text-xs text-slate-600 bg-slate-50 hover:bg-indigo-50 hover:text-indigo-600 border border-slate-200 hover:border-indigo-200 rounded-lg px-3.5 py-2 transition-all">
                   {s}
                 </button>
               ))}
@@ -193,8 +193,8 @@ export default function AskAI({ onOpenChange }) {
         </div>
 
         {/* Input */}
-        <div className="flex-shrink-0 border-t border-white/[0.05] p-4">
-          <div className="flex items-end gap-2 bg-white/[0.03] border border-white/[0.07] rounded-lg px-4 py-2.5 focus-within:border-indigo-500/30 transition-colors">
+        <div className="flex-shrink-0 border-t border-slate-100 p-4">
+          <div className="flex items-end gap-2 bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 focus-within:border-indigo-200 transition-colors">
             <textarea
               ref={inputRef}
               value={input}
@@ -203,18 +203,18 @@ export default function AskAI({ onOpenChange }) {
               placeholder="Ask a question..."
               maxLength={300}
               rows={1}
-              className="flex-1 bg-transparent text-xs text-white placeholder-gray-600 outline-none resize-none leading-relaxed max-h-24"
+              className="flex-1 bg-transparent text-xs text-slate-800 placeholder-slate-400 outline-none resize-none leading-relaxed max-h-24"
               style={{ fieldSizing: 'content' }}
             />
             <button
               onClick={() => send()}
               disabled={!input.trim() || loading}
-              className="w-7 h-7 rounded-md bg-indigo-600/90 hover:bg-indigo-500 disabled:opacity-25 disabled:cursor-not-allowed flex items-center justify-center text-white flex-shrink-0 transition-all"
+              className="w-7 h-7 rounded-md bg-indigo-600 hover:bg-indigo-500 disabled:opacity-25 disabled:cursor-not-allowed flex items-center justify-center text-white flex-shrink-0 transition-all"
             >
               <SendIcon />
             </button>
           </div>
-          <p className="text-[10px] text-gray-700 mt-2 text-center">Powered by Unova AI · Press Enter to send</p>
+          <p className="text-[10px] text-slate-400 mt-2 text-center">Powered by Unova AI · Press Enter to send</p>
         </div>
       </div>
     </>

@@ -10,24 +10,33 @@ export const metadata = {
   alternates: {
     canonical: '/',
   },
-  openGraph: {
-    title: 'Unova Estate — Real Estate ERP',
-    description:
-      "Bangladesh's first AI-powered real estate ERP. CRM, HR, payroll, commissions — one platform.",
-    url: 'https://estate.unova.app',
-    siteName: 'Unova Estate',
-    type: 'website',
-    locale: 'en_US',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Unova Estate — Real Estate ERP',
-    description: "Bangladesh's first AI-powered real estate ERP.",
-  },
+    openGraph: {
+      title: 'Unova Estate — Real Estate ERP',
+      description:
+        "Bangladesh's first AI-powered real estate ERP. CRM, HR, payroll, commissions — one platform.",
+      url: 'https://estate.unova.app',
+      siteName: 'Unova Estate',
+      type: 'website',
+      locale: 'en_US',
+      images: [
+        {
+          url: '/unova-real-estate-crm-sales-dashboard-mockup.png',
+          width: 1200,
+          height: 630,
+          alt: 'Unova Estate AI-Powered Real Estate ERP CRM Sales Dashboard Mockup',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Unova Estate — Real Estate ERP',
+      description: "Bangladesh's first AI-powered real estate ERP.",
+      images: ['/unova-real-estate-crm-sales-dashboard-mockup.png'],
+    },
   icons: {
-    icon: '/icon.svg',
-    shortcut: '/icon.svg',
-    apple: '/icon.svg',
+    icon: '/favicon.png',
+    shortcut: '/favicon.png',
+    apple: '/favicon.png',
   },
   robots: {
     index: true,

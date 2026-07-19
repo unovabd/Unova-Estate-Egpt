@@ -1,12 +1,5 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import emailjs from '@emailjs/browser';
-
-const EMAILJS_SERVICE_ID  = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID  || 'YOUR_SERVICE_ID';
-const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
-const EMAILJS_PUBLIC_KEY  = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY  || 'YOUR_PUBLIC_KEY';
-
 const CONTACT = {
   phones:   [{ label: 'Sales', number: '+880 1766-774016' }, { label: 'Support', number: '+880 1766-774016' }],
   emails:   [{ label: 'Sales', address: 'sales@unovaestate.com' }, { label: 'Support', address: 'support@unovaestate.com' }],
@@ -43,59 +36,7 @@ const ClockIcon = () => (
   </svg>
 );
 
-const formMeta = {
-  consultant: {
-    title: 'Book a Free Consultant',
-    desc: "Tell us about your business and we'll connect you with the right consultant — at no cost.",
-  },
-  demo: {
-    title: 'Request for Demo',
-    desc: "Fill in your details and we'll schedule a personalized demo for you.",
-  },
-};
-
-export default function DemoSection({ formType }) {
-  const [form, setForm] = useState({
-    subject: '', firstName: '', lastName: '', email: '', phone: '', jobTitle: '', company: '', message: '',
-  });
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [error, setError]     = useState('');
-
-  useEffect(() => {
-    setForm(prev => ({
-      ...prev,
-      subject: formType === 'consultant' ? 'Book a Free Consultant' : formType === 'demo' ? 'Request for Demo' : '',
-    }));
-  }, [formType]);
-
-  const handleChange = (e) =>
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
-    setLoading(true);
-    try {
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-        name:     `${form.firstName} ${form.lastName}`,
-        email:    form.email,
-        phone:    form.phone,
-        company:  form.company,
-        jobTitle: form.jobTitle,
-        message:  form.message,
-      }, EMAILJS_PUBLIC_KEY);
-      setSuccess(true);
-    } catch {
-      setError('Something went wrong. Please try again or contact us on WhatsApp.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const inputCls = 'w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-600 outline-none focus:border-indigo-500/50 focus:bg-white/[0.08] transition-all';
-  const labelCls = 'block text-xs font-semibold text-gray-400 mb-1.5';
-
+export default function DemoSection() {
   return (
     <section id="demo" className="relative z-10 py-24 px-5 border-t border-white/5 bg-[#0a0a14]">
 
@@ -105,21 +46,21 @@ export default function DemoSection({ formType }) {
         <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[300px] h-[250px] bg-violet-600/[0.08] blur-[100px] rounded-full" />
       </div>
 
-      <div className="max-w-6xl mx-auto relative grid lg:grid-cols-[1fr_1.1fr] gap-12 items-start">
+      <div className="max-w-6xl mx-auto relative grid lg:grid-cols-[1fr_1.3fr] gap-12 items-center">
 
         {/* LEFT — contact info */}
         <div>
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/25 text-xs font-semibold text-indigo-300 mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
-            Contact Us
+            Book a Demo
           </div>
 
           <h2 className="text-4xl md:text-5xl font-black tracking-tight leading-tight mb-4">
-            <span className="text-indigo-400">Get In Touch</span><br />
-            <span className="text-white">With Our Team</span>
+            <span className="text-indigo-400">Schedule A Live</span><br />
+            <span className="text-white">Demo Session</span>
           </h2>
           <p className="text-gray-400 text-sm leading-relaxed mb-10">
-            Fill out the form and our team will get back to you within 1–2 business days.
+            Select a convenient time from the calendar to schedule a live, personalized walkthrough of Unova Estate with our team.
           </p>
 
           <div className="grid grid-cols-2 gap-4">
@@ -191,99 +132,17 @@ export default function DemoSection({ formType }) {
           </a>
         </div>
 
-        {/* RIGHT — Form */}
-        <div className="bg-[#0d0d1c] rounded-3xl overflow-hidden shadow-[0_20px_60px_-10px_rgba(0,0,0,0.6)]"
-          style={{ clipPath: 'polygon(0 0, 100% 0, 97% 100%, 3% 100%)' }}>
+        {/* RIGHT — Calendly Iframe */}
+        <div className="bg-[#0d0d1c] rounded-3xl overflow-hidden shadow-[0_20px_60px_-10px_rgba(0,0,0,0.6)] border border-white/10">
           <div className="h-2 bg-gradient-to-r from-indigo-600 via-violet-500 to-indigo-500" />
-
-          <div className="p-6 md:p-7">
-            {success ? (
-              <div className="flex flex-col items-center justify-center text-center py-12">
-                <div className="text-5xl mb-5">🎉</div>
-                <h3 className="text-xl font-black text-white mb-2">Request Received!</h3>
-                <p className="text-sm text-gray-400 mb-6 max-w-xs">
-                  We&apos;ll contact you at <span className="text-white font-semibold">{form.email}</span> within a few hours.
-                </p>
-                <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm rounded-xl transition-all">
-                  Chat on WhatsApp
-                </a>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-
-                {formType ? (
-                  <div className="flex items-start gap-3 px-4 py-3.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20">
-                    <span className="text-lg leading-none mt-0.5">✅</span>
-                    <div>
-                      <p className="text-sm font-black text-white">{formMeta[formType]?.title}</p>
-                      <p className="text-xs text-gray-400 mt-0.5">{formMeta[formType]?.desc}</p>
-                    </div>
-                  </div>
-                ) : (
-                  <div>
-                    <label className={labelCls}>Subject <span className="text-rose-400">*</span></label>
-                    <input name="subject" value={form.subject} onChange={handleChange} required
-                      placeholder="e.g. Request a Demo" className={inputCls} />
-                  </div>
-                )}
-
-                <div>
-                  <label className={labelCls}>Name <span className="text-rose-400">*</span></label>
-                  <input name="firstName" value={form.firstName} onChange={handleChange} required
-                    placeholder="Rafiq Ahmed" className={inputCls} />
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className={labelCls}>Email <span className="text-rose-400">*</span></label>
-                    <input name="email" type="email" value={form.email} onChange={handleChange} required
-                      placeholder="you@company.com" className={inputCls} />
-                  </div>
-                  <div>
-                    <label className={labelCls}>Phone Number <span className="text-rose-400">*</span></label>
-                    <input name="phone" value={form.phone} onChange={handleChange} required
-                      placeholder="+880 17XX XXXXXX" className={inputCls} />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className={labelCls}>Job Title</label>
-                    <input name="jobTitle" value={form.jobTitle} onChange={handleChange}
-                      placeholder="Managing Director" className={inputCls} />
-                  </div>
-                  <div>
-                    <label className={labelCls}>Company Name <span className="text-rose-400">*</span></label>
-                    <input name="company" value={form.company} onChange={handleChange} required
-                      placeholder="Skyline Developers" className={inputCls} />
-                  </div>
-                </div>
-
-                <div>
-                  <label className={labelCls}>Message</label>
-                  <textarea name="message" value={form.message} onChange={handleChange} rows={4}
-                    placeholder="Tell us about your team size, current challenges..."
-                    className={`${inputCls} resize-none`} />
-                </div>
-
-                {error && <p className="text-xs text-rose-400">{error}</p>}
-
-                <button type="submit" disabled={loading}
-                  className="w-full py-3.5 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-black rounded-xl shadow-[0_0_20px_rgba(99,102,241,0.3)] transition-all flex items-center justify-center gap-2 text-sm">
-                  {loading ? (
-                    <>
-                      <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
-                      </svg>
-                      Sending...
-                    </>
-                  ) : 'Submit'}
-                </button>
-
-              </form>
-            )}
+          <div className="w-full" style={{ height: '680px' }}>
+            <iframe
+              src="https://calendly.com/unovabd/30min?background_color=0d0d1c&text_color=ffffff&primary_color=6366f1"
+              width="100%"
+              height="100%"
+              style={{ border: 'none' }}
+              title="Schedule a Demo"
+            ></iframe>
           </div>
         </div>
 

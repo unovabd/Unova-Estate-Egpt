@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import DemoSection from './DemoSection';
+import { useRouter } from 'next/navigation';
 import AskAI from './AskAI';
+import ContactSection from './ContactSection';
 
 /* ─── Icon helpers ──────────────────────────────────────────── */
 const Icon = ({ d, className = 'w-6 h-6' }) => (
@@ -12,9 +13,15 @@ const Icon = ({ d, className = 'w-6 h-6' }) => (
   </svg>
 );
 
-const CheckIcon = ({ cls = 'w-5 h-5 text-indigo-400 flex-shrink-0' }) => (
+const CheckIcon = ({ cls = 'w-5 h-5 text-indigo-600 flex-shrink-0' }) => (
   <svg className={cls} fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
+  </svg>
+);
+
+const SparkleIcon = ({ className = '' }) => (
+  <svg className={`text-[#6DC042] animate-pulse ${className}`} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 0L14.6 9.4L24 12L14.6 14.6L12 24L9.4 14.6L0 12L9.4 9.4L12 0Z" />
   </svg>
 );
 
@@ -42,6 +49,41 @@ const modules = [
     points: ['Sales order with payment schedules', 'Instalment tracking & reminders', 'Auto commission calculation', 'Approval workflow'],
   },
   {
+    color: 'teal',
+    icon: 'M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7',
+    title: 'Land & Feasibility',
+    desc: 'Manage raw land acquisition pipelines, joint-venture landowner shares, CS/SA/RS/BRS records, legal mutation tracking, registry status, and GIS boundary mapping.',
+    points: ['Mouza & Dag registry tracking', 'Landowner share division calculator', 'Mutation & Legal status checks', 'Land GIS map coordinates'],
+  },
+  {
+    color: 'sky',
+    icon: 'M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z',
+    title: 'BOQ & Cost Estimation',
+    desc: 'Generate comprehensive bill of quantities (BOQ), run item rate analysis, estimate costs for material consumption, labor, and machinery, and compare budget vs actual.',
+    points: ['Material consumption formulas', 'Tower & floor-wise cost estimation', 'Rate analysis item library', 'Budget vs actual cash requirements'],
+  },
+  {
+    color: 'blue',
+    icon: 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4',
+    title: 'Procurement & Inventory',
+    desc: 'Manage material requisitions, vendor quotation RFQs, comparative statements, goods receive notes (GRN), issues, and returns for stores (cement, rod, sand, brick, etc.).',
+    points: ['Material requisitions & POs', 'Comparative statement charts', 'Store issue & return tracking', 'Warehouse & batch stocks'],
+  },
+  {
+    color: 'violet',
+    icon: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2m21-12a9 9 0 11-18 0 9 9 0 0118 0z',
+    title: 'Contractor Management',
+    desc: 'Register contractor profiles, issue construction work orders, process running bills (RA bills) with automated security deposit deductions, and track ledgers.',
+    points: ['Contractor profiles & ledgers', 'Work order issuance workflows', 'RA Bill calculations & verification', 'Performance evaluation tracking'],
+  },
+  {
+    color: 'pink',
+    icon: 'M13 10V3L4 14h7v7l9-11h-7z',
+    title: 'Construction Progress',
+    desc: 'Monitor building construction timeline. Track daily site diaries, weekly progress reports, tower/floor milestones, photos, and Gantt charts with Critical Path analysis.',
+    points: ['Tower & floor progress tracking', 'Daily site diaries & photo logs', 'Gantt Chart & delay analysis', 'Engineering RFI & inspection checklists'],
+  },
+  {
     color: 'rose',
     icon: 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z',
     title: 'HR & Payroll',
@@ -49,26 +91,26 @@ const modules = [
     points: ['Attendance with clock-in/out', 'Leave applications & approvals', 'Automated monthly payroll', 'Provident fund & loans'],
   },
   {
-    color: 'violet',
-    icon: 'M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z',
-    title: 'Multi-Channel Marketing',
-    desc: 'Run Email, SMS, and WhatsApp campaigns to your lead database. Build public enquiry forms, track opens and clicks, and automate follow-up sequences.',
-    points: ['Email, SMS & WhatsApp campaigns', 'Public lead capture forms', 'Open & click tracking', 'Automated drip sequences'],
-  },
-  {
     color: 'cyan',
-    icon: 'M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
-    title: 'Accounting & Finance',
-    desc: 'Journal vouchers, chart of accounts, bank management, supplier purchases, expense tracking, and cashflow statements — fully integrated with your sales.',
-    points: ['Double-entry journal vouchers', 'Chart of accounts', 'Supplier & purchase management', 'Expense approvals & cashflow'],
+    icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
+    title: 'Finance & Accounting',
+    desc: 'Enterprise-grade double-entry accounting. Track project-wise financial statements, manage multi-level cost centers (Project/Tower/Floor/Flat), auto-reconcile bank statements, and run AI audit checks.',
+    points: ['Project-wise Balance Sheet & P&L', 'Multi-level cost & profit centers', 'Auto Bank Reconciliation & PDC management', 'AI Wrong Entry & Anomaly Alerts'],
   },
 ];
 
-const steps = [
+const salesSteps = [
   { n: '01', title: 'Capture the Lead', body: "A prospect fills in your public enquiry form, or your sales team creates a lead manually. It's instantly assigned, categorised, and logged." },
   { n: '02', title: 'Work the Pipeline', body: 'Log every call, meeting, and site visit. Attach the unit of interest. Send a WhatsApp follow-up in one click. The system tracks everything.' },
   { n: '03', title: 'Close the Deal', body: 'Convert the lead to a sales order. Attach the unit, set the payment schedule, get manager approval, and issue the invoice.' },
   { n: '04', title: 'Collect & Commission', body: 'Record payments as they arrive. Commissions are calculated automatically and flow into the next payroll run.' },
+];
+
+const projectSteps = [
+  { n: '01', title: 'Acquisition & Feasibility', body: 'Manage landowner joint-venture agreements, legal vetting, soil tests, and architectural approvals. Complete cost budgeting and feasibility checks.' },
+  { n: '02', title: 'Procurement & Planning', body: 'Launch materials procurement workflow with purchase orders. Manage vendor ledgers and define task calendars on construction Gantt charts.' },
+  { n: '03', title: 'Construction & Tasks', body: 'Track civil work milestones from piling to slab casting and final finishing. Log material consumption against budget and assign tasks to site engineers.' },
+  { n: '04', title: 'Demarcation & Handover', body: 'Process final quality checklists and buyer walkthrough logs. Coordinate registration deed handovers and manage utility connectivity.' },
 ];
 
 const testimonials = [
@@ -91,67 +133,104 @@ const faqs = [
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://app-estate-unova.vercel.app';
 
 export default function LandingPage() {
+  const router = useRouter();
   const [openFaq, setOpenFaq]           = useState(null);
   const [activeModule, setActiveModule] = useState(0);
   const [billingYearly, setBillingYearly] = useState(false);
-  const [demoFormType, setDemoFormType] = useState(null);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [scrolled, setScrolled]           = useState(false);
   const [aiOpen, setAiOpen]             = useState(false);
+  const [activeStep, setActiveStep]       = useState(0);
+  const [activeWorkflowTab, setActiveWorkflowTab] = useState('sales');
 
   useEffect(() => {
-    const onScroll = () => setShowScrollTop(window.scrollY > 400);
+    const onScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+      setScrolled(window.scrollY > 20);
+    };
     window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+    
+    // Auto cycle timeline steps
+    const interval = setInterval(() => {
+      setActiveStep((prev) => (prev + 1) % 4);
+    }, 2500);
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      clearInterval(interval);
+    };
   }, []);
 
   const scrollTo = (id) =>
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
-  const goToDemo = (type) => {
-    setDemoFormType(type);
-    setTimeout(() => scrollTo('demo'), 50);
+  const goToDemo = () => {
+    router.push('/demo');
+  };
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Unova Estate",
+    "operatingSystem": "All",
+    "applicationCategory": "BusinessApplication",
+    "image": "https://estate.unova.app/unova-real-estate-crm-sales-dashboard-mockup.png",
+    "logo": "https://estate.unova.app/unova-real-estate-software-logo.png",
+    "description": "Bangladesh's first AI-powered real estate ERP. Manage leads, properties, sales orders, commissions, HR, payroll, and marketing — all in one platform.",
+    "screenshot": [
+      "https://estate.unova.app/unova-real-estate-crm-sales-dashboard-mockup.png",
+      "https://estate.unova.app/unova-estate-multi-device-responsive-dashboard.png",
+      "https://estate.unova.app/unova-property-sales-funnel-analytics-dashboard.png"
+    ],
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "BDT"
+    }
   };
 
   return (
-    <div className="min-h-screen bg-[#080810] text-white font-sans selection:bg-indigo-500/30 selection:text-white overflow-x-hidden">
+    <div className="relative min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-[#6DC042]/20 selection:text-slate-900 overflow-x-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       {/* Global ambient glow */}
       <div className="pointer-events-none fixed inset-0 z-0">
-        <div className="absolute top-[-20%] left-[10%] w-[700px] h-[700px] bg-indigo-700/10 rounded-full blur-[120px]" />
-        <div className="absolute top-[40%] right-[-10%] w-[500px] h-[500px] bg-violet-700/10 rounded-full blur-[120px]" />
+        <div className="absolute top-[-20%] left-[10%] w-[700px] h-[700px] bg-indigo-600/[0.04] rounded-full blur-[120px]" />
+        <div className="absolute top-[40%] right-[-10%] w-[500px] h-[500px] bg-violet-600/[0.04] rounded-full blur-[120px]" />
       </div>
 
       {/* ════ NAVIGATION ════ */}
-      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-[#080810]/80 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center shadow-lg shadow-indigo-500/25">
-              <svg className="w-[18px] h-[18px] text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M3 9.75L12 3l9 6.75V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.75z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M9 21V12h6v9" />
-              </svg>
-            </div>
-            <span className="text-lg font-extrabold tracking-tight">Unova<span className="text-indigo-400"> Estate</span></span>
-          </div>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled 
+          ? 'bg-white/95 backdrop-blur-xl shadow-sm border-b border-[#6DC042]/20 h-16' 
+          : 'bg-transparent h-20 border-b border-transparent'
+      }`}>
+        <div className="max-w-7xl mx-auto px-5 h-full flex items-center justify-between">
+          <Link href="/" className="flex items-center">
+            <img src="/unova-real-estate-software-logo.png" alt="Unova Estate Real Estate CRM & ERP Software Logo" className={`w-auto transition-all duration-300 ${scrolled ? 'h-8' : 'h-9'}`} />
+          </Link>
 
-          <div className="hidden md:flex items-center gap-7 text-sm font-medium text-gray-400">
+          <div className="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
             {['features', 'how-it-works', 'pricing'].map(id => (
               <button key={id} onClick={() => scrollTo(id)}
-                className="hover:text-white transition-colors capitalize">
+                className="hover:text-slate-950 transition-colors capitalize">
                 {id === 'how-it-works' ? 'How It Works' : id.charAt(0).toUpperCase() + id.slice(1)}
               </button>
             ))}
-            <button onClick={() => goToDemo(null)} className="hover:text-white transition-colors">Contact</button>
-            <Link href="/docs" className="hover:text-white transition-colors">Docs</Link>
+            <button onClick={() => scrollTo('contact')} className="hover:text-slate-950 transition-colors">Contact</button>
+            <Link href="/docs" className="hover:text-slate-950 transition-colors">Docs</Link>
             <AskAI onOpenChange={setAiOpen} />
           </div>
 
           <div className="flex items-center gap-3">
-            <Link href="https://rems.unova.bd/login" className="text-sm font-medium text-gray-400 hover:text-white transition-colors hidden sm:block">
+            <Link href="https://rems.unova.bd/login" className="text-sm font-semibold text-slate-600 hover:text-slate-950 transition-colors hidden sm:block">
               Sign in
             </Link>
             <button onClick={() => goToDemo('demo')}
-              className="text-sm font-semibold bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-full transition-all shadow-[0_0_18px_rgba(99,102,241,0.35)] hover:shadow-[0_0_26px_rgba(99,102,241,0.55)]">
+              className="text-sm font-semibold bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-full transition-all shadow-[0_4px_14px_rgba(99,102,241,0.25)] hover:shadow-[0_6px_20px_rgba(99,102,241,0.4)]">
               Request a Demo
             </button>
           </div>
@@ -159,54 +238,114 @@ export default function LandingPage() {
       </nav>
 
       {/* ════ HERO ════ */}
-      <section className="relative pt-36 pb-24 px-5 z-10">
-        <div className="max-w-5xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/25 text-xs font-semibold text-indigo-300 mb-8 backdrop-blur-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 shadow-[0_0_6px_rgba(129,140,248,1)] animate-pulse" />
-            Bangladesh&apos;s First AI-Powered Real Estate ERP
+      <section className="relative pt-40 pb-24 px-5 z-10 overflow-hidden bg-slate-50/20">
+        <style dangerouslySetInnerHTML={{__html: `
+          @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+          }
+          .btn-shimmer {
+            background: linear-gradient(90deg, #6DC042 0%, #8ae060 25%, #6DC042 50%, #8ae060 75%, #6DC042 100%);
+            background-size: 200% auto;
+            animation: shimmer 4s infinite linear;
+          }
+          .btn-shimmer:hover {
+            animation: shimmer 1.5s infinite linear;
+          }
+        `}} />
+
+        {/* Dotted Grid Background */}
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-45 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+        
+        {/* Soft background ambient glow circles */}
+        <div className="absolute top-12 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-[#6DC042]/10 to-emerald-500/5 blur-[120px] rounded-full pointer-events-none z-0" />
+
+        <div className="max-w-5xl mx-auto text-center relative z-10">
+          {/* Badge with Sparkles */}
+          <div className="relative inline-block mb-8">
+            <SparkleIcon className="absolute -top-4 -left-6 w-5 h-5 opacity-70" />
+            <SparkleIcon className="absolute -bottom-3 -right-6 w-4 h-4 opacity-60" />
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-xs font-bold text-indigo-600 backdrop-blur-sm shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
+              Bangladesh&apos;s First AI-Powered Real Estate ERP
+            </div>
           </div>
 
-          <h1 className="text-5xl md:text-[4.5rem] font-black tracking-tight leading-[1.05] mb-4">
-            <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400">
-              Are you ready to increase<br />your real estate sales by 20%?
+          <h1 className="text-5xl md:text-[5rem] font-extrabold tracking-tight leading-[1.02] mb-6">
+            <span className="bg-clip-text text-transparent bg-gradient-to-b from-slate-950 to-slate-800">
+              Are you ready to increase<br />your real estate sales by{" "}
+            </span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#6DC042] via-[#5da538] to-[#6DC042]">
+              20%?
             </span>
           </h1>
 
-          <div className="inline-flex items-center gap-4 mx-auto mb-8 px-6 py-4 rounded-2xl border border-emerald-500/25 bg-emerald-500/[0.08] backdrop-blur-sm shadow-[0_0_30px_rgba(34,197,94,0.08)]">
-            <div className="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center flex-shrink-0 text-xl shadow-[0_0_14px_rgba(34,197,94,0.25)]">
+          <div className="inline-flex items-center gap-4 mx-auto mb-10 px-6 py-4 rounded-2xl border border-emerald-100 bg-emerald-50/80 backdrop-blur-sm shadow-sm max-w-md">
+            <div className="w-10 h-10 rounded-xl bg-emerald-100/80 flex items-center justify-center flex-shrink-0 text-xl text-emerald-800 shadow-sm">
               🛡️
             </div>
             <div className="text-left">
-              <p className="text-sm font-black text-emerald-300 leading-tight">Not happy with your results in 6 months?</p>
-              <p className="text-xs text-emerald-500/80 mt-0.5 leading-snug">We&apos;ll refund every penny — no questions, no conditions.</p>
+              <p className="text-sm font-black text-emerald-800 leading-tight">Not happy with your results in 6 months?</p>
+              <p className="text-xs text-emerald-600 mt-0.5 leading-snug">We&apos;ll refund every penny — no questions, no conditions.</p>
             </div>
           </div>
 
-          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed">
             Our software increases sales by boosting employee performance, generating and managing leads, supporting smart decisions, and delighting customers.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
             <button onClick={() => goToDemo('consultant')}
-              className="w-full sm:w-auto px-8 py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-full shadow-[0_0_24px_rgba(99,102,241,0.45)] hover:shadow-[0_0_36px_rgba(99,102,241,0.65)] transition-all text-center">
-              Book a Free Consultant
+              className="btn-shimmer w-full sm:w-auto px-8 py-4 text-white font-bold rounded-full shadow-[0_4px_20px_rgba(109,192,66,0.35)] hover:shadow-[0_6px_30px_rgba(109,192,66,0.55)] transition-all text-center hover:scale-105 active:scale-95 duration-200">
+              Book a Free Consultation
             </button>
             <button onClick={() => goToDemo('demo')}
-              className="w-full sm:w-auto px-8 py-3.5 bg-white/5 hover:bg-white/10 text-white font-semibold rounded-full border border-white/10 hover:border-white/20 transition-all flex items-center justify-center gap-2">
+              className="w-full sm:w-auto px-8 py-4 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-full border border-slate-200 hover:border-slate-300 transition-all flex items-center justify-center gap-2 hover:scale-105 active:scale-95 duration-200">
               Request a Demo
               <Icon d="M14 5l7 7m0 0l-7 7m7-7H3" className="w-4 h-4" />
             </button>
+          </div>
+
+          {/* Trust Bar (Social Proof) */}
+          <div className="mb-16 flex flex-col items-center justify-center gap-4">
+            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+              Trusted by top real estate teams in Bangladesh
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 opacity-50 grayscale hover:opacity-75 transition-opacity duration-300">
+              <span className="text-xs font-extrabold text-slate-500 tracking-wider">Assure Development</span>
+              <span className="text-xs font-extrabold text-slate-500 tracking-wider">Sheltech</span>
+              <span className="text-xs font-extrabold text-slate-500 tracking-wider">Shanta Holdings</span>
+              <span className="text-xs font-extrabold text-slate-500 tracking-wider">Concord Group</span>
+              <span className="text-xs font-extrabold text-slate-500 tracking-wider">bti</span>
+            </div>
+          </div>
+
+          {/* Main Dashboard Preview Mockup (macOS Style Frame) */}
+          <div className="relative mx-auto max-w-5xl rounded-2xl border border-slate-200/80 bg-white shadow-[0_30px_70px_rgba(27,42,59,0.15)] overflow-hidden mt-8 transition-all duration-500 hover:scale-[1.01] hover:border-[#6DC042]/30 group">
+            <div className="h-10 bg-slate-50 border-b border-slate-200/60 flex items-center px-4 gap-2 flex-shrink-0">
+              <div className="w-3 h-3 rounded-full bg-red-400" />
+              <div className="w-3 h-3 rounded-full bg-yellow-400" />
+              <div className="w-3 h-3 rounded-full bg-green-400" />
+              <div className="flex-1 flex justify-center pr-12">
+                <span className="text-[10px] text-slate-400 font-medium font-mono select-none">app.unovaestate.com/dashboard</span>
+              </div>
+            </div>
+            
+            <div className="relative bg-slate-50">
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#6DC042]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              <img src="/unova-real-estate-crm-sales-dashboard-mockup.png" alt="Unova Estate AI-Powered Real Estate ERP CRM Sales Dashboard Mockup" className="w-full object-cover" loading="eager" width="1024" height="576" />
+            </div>
           </div>
         </div>
       </section>
 
       {/* ════ FEATURES ════ */}
-      <section id="features" className="relative z-10 py-24 px-5 border-t border-white/5 bg-[#0a0a14]">
+      <section id="features" className="relative z-10 py-24 px-5 border-t border-slate-200/60 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
-            <p className="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-3">Six modules. One login.</p>
-            <h2 className="text-3xl md:text-5xl font-black tracking-tight text-white mb-4">Everything in one platform.</h2>
-            <p className="text-gray-400 max-w-xl mx-auto">No more switching between a CRM, an HR tool, a WhatsApp panel, and a spreadsheet. Unova Estate replaces all of them.</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-[#6DC042] mb-3">10 integrated modules. One login.</p>
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight text-slate-900 mb-4">Everything in one platform.</h2>
+            <p className="text-slate-500 max-w-xl mx-auto">No more switching between a CRM, a construction ERP, a land feasibility spreadsheet, and separate HR systems. Unova Estate replaces all of them.</p>
           </div>
 
           <div className="flex flex-wrap justify-center gap-2 mb-10">
@@ -214,8 +353,8 @@ export default function LandingPage() {
               <button key={i} onClick={() => setActiveModule(i)}
                 className={`px-4 py-2 rounded-full text-xs font-semibold transition-all border ${
                   activeModule === i
-                    ? 'bg-indigo-500/15 text-indigo-400 border-indigo-500/30 ring-1 ring-indigo-500/30'
-                    : 'bg-white/5 text-gray-500 border-white/10 hover:border-white/20 hover:text-gray-300'
+                    ? 'bg-indigo-50 text-indigo-600 border-indigo-200 ring-1 ring-indigo-200'
+                    : 'bg-slate-100 text-slate-500 border-slate-200 hover:border-slate-300 hover:text-slate-700'
                 }`}>
                 {m.title}
               </button>
@@ -225,76 +364,191 @@ export default function LandingPage() {
           {modules.map((m, i) => {
             if (i !== activeModule) return null;
             return (
-              <div key={i} className="grid md:grid-cols-2 gap-8 bg-white/[0.03] border border-indigo-500/20 rounded-3xl p-8 md:p-12 ring-1 ring-indigo-500/30">
+              <div key={i} className="grid md:grid-cols-2 gap-8 bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-md">
                 <div>
-                  <div className="w-14 h-14 rounded-2xl bg-indigo-500/15 text-indigo-400 flex items-center justify-center mb-6">
+                  <div className="w-14 h-14 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-6">
                     <Icon d={m.icon} />
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-black text-white mb-4">{m.title}</h3>
-                  <p className="text-gray-400 leading-relaxed mb-8">{m.desc}</p>
+                  <h3 className="text-2xl md:text-3xl font-black text-slate-900 mb-4">{m.title}</h3>
+                  <p className="text-slate-500 leading-relaxed mb-8">{m.desc}</p>
                   <Link href={`${APP_URL}/company-register`}
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm text-white bg-gradient-to-r from-indigo-600 to-indigo-500 shadow-lg transition-all hover:opacity-90">
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm text-white bg-indigo-600 hover:bg-indigo-500 shadow-md transition-all">
                     Get Started Free
                     <Icon d="M14 5l7 7m0 0l-7 7m7-7H3" className="w-4 h-4" />
                   </Link>
                 </div>
                 <div className="flex flex-col justify-center gap-4">
                   {m.points.map((pt, pi) => (
-                    <div key={pi} className="flex items-center gap-4 p-4 rounded-xl bg-indigo-500/15 border border-white/5">
-                      <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 text-indigo-400">
+                    <div key={pi} className="flex items-center gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
+                      <div className="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center flex-shrink-0 text-indigo-600">
                         <CheckIcon cls="w-4 h-4" />
                       </div>
-                      <span className="text-sm font-medium text-gray-200">{pt}</span>
+                      <span className="text-sm font-medium text-slate-700">{pt}</span>
                     </div>
                   ))}
                 </div>
               </div>
             );
           })}
+
+          {/* Mockup 1 — Multi Device Modules Grid */}
+          <div className="mt-24 grid md:grid-cols-2 gap-12 items-center bg-slate-50 border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-widest text-[#6DC042] mb-3 block">Fully Responsive Modules</span>
+              <h3 className="text-2xl md:text-4xl font-black text-slate-900 leading-tight mb-4">
+                Access your real estate business from any device.
+              </h3>
+              <p className="text-slate-500 text-sm leading-relaxed mb-6">
+                Whether you are on your laptop in the office, your tablet in a client meeting, or your mobile phone in the field, Unova Estate keeps you connected. Log follow-ups, approve leaves, check unit inventory, and track collections on the go.
+              </p>
+              <button onClick={() => goToDemo('demo')}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm text-white bg-[#6DC042] hover:bg-[#5da538] shadow-md transition-all">
+                Request a Demo
+                <Icon d="M14 5l7 7m0 0l-7 7m7-7H3" className="w-4 h-4" />
+              </button>
+            </div>
+            <div className="relative rounded-2xl overflow-hidden shadow-md border border-slate-200 bg-white p-1.5 transition-transform duration-300 hover:scale-[1.01]">
+              <img src="/unova-estate-multi-device-responsive-dashboard.png" alt="Unova Estate Multi-Device Mobile, Tablet, and Desktop CRM Dashboard" className="w-full rounded-xl object-cover" loading="lazy" width="800" height="500" />
+            </div>
+          </div>
         </div>
       </section>
 
       {/* ════ HOW IT WORKS ════ */}
-      <section id="how-it-works" className="relative z-10 py-24 px-5 border-t border-white/5">
+      <section id="how-it-works" className="relative z-10 py-24 px-5 border-t border-slate-200/60 bg-slate-50">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-14">
-            <p className="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-3">The Complete Workflow of the Real Estate Business</p>
-            <h2 className="text-3xl md:text-5xl font-black tracking-tight text-white mb-4">
-              From enquiry to commission — in one system.
+          <div className="text-center mb-10">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#6DC042] mb-3">Interactive Lifecycles</p>
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight text-slate-900 mb-4">
+              From acquisition to commission
             </h2>
-            <p className="text-gray-400 max-w-xl mx-auto">Unova Estate connects every stage of your property business so nothing falls through the gaps.</p>
+            <p className="text-slate-500 max-w-xl mx-auto">
+              Unova Estate connects your entire development and sales lifecycle. Track construction milestones, budgets, bookings, and commissions in one unified platform.
+            </p>
+          </div>
+
+          {/* Premium Segmented Tab Switcher */}
+          <div className="flex justify-center mb-16">
+            <div className="inline-flex p-1 bg-slate-200/50 rounded-full border border-slate-200/80 shadow-inner">
+              <button
+                onClick={() => { setActiveWorkflowTab('sales'); setActiveStep(0); }}
+                className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-bold transition-all duration-300 ${
+                  activeWorkflowTab === 'sales'
+                    ? 'bg-[#6DC042] text-white shadow-md'
+                    : 'text-slate-500 hover:text-slate-800'
+                }`}
+              >
+                🏪 Sales Flow
+              </button>
+              <button
+                onClick={() => { setActiveWorkflowTab('project'); setActiveStep(0); }}
+                className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-bold transition-all duration-300 ${
+                  activeWorkflowTab === 'project'
+                    ? 'bg-[#6DC042] text-white shadow-md'
+                    : 'text-slate-500 hover:text-slate-800'
+                }`}
+              >
+                🏗️ Project Flow
+              </button>
+            </div>
           </div>
 
           <div className="relative">
-            <div className="absolute left-[27px] md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-indigo-500/50 via-violet-500/30 to-transparent hidden sm:block" />
-            <div className="space-y-10">
-              {steps.map((s, i) => (
-                <div key={i} className={`relative flex gap-6 md:gap-0 ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
-                  <div className={`flex-1 ${i % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16'}`}>
-                    <div className={`bg-white/[0.04] border border-white/10 rounded-2xl p-6 hover:border-indigo-500/30 transition-colors ${i % 2 !== 0 ? 'md:text-left' : ''}`}>
-                      <span className="text-xs font-black text-indigo-400 tracking-widest">{s.n}</span>
-                      <h3 className="text-lg font-black text-white mt-1 mb-2">{s.title}</h3>
-                      <p className="text-sm text-gray-400 leading-relaxed">{s.body}</p>
+            {/* Vertical connection line */}
+            <div className="absolute left-[27px] md:left-1/2 top-0 bottom-0 w-px bg-slate-200 hidden sm:block" />
+            {/* Sales Flow Container (Always in DOM for SEO, toggled via CSS classes) */}
+            <div className={`space-y-6 transition-all duration-500 ${activeWorkflowTab === 'sales' ? 'block opacity-100' : 'hidden opacity-0 pointer-events-none'}`}>
+              {salesSteps.map((s, i) => {
+                const isActive = activeWorkflowTab === 'sales' && i === activeStep;
+                return (
+                  <div key={i} className={`relative flex gap-6 md:gap-0 transition-all duration-500 ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} ${isActive ? '' : 'opacity-60'}`}>
+                    <div className={`flex-1 ${i % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16'}`}>
+                      <div className={`bg-white border rounded-2xl p-5 shadow-sm transition-all duration-500 ${
+                        isActive 
+                          ? 'border-[#6DC042] shadow-[0_10px_30px_rgba(109,192,66,0.1)] scale-[1.03]' 
+                          : 'border-slate-200/80'
+                      } ${i % 2 !== 0 ? 'md:text-left' : ''}`}>
+                        <span className={`text-xs font-black tracking-widest transition-colors duration-500 ${isActive ? 'text-[#6DC042]' : 'text-slate-400'}`}>{s.n}</span>
+                        <h3 className="text-lg font-black text-slate-900 mt-1 mb-2">{s.title}</h3>
+                        <p className="text-sm text-slate-500 leading-relaxed">{s.body}</p>
+                      </div>
                     </div>
+                    <div className={`hidden md:flex absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full border-2 items-center justify-center text-xs font-black transition-all duration-500 ${
+                      isActive 
+                        ? 'bg-[#6DC042] border-[#6DC042] scale-125 z-20 text-white shadow-[0_0_15px_rgba(109,192,66,0.5)] ring-4 ring-[#6DC042]/10' 
+                        : 'bg-slate-200 border-slate-300 text-slate-500 z-10'
+                    }`}>
+                      {i + 1}
+                    </div>
+                    <div className="hidden md:block flex-1" />
                   </div>
-                  <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-indigo-600 border-2 border-[#080810] z-10 items-center justify-center text-xs font-black text-white shadow-[0_0_14px_rgba(99,102,241,0.6)]">
-                    {i + 1}
+                );
+              })}
+            </div>
+
+            {/* Project Flow Container (Always in DOM for SEO, toggled via CSS classes) */}
+            <div className={`space-y-6 transition-all duration-500 ${activeWorkflowTab === 'project' ? 'block opacity-100' : 'hidden opacity-0 pointer-events-none'}`}>
+              {projectSteps.map((s, i) => {
+                const isActive = activeWorkflowTab === 'project' && i === activeStep;
+                return (
+                  <div key={i} className={`relative flex gap-6 md:gap-0 transition-all duration-500 ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} ${isActive ? '' : 'opacity-60'}`}>
+                    <div className={`flex-1 ${i % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16'}`}>
+                      <div className={`bg-white border rounded-2xl p-5 shadow-sm transition-all duration-500 ${
+                        isActive 
+                          ? 'border-[#6DC042] shadow-[0_10px_30px_rgba(109,192,66,0.1)] scale-[1.03]' 
+                          : 'border-slate-200/80'
+                      } ${i % 2 !== 0 ? 'md:text-left' : ''}`}>
+                        <span className={`text-xs font-black tracking-widest transition-colors duration-500 ${isActive ? 'text-[#6DC042]' : 'text-slate-400'}`}>{s.n}</span>
+                        <h3 className="text-lg font-black text-slate-900 mt-1 mb-2">{s.title}</h3>
+                        <p className="text-sm text-slate-500 leading-relaxed">{s.body}</p>
+                      </div>
+                    </div>
+                    <div className={`hidden md:flex absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full border-2 items-center justify-center text-xs font-black transition-all duration-500 ${
+                      isActive 
+                        ? 'bg-[#6DC042] border-[#6DC042] scale-125 z-20 text-white shadow-[0_0_15px_rgba(109,192,66,0.5)] ring-4 ring-[#6DC042]/10' 
+                        : 'bg-slate-200 border-slate-300 text-slate-500 z-10'
+                    }`}>
+                      {i + 1}
+                    </div>
+                    <div className="hidden md:block flex-1" />
                   </div>
-                  <div className="hidden md:block flex-1" />
-                </div>
-              ))}
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Mockup 3 — Funnel & Analytics Dashboard */}
+          <div className="mt-24 bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="order-2 md:order-1 relative rounded-2xl overflow-hidden shadow-md border border-slate-200 bg-white p-1.5 transition-transform duration-300 hover:scale-[1.01]">
+                <img src="/unova-property-sales-funnel-analytics-dashboard.png" alt="Unova Estate CRM Sales Funnel and Analytics Dashboard Charts" className="w-full rounded-xl object-cover" loading="lazy" width="800" height="500" />
+              </div>
+              <div className="order-1 md:order-2">
+                <span className="text-xs font-bold uppercase tracking-widest text-[#6DC042] mb-3 block">Data-Driven Insights</span>
+                <h3 className="text-2xl md:text-4xl font-black text-slate-900 leading-tight mb-4">
+                  Make smarter decisions with real-time analytics.
+                </h3>
+                <p className="text-slate-500 text-sm leading-relaxed mb-6">
+                  Track your sales funnel from initial leads down to finalized bookings. See agent performance, cost breakdowns, payment collection rates, and monthly commission payouts in clean, interactive charts.
+                </p>
+                <button onClick={() => goToDemo('demo')}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm text-white bg-[#6DC042] hover:bg-[#5da538] shadow-md transition-all">
+                  Try it Live
+                  <Icon d="M14 5l7 7m0 0l-7 7m7-7H3" className="w-4 h-4" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* ════ ROLES ════ */}
-      <section className="relative z-10 py-24 px-5 border-t border-white/5 bg-[#0a0a14]">
+      <section className="relative z-10 py-24 px-5 border-t border-slate-200/60 bg-white">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
-            <p className="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-3">Every team member sees only what they need.</p>
-            <h2 className="text-3xl md:text-5xl font-black tracking-tight text-white mb-4">Role-Based Access System</h2>
-            <p className="text-gray-400 max-w-xl mx-auto">Give each person access to exactly what they need. Nothing more, nothing less. Fully configured by admin.</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-3">Every team member sees only what they need.</p>
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight text-slate-900 mb-4">Role-Based Access System</h2>
+            <p className="text-slate-500 max-w-xl mx-auto">Give each person access to exactly what they need. Nothing more, nothing less. Fully configured by admin.</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -304,13 +558,13 @@ export default function LandingPage() {
               { role: 'Sales Executive', icon: '🤝', gets: ['Personal lead pipeline', 'Follow-up reminders', 'Property availability', 'Own commission history'] },
               { role: 'HR & Finance', icon: '🧾', gets: ['Attendance & leave approvals', 'One-click payroll processing', 'Expense approvals', 'PF & loan management'] },
             ].map((r, i) => (
-              <div key={i} className="bg-white/[0.04] border border-white/10 rounded-2xl p-6 hover:border-indigo-500/25 transition-colors">
+              <div key={i} className="bg-slate-50/50 border border-slate-200 rounded-2xl p-6 hover:border-indigo-500/25 transition-colors shadow-sm">
                 <div className="text-3xl mb-4">{r.icon}</div>
-                <h3 className="text-base font-black text-white mb-4">{r.role}</h3>
+                <h3 className="text-base font-black text-slate-900 mb-4">{r.role}</h3>
                 <ul className="space-y-2">
                   {r.gets.map((g, gi) => (
-                    <li key={gi} className="flex items-start gap-2 text-xs text-gray-400">
-                      <CheckIcon cls="w-3.5 h-3.5 text-indigo-400 flex-shrink-0 mt-0.5" />
+                    <li key={gi} className="flex items-start gap-2 text-xs text-slate-600">
+                      <CheckIcon cls="w-3.5 h-3.5 text-indigo-600 flex-shrink-0 mt-0.5" />
                       {g}
                     </li>
                   ))}
@@ -322,16 +576,16 @@ export default function LandingPage() {
       </section>
 
       {/* ════ TESTIMONIALS ════ */}
-      <section className="relative z-10 py-24 px-5 border-t border-white/5">
+      <section className="relative z-10 py-24 px-5 border-t border-slate-200/60 bg-slate-50">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
-            <p className="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-3">What our customers say</p>
-            <h2 className="text-3xl md:text-4xl font-black tracking-tight text-white">Real results, real businesses.</h2>
+            <p className="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-3">What our customers say</p>
+            <h2 className="text-3xl md:text-4xl font-black tracking-tight text-slate-900">Real results, real businesses.</h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
             {testimonials.map((t, i) => (
-              <div key={i} className="bg-white/[0.04] border border-white/10 rounded-2xl p-7 flex flex-col hover:border-indigo-500/25 transition-colors">
+              <div key={i} className="bg-white border border-slate-200 rounded-2xl p-7 flex flex-col shadow-sm hover:border-indigo-500/25 transition-colors">
                 <div className="flex gap-1 mb-5">
                   {[...Array(5)].map((_, si) => (
                     <svg key={si} className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
@@ -339,10 +593,10 @@ export default function LandingPage() {
                     </svg>
                   ))}
                 </div>
-                <p className="text-sm text-gray-300 leading-relaxed flex-1 mb-6">&ldquo;{t.quote}&rdquo;</p>
+                <p className="text-sm text-slate-600 leading-relaxed flex-1 mb-6">&ldquo;{t.quote}&rdquo;</p>
                 <div>
-                  <p className="text-sm font-bold text-white">{t.name}</p>
-                  <p className="text-xs text-gray-500 mt-0.5">{t.role}</p>
+                  <p className="text-sm font-bold text-slate-900">{t.name}</p>
+                  <p className="text-xs text-slate-400 mt-0.5">{t.role}</p>
                 </div>
               </div>
             ))}
@@ -351,39 +605,39 @@ export default function LandingPage() {
       </section>
 
       {/* ════ PRICING ════ */}
-      <section id="pricing" className="relative z-10 py-24 px-5 border-t border-white/5 bg-[#0a0a14]">
+      <section id="pricing" className="relative z-10 py-24 px-5 border-t border-slate-200/60 bg-white">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
-            <p className="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-3">Pricing</p>
-            <h2 className="text-3xl md:text-5xl font-black tracking-tight text-white mb-4">6 Month Refund Guarantee</h2>
-            <p className="text-gray-400 max-w-xl mx-auto">Use Unova Estate for 6 months. If your business sees zero improvement — not happy with your results? We&apos;ll refund every penny — no questions, no conditions.</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-3">Pricing</p>
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight text-slate-900 mb-4">6 Month Refund Guarantee</h2>
+            <p className="text-slate-500 max-w-xl mx-auto">Use Unova Estate for 6 months. If your business sees zero improvement — not happy with your results? We&apos;ll refund every penny — no questions, no conditions.</p>
           </div>
 
           <div className="flex items-center justify-center gap-4 mb-12">
-            <span className={`text-sm font-semibold transition-colors ${!billingYearly ? 'text-white' : 'text-gray-500'}`}>Monthly</span>
+            <span className={`text-sm font-semibold transition-colors ${!billingYearly ? 'text-slate-900' : 'text-slate-400'}`}>Monthly</span>
             <button onClick={() => setBillingYearly(v => !v)}
-              className={`relative w-14 h-7 rounded-full transition-colors duration-300 ${billingYearly ? 'bg-indigo-600' : 'bg-white/15'}`}>
+              className={`relative w-14 h-7 rounded-full transition-colors duration-300 ${billingYearly ? 'bg-indigo-600' : 'bg-slate-200'}`}>
               <span className={`absolute top-1 left-1 w-5 h-5 rounded-full bg-white shadow transition-transform duration-300 ${billingYearly ? 'translate-x-7' : 'translate-x-0'}`} />
             </button>
-            <span className={`text-sm font-semibold transition-colors ${billingYearly ? 'text-white' : 'text-gray-500'}`}>
+            <span className={`text-sm font-semibold transition-colors ${billingYearly ? 'text-slate-900' : 'text-slate-400'}`}>
               Yearly
-              <span className="ml-2 text-[10px] font-black bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full">Save 20%</span>
+              <span className="ml-2 text-[10px] font-black bg-emerald-100 text-emerald-600 px-2 py-0.5 rounded-full">Save 20%</span>
             </span>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { name: '1 – 10 Employees',  monthly: 2000, highlight: false, badge: null },
-              { name: '10 – 20 Employees', monthly: 3000, highlight: true,  badge: 'Most Popular' },
-              { name: '20 – 40 Employees', monthly: 4000, highlight: false, badge: null },
+              { name: '1 – 10 Employees',  monthly: 40, highlight: false, badge: null },
+              { name: '10 – 20 Employees', monthly: 75, highlight: true,  badge: 'Most Popular' },
+              { name: '20 – 40 Employees', monthly: 100, highlight: false, badge: null },
             ].map((pkg, i) => {
               const monthlyPrice = billingYearly ? Math.round(pkg.monthly * 0.8) : pkg.monthly;
               const yearlyTotal  = Math.round(pkg.monthly * 0.8 * 12);
               return (
                 <div key={i} className={`relative rounded-3xl p-8 flex flex-col border transition-all ${
                   pkg.highlight
-                    ? 'bg-gradient-to-b from-indigo-900/30 to-[#0a0a14] border-indigo-500/50 shadow-[0_0_50px_rgba(99,102,241,0.15)] ring-1 ring-indigo-500/40 scale-[1.03]'
-                    : 'bg-white/[0.03] border-white/10 hover:border-white/20'
+                    ? 'bg-slate-50/50 border-2 border-indigo-600/60 shadow-md scale-[1.03]'
+                    : 'bg-white border-slate-200 hover:border-slate-300 shadow-sm'
                 }`}>
                   {pkg.badge && (
                     <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-indigo-600 text-white px-4 py-1 text-[10px] font-black rounded-full uppercase tracking-widest shadow-lg">
@@ -391,19 +645,19 @@ export default function LandingPage() {
                     </div>
                   )}
                   <div className="mb-7">
-                    <h3 className="text-lg font-black text-white mb-1">{pkg.name}</h3>
+                    <h3 className="text-lg font-black text-slate-900 mb-1">{pkg.name}</h3>
                     <div className="mt-4 flex items-end gap-2">
-                      <p className="text-4xl font-black text-white">৳ {monthlyPrice.toLocaleString()}</p>
-                      <p className="text-xs text-gray-500 mb-1.5">/month</p>
+                      <p className="text-4xl font-black text-slate-900">$ {monthlyPrice.toLocaleString()}</p>
+                      <p className="text-xs text-slate-500 mb-1.5">/month</p>
                     </div>
                     {billingYearly && (
-                      <p className="text-xs text-emerald-400 mt-1">৳ {yearlyTotal.toLocaleString()} billed yearly</p>
+                      <p className="text-xs text-emerald-600 mt-1">$ {yearlyTotal.toLocaleString()} billed yearly</p>
                     )}
                   </div>
                   <ul className="space-y-3 flex-1 mb-8">
                     {['CRM & Lead Pipeline', 'Property & Project Management', 'Sales Orders & Commissions', 'HR & Payroll', 'Multi-Channel Marketing', 'Accounting & Finance'].map((f, fi) => (
-                      <li key={fi} className="flex items-start gap-3 text-sm text-gray-300">
-                        <CheckIcon cls="w-4 h-4 text-indigo-400 flex-shrink-0 mt-0.5" />
+                      <li key={fi} className="flex items-start gap-3 text-sm text-slate-600">
+                        <CheckIcon cls="w-4 h-4 text-indigo-600 flex-shrink-0 mt-0.5" />
                         {f}
                       </li>
                     ))}
@@ -411,8 +665,8 @@ export default function LandingPage() {
                   <button onClick={() => goToDemo('demo')}
                     className={`w-full py-3.5 rounded-xl font-bold text-sm text-center transition-all ${
                       pkg.highlight
-                        ? 'bg-indigo-600 hover:bg-indigo-500 text-white shadow-[0_0_20px_rgba(99,102,241,0.35)]'
-                        : 'bg-white/[0.08] hover:bg-white/15 text-white border border-white/10'
+                        ? 'bg-indigo-600 hover:bg-indigo-500 text-white shadow-[0_4px_14px_rgba(99,102,241,0.3)]'
+                        : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200'
                     }`}>
                     Request a Demo
                   </button>
@@ -421,42 +675,52 @@ export default function LandingPage() {
             })}
           </div>
 
-          <div className="mt-8 text-center">
-            <div className="inline-block mt-2 px-6 py-3 rounded-2xl border border-indigo-500/30 bg-indigo-500/5">
-              <p className="text-sm">
-                <span className="text-white font-bold">More than 40 employees?</span>{' '}
-                <button onClick={() => goToDemo('demo')} className="text-indigo-400 hover:text-indigo-300 font-semibold transition-colors">
+          <div className="mt-8 text-center flex flex-col items-center gap-4">
+            <div className="inline-block px-6 py-3 rounded-2xl border border-slate-200 bg-slate-50/50">
+              <p className="text-sm text-slate-700">
+                <span>More than 40 employees?</span>{' '}
+                <button onClick={() => goToDemo('demo')} className="text-[#6DC042] hover:text-[#5da538] font-bold transition-colors">
                   Contact us for a custom plan →
                 </button>
               </p>
             </div>
-            <p className="text-xs text-white mt-4">* One-time onboarding fee of ৳75,000 — includes initial setup, full configuration &amp; team training.</p>
+
+            <div className="inline-flex flex-col sm:flex-row items-center gap-4 px-6 py-4 rounded-2xl border border-[#6DC042]/20 bg-[#6DC042]/5 max-w-2xl text-left">
+              <div className="flex-shrink-0 bg-[#6DC042]/10 text-[#6DC042] text-xs font-black uppercase tracking-widest px-3 py-1.5 rounded-full text-center">
+                Custom Modules
+              </div>
+              <p className="text-xs md:text-sm text-slate-600 leading-relaxed">
+                <strong>Flexible Pricing for Small Teams:</strong> Choose only the modules you need to customize your package and scale down your bill. Unova Estate is designed to fit any business size and budget!
+              </p>
+            </div>
+
+            <p className="text-[11px] text-slate-400 mt-2">* One-time onboarding fee of $2,000 — includes initial setup, full configuration &amp; team training.</p>
           </div>
         </div>
       </section>
 
       {/* ════ FAQ ════ */}
-      <section className="relative z-10 py-24 px-5 border-t border-white/5">
+      <section className="relative z-10 py-24 px-5 border-t border-slate-200/60 bg-slate-50">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-14">
-            <p className="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-3">FAQ</p>
-            <h2 className="text-3xl md:text-4xl font-black tracking-tight text-white">Common questions.</h2>
+            <p className="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-3">FAQ</p>
+            <h2 className="text-3xl md:text-4xl font-black tracking-tight text-slate-900">Common questions.</h2>
           </div>
           <div className="space-y-3">
             {faqs.map((faq, i) => (
-              <div key={i} className="bg-white/[0.03] border border-white/[0.06] rounded-2xl overflow-hidden">
+              <div key={i} className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   className="w-full flex items-center justify-between px-6 py-5 text-left">
-                  <span className="text-sm font-bold text-white pr-4">{faq.q}</span>
-                  <svg className={`w-5 h-5 text-gray-500 flex-shrink-0 transition-transform ${openFaq === i ? 'rotate-180' : ''}`}
+                  <span className="text-sm font-bold text-slate-800 pr-4">{faq.q}</span>
+                  <svg className={`w-5 h-5 text-slate-400 flex-shrink-0 transition-transform ${openFaq === i ? 'rotate-180' : ''}`}
                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
                 {openFaq === i && (
                   <div className="px-6 pb-5">
-                    <p className="text-sm text-gray-400 leading-relaxed">{faq.a}</p>
+                    <p className="text-sm text-slate-500 leading-relaxed">{faq.a}</p>
                   </div>
                 )}
               </div>
@@ -466,30 +730,30 @@ export default function LandingPage() {
       </section>
 
       {/* ════ FINAL CTA ════ */}
-      <section className="relative z-10 py-24 px-5 border-t border-white/5">
+      <section className="relative z-10 py-24 px-5 border-t border-slate-200/60 bg-white">
         <div className="max-w-3xl mx-auto text-center relative">
-          <div className="absolute inset-0 bg-indigo-600/10 blur-3xl rounded-full pointer-events-none" />
+          <div className="absolute inset-0 bg-indigo-600/[0.02] blur-3xl rounded-full pointer-events-none" />
           <div className="relative">
-            <p className="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-4">Our Promise</p>
-            <h2 className="text-3xl md:text-5xl font-black tracking-tight text-white mb-6">
+            <p className="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-4">Our Promise</p>
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight text-slate-900 mb-6">
               We Don&apos;t Just Sell Software.<br />We Guarantee Results.
             </h2>
-            <p className="text-gray-400 max-w-lg mx-auto mb-6 text-lg">
+            <p className="text-slate-500 max-w-lg mx-auto mb-6 text-lg">
               Most software companies disappear after the sale. We stay. From onboarding to daily use, our team is with you every step of the way.
             </p>
-            <div className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl border border-emerald-500/25 bg-emerald-500/[0.08] max-w-lg mx-auto mb-10">
+            <div className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl border border-emerald-100 bg-emerald-50 max-w-lg mx-auto mb-10 shadow-sm">
               <span className="text-2xl flex-shrink-0">🛡️</span>
-              <p className="text-sm text-gray-300 text-left leading-relaxed">
-                Use it for 6 months — if you don&apos;t see real results, we&apos;ll refund every penny. <strong className="text-emerald-400">No questions. No conditions.</strong>
+              <p className="text-sm text-emerald-800 text-left leading-relaxed">
+                Use it for 6 months — if you don&apos;t see real results, we&apos;ll refund every penny. <strong className="text-emerald-600">No questions. No conditions.</strong>
               </p>
             </div>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <button onClick={() => goToDemo('consultant')}
-                className="w-full sm:w-auto px-8 py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-full shadow-[0_0_24px_rgba(99,102,241,0.45)] hover:shadow-[0_0_36px_rgba(99,102,241,0.65)] transition-all text-center">
+                className="w-full sm:w-auto px-8 py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-full shadow-[0_4px_14px_rgba(99,102,241,0.25)] hover:shadow-[0_6px_20px_rgba(99,102,241,0.45)] transition-all text-center">
                 Book a Free Consultant
               </button>
               <button onClick={() => goToDemo('demo')}
-                className="w-full sm:w-auto px-8 py-3.5 bg-white/5 hover:bg-white/10 text-white font-semibold rounded-full border border-white/10 hover:border-white/20 transition-all flex items-center justify-center gap-2">
+                className="w-full sm:w-auto px-8 py-3.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-full border border-slate-200 hover:border-slate-300 transition-all flex items-center justify-center gap-2">
                 Request a Demo
                 <Icon d="M14 5l7 7m0 0l-7 7m7-7H3" className="w-4 h-4" />
               </button>
@@ -498,74 +762,97 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <DemoSection formType={demoFormType} />
+      <ContactSection />
 
       {/* ════ FOOTER ════ */}
-      <footer className="relative z-10 border-t border-white/5 bg-[#050508] pt-16 pb-10 px-5 text-sm text-gray-500">
+      <footer className="relative z-10 border-t border-slate-200 bg-slate-100/50 pt-16 pb-10 px-5 text-sm text-slate-500">
         <div className="max-w-7xl mx-auto grid md:grid-cols-5 gap-10 mb-12">
           <div className="md:col-span-2">
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center">
-                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M3 9.75L12 3l9 6.75V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.75z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M9 21V12h6v9" />
-                </svg>
-              </div>
-              <span className="text-base font-extrabold text-white">Unova<span className="text-indigo-400"> Estate</span></span>
+            <div className="flex items-center mb-4">
+              <img src="/unova-real-estate-software-logo.png" alt="Unova Estate Real Estate CRM & ERP Software Logo" className="h-9 w-auto" loading="lazy" />
             </div>
-            <p className="text-gray-500 leading-relaxed max-w-xs">The all-in-one business management platform built exclusively for property companies.</p>
+            <p className="text-slate-500 leading-relaxed max-w-xs">The all-in-one business management platform built exclusively for property companies.</p>
             <a href="https://wa.me/8801766774016" target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-5 text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors">
+              className="inline-flex items-center gap-2 mt-5 text-xs font-semibold text-emerald-600 hover:text-emerald-500 transition-colors">
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
               </svg>
               WhatsApp: +880 1766 774 016
             </a>
+            
+            <div className="flex items-center gap-3.5 mt-6">
+              {/* Facebook */}
+              <a href="https://www.facebook.com/unovarem" target="_blank" rel="noopener noreferrer"
+                className="w-8 h-8 rounded-full bg-slate-200/50 text-slate-600 hover:bg-indigo-600 hover:text-white flex items-center justify-center transition-all shadow-sm"
+                title="Facebook">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              </a>
+
+              {/* YouTube */}
+              <a href="https://www.youtube.com/@UnovaSoftware" target="_blank" rel="noopener noreferrer"
+                className="w-8 h-8 rounded-full bg-slate-200/50 text-slate-600 hover:bg-indigo-600 hover:text-white flex items-center justify-center transition-all shadow-sm"
+                title="YouTube">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M23.498 6.163a3.003 3.003 0 00-2.11-2.11C19.518 3.545 12 3.545 12 3.545s-7.518 0-9.388.508a3.003 3.003 0 00-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 002.11 2.11c1.87.508 9.388.508 9.388.508s7.518 0 9.388-.508a3.003 3.003 0 002.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+              </a>
+
+              {/* LinkedIn */}
+              <a href="https://www.linkedin.com/company/theunova/" target="_blank" rel="noopener noreferrer"
+                className="w-8 h-8 rounded-full bg-slate-200/50 text-slate-600 hover:bg-indigo-600 hover:text-white flex items-center justify-center transition-all shadow-sm"
+                title="LinkedIn">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+              </a>
+            </div>
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4 text-xs uppercase tracking-widest">Product</h4>
+            <h4 className="text-slate-900 font-bold mb-4 text-xs uppercase tracking-widest">Product</h4>
             <ul className="space-y-2.5">
-              <li><button onClick={() => scrollTo('features')} className="hover:text-white transition-colors">Features</button></li>
-              <li><button onClick={() => scrollTo('how-it-works')} className="hover:text-white transition-colors">How It Works</button></li>
-              <li><button onClick={() => scrollTo('pricing')} className="hover:text-white transition-colors">Pricing</button></li>
-              <li><Link href="/docs" className="hover:text-white transition-colors">Documentation</Link></li>
+              <li><button onClick={() => scrollTo('features')} className="hover:text-slate-950 transition-colors">Features</button></li>
+              <li><button onClick={() => scrollTo('how-it-works')} className="hover:text-slate-950 transition-colors">How It Works</button></li>
+              <li><button onClick={() => scrollTo('pricing')} className="hover:text-slate-950 transition-colors">Pricing</button></li>
+              <li><Link href="/docs" className="hover:text-slate-950 transition-colors">Documentation</Link></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4 text-xs uppercase tracking-widest">Modules</h4>
+            <h4 className="text-slate-900 font-bold mb-4 text-xs uppercase tracking-widest">Modules</h4>
             <ul className="space-y-2.5">
               {['CRM & Leads', 'Property Management', 'Sales & Commissions', 'HR & Payroll', 'Marketing', 'Accounting'].map(m => (
-                <li key={m}><span className="cursor-default">{m}</span></li>
+                <li key={m}><span className="cursor-default text-slate-500">{m}</span></li>
               ))}
             </ul>
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4 text-xs uppercase tracking-widest">Company</h4>
+            <h4 className="text-slate-900 font-bold mb-4 text-xs uppercase tracking-widest">Company</h4>
             <ul className="space-y-2.5">
-              <li><Link href="https://rems.unova.bd/login" className="hover:text-white transition-colors">Sign In</Link></li>
-              <li><Link href={`${APP_URL}/company-register`} className="hover:text-white transition-colors">Register Company</Link></li>
-              <li><Link href="/docs" className="hover:text-white transition-colors">Documentation</Link></li>
+              <li><Link href="https://rems.unova.bd/login" className="hover:text-slate-950 transition-colors">Sign In</Link></li>
+              <li><Link href={`${APP_URL}/company-register`} className="hover:text-slate-950 transition-colors">Register Company</Link></li>
+              <li><Link href="/docs" className="hover:text-slate-950 transition-colors">Documentation</Link></li>
               <li>
                 <a href="https://wa.me/8801766774016" target="_blank" rel="noopener noreferrer"
-                  className="hover:text-white transition-colors">Contact Support</a>
+                  className="hover:text-slate-950 transition-colors">Contact Support</a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-600">
+        <div className="max-w-7xl mx-auto pt-8 border-t border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <p>© 2026 Unova Estate. All rights reserved.</p>
-          <p>Powered by <span className="text-gray-500 font-semibold">Unova</span></p>
+          <p>Powered by <span className="text-slate-500 font-semibold">Unova</span></p>
         </div>
       </footer>
 
       {/* Scroll to top */}
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className={`fixed bottom-8 right-8 z-50 w-11 h-11 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white flex items-center justify-center shadow-[0_0_20px_rgba(99,102,241,0.4)] transition-all duration-300 ${
+        className={`fixed bottom-8 right-8 z-50 w-11 h-11 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white flex items-center justify-center shadow-[0_4px_14px_rgba(99,102,241,0.4)] transition-all duration-300 ${
           showScrollTop && !aiOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
         }`}>
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import DocsAskAI from './DocsAskAI';
 
@@ -37,6 +37,22 @@ const NAV = [
     ],
   },
   {
+    group: 'Land Management',
+    items: [
+      { id: 'land',           label: 'Land & Feasibility' },
+    ],
+  },
+  {
+    group: 'Construction & BOQ',
+    items: [
+      { id: 'boq',            label: 'BOQ & Cost Estimation' },
+      { id: 'procurement',    label: 'Procurement & Inventory' },
+      { id: 'contractors',    label: 'Contractor Management' },
+      { id: 'progress',       label: 'Construction Progress' },
+      { id: 'engineering',    label: 'Engineering & QA' },
+    ],
+  },
+  {
     group: 'HR & Payroll',
     items: [
       { id: 'employees',      label: 'Employees' },
@@ -70,10 +86,23 @@ const NAV = [
     ],
   },
   {
+    group: 'Portals & Apps',
+    items: [
+      { id: 'portals',        label: 'Portals & Mobile Apps' },
+    ],
+  },
+  {
+    group: 'AI & Analytics',
+    items: [
+      { id: 'ai-analytics',   label: 'AI Predictions & KPIs' },
+    ],
+  },
+  {
     group: 'Configuration',
     items: [
       { id: 'config-general', label: 'General Settings' },
       { id: 'config-hr',      label: 'HR Settings' },
+      { id: 'config-bd',      label: 'Bangladesh Features' },
       { id: 'integrations',   label: 'API Integrations' },
       { id: 'file-manager',   label: 'File Manager' },
     ],
@@ -89,23 +118,23 @@ const NAV = [
 ];
 
 const S = {
-  h3: 'text-white font-black text-[0.95rem] mt-6 mb-2',
-  p:  'text-gray-400 text-sm leading-relaxed mb-3',
-  ul: 'list-disc pl-5 text-gray-400 text-sm leading-relaxed mb-3 space-y-1',
-  info: 'mt-3 mb-1 px-4 py-3 rounded-xl bg-indigo-500/8 border border-indigo-500/20 text-indigo-300 text-xs leading-relaxed',
-  warn: 'mt-3 mb-1 px-4 py-3 rounded-xl bg-amber-500/8 border border-amber-500/20 text-amber-300 text-xs leading-relaxed',
+  h3: 'text-slate-900 font-black text-[0.95rem] mt-6 mb-2',
+  p:  'text-slate-600 text-sm leading-relaxed mb-3',
+  ul: 'list-disc pl-5 text-slate-600 text-sm leading-relaxed mb-3 space-y-1',
+  info: 'mt-3 mb-1 px-4 py-3 rounded-xl bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs leading-relaxed',
+  warn: 'mt-3 mb-1 px-4 py-3 rounded-xl bg-amber-50 border border-amber-100 text-amber-800 text-xs leading-relaxed',
 };
 
 const Table = ({ heads, rows }) => (
   <div className="overflow-x-auto mb-4">
     <table className="w-full text-xs border-collapse">
       <thead>
-        <tr>{heads.map(h => <th key={h} className="text-left px-3 py-2 bg-white/5 text-gray-300 font-bold border-b border-white/8">{h}</th>)}</tr>
+        <tr>{heads.map(h => <th key={h} className="text-left px-3 py-2 bg-slate-100 text-slate-700 font-bold border-b border-slate-200">{h}</th>)}</tr>
       </thead>
       <tbody>
         {rows.map((r, i) => (
-          <tr key={i} className="border-b border-white/[0.04]">
-            {r.map((c, j) => <td key={j} className="px-3 py-2 text-gray-400 align-top">{c}</td>)}
+          <tr key={i} className="border-b border-slate-100">
+            {r.map((c, j) => <td key={j} className="px-3 py-2 text-slate-600 align-top">{c}</td>)}
           </tr>
         ))}
       </tbody>
@@ -122,12 +151,12 @@ const SECTIONS = {
         <p className={S.p}>Instead of juggling a separate CRM, HR tool, WhatsApp panel, accounting software, and spreadsheets, Unova Estate brings everything into one login with fully connected modules.</p>
         <h3 className={S.h3}>Modules included</h3>
         <ul className={S.ul}>
-          <li><strong className="text-gray-200">CRM & Leads</strong> — capture, assign, and track every enquiry through the pipeline</li>
-          <li><strong className="text-gray-200">Property & Projects</strong> — live unit inventory across all projects</li>
-          <li><strong className="text-gray-200">Sales Orders & Commissions</strong> — booking to payment, commission calculated separately</li>
-          <li><strong className="text-gray-200">HR & Payroll</strong> — attendance, leave, salary, PF, loans, bonuses, assets</li>
-          <li><strong className="text-gray-200">Multi-Channel Marketing</strong> — Email, SMS, WhatsApp campaigns & lead forms</li>
-          <li><strong className="text-gray-200">Accounting & Finance</strong> — double-entry journals, expenses, suppliers, cashflow</li>
+          <li><strong className="text-slate-900 font-bold">CRM & Leads</strong> — capture, assign, and track every enquiry through the pipeline</li>
+          <li><strong className="text-slate-900 font-bold">Property & Projects</strong> — live unit inventory across all projects</li>
+          <li><strong className="text-slate-900 font-bold">Sales Orders & Commissions</strong> — booking to payment, commission calculated separately</li>
+          <li><strong className="text-slate-900 font-bold">HR & Payroll</strong> — attendance, leave, salary, PF, loans, bonuses, assets</li>
+          <li><strong className="text-slate-900 font-bold">Multi-Channel Marketing</strong> — Email, SMS, WhatsApp campaigns & lead forms</li>
+          <li><strong className="text-slate-900 font-bold">Accounting & Finance</strong> — double-entry journals, expenses, suppliers, cashflow</li>
         </ul>
         <p className={S.info}>💡 All modules are connected — a confirmed customer payment automatically triggers commission recalculation, and payroll auto-deducts loan repayments and PF.</p>
       </div>
@@ -203,9 +232,9 @@ const SECTIONS = {
         <h3 className={S.h3}>Create a Lead</h3>
         <p className={S.p}>CRM → Leads → &quot;+ New Lead&quot;:</p>
         <ul className={S.ul}>
-          <li><strong className="text-gray-200">Step 1:</strong> Lead category, source, assigned agent, expected close date</li>
-          <li><strong className="text-gray-200">Step 2:</strong> Add contact persons (name, phone, email) — mark one as Decision Maker</li>
-          <li><strong className="text-gray-200">Step 3:</strong> Link property/unit or service of interest → Save</li>
+          <li><strong className="text-slate-900 font-bold">Step 1:</strong> Lead category, source, assigned agent, expected close date</li>
+          <li><strong className="text-slate-900 font-bold">Step 2:</strong> Add contact persons (name, phone, email) — mark one as Decision Maker</li>
+          <li><strong className="text-slate-900 font-bold">Step 3:</strong> Link property/unit or service of interest → Save</li>
         </ul>
         <h3 className={S.h3}>Lead Statuses</h3>
         <Table
@@ -331,13 +360,13 @@ const SECTIONS = {
     title: 'Commissions',
     content: (
       <div>
-        <p className={S.p}>Commission is calculated automatically per salesperson when a customer payment is recorded. It is completely <strong className="text-white">separate from payroll</strong> — commission is paid directly from a bank account, not through the monthly salary run.</p>
+        <p className={S.p}>Commission is calculated automatically per salesperson when a customer payment is recorded. It is completely <strong className="text-slate-900 font-bold">separate from payroll</strong> — commission is paid directly from a bank account, not through the monthly salary run.</p>
         <h3 className={S.h3}>How Commission is Calculated</h3>
         <p className={S.p}>Each salesperson assigned to a sale has:</p>
         <ul className={S.ul}>
-          <li><strong className="text-gray-200">commission_value</strong> — total commission amount (or rate) for the deal</li>
-          <li><strong className="text-gray-200">payment_threshold_pct</strong> — minimum % of sale price the customer must pay before any commission is unlocked (e.g. 20%)</li>
-          <li><strong className="text-gray-200">commission_unlock_pct</strong> — if customer paid between threshold and this %, only unlock_pct worth of commission is payable (e.g. 50%)</li>
+          <li><strong className="text-slate-900 font-bold">commission_value</strong> — total commission amount (or rate) for the deal</li>
+          <li><strong className="text-slate-900 font-bold">payment_threshold_pct</strong> — minimum % of sale price the customer must pay before any commission is unlocked (e.g. 20%)</li>
+          <li><strong className="text-slate-900 font-bold">commission_unlock_pct</strong> — if customer paid between threshold and this %, only unlock_pct worth of commission is payable (e.g. 50%)</li>
           <li>Above unlock_pct: commission scales proportionally with actual % paid</li>
         </ul>
         <h3 className={S.h3}>Pay Commission to Agent</h3>
@@ -391,6 +420,158 @@ const SECTIONS = {
     ),
   },
 
+  land: {
+    title: 'Land & Feasibility Management',
+    content: (
+      <div>
+        <p className={S.p}>Land acquisition is the foundation of any building developer. Unova Estate provides tools to log, evaluate, and acquire properties.</p>
+        <h3 className={S.h3}>Mouza & Dag Registry</h3>
+        <p className={S.p}>Land → Land Bank → &quot;+ Add Land Plot&quot; → enter Mouza Name, J.L. Number, Dag Number (CS/SA/RS/BRS), Khatian Number, and Land Area (in Katha/Bigha). Assign legal vetting status to track property clearance.</p>
+        <h3 className={S.h3}>Joint-Venture Share Calculator</h3>
+        <p className={S.p}>Calculate partition ratios between the Landowner and Developer (e.g., 40/60 share). Store landowner profiles, contact details, and their designated flat/parking allocation directly in the system.</p>
+        <h3 className={S.h3}>Mutation & Legal Registration</h3>
+        <p className={S.p}>Track mutation files, registration deeds, and Power of Attorney (PoA) status. Set up verification checklists to ensure no disputable land enters construction phase.</p>
+        <Table
+          heads={['Record Type', 'Required Verification Details']}
+          rows={[
+            ['CS / SA / RS / BRS', 'Verify ownership chain (Via Baya Deed)'],
+            ['Mutation Khatian', 'Ensure Namjari is complete with Dakhila tax receipt'],
+            ['Power of Attorney', 'Verify registration at the sub-registry office'],
+          ]}
+        />
+        <p className={S.info}>💡 Switch to GIS Map View under Land Module to see plot boundaries, coordinates, and survey status overlaid on Google Maps.</p>
+      </div>
+    ),
+  },
+
+  boq: {
+    title: 'BOQ & Cost Estimation',
+    content: (
+      <div>
+        <p className={S.p}>Bill of Quantities (BOQ) forms the core of construction cost control. Manage rates, items, and templates inside Unova.</p>
+        <h3 className={S.h3}>BOQ Templates & Item Library</h3>
+        <p className={S.p}>Set up standard Item Libraries for Civil works (excavation, piling, RCC) and Finishing works (tiles, electrical, paint). Link material and labor codes to automate cost compilation.</p>
+        <h3 className={S.h3}>Cost Estimation & Rate Analysis</h3>
+        <p className={S.p}>Analyze market rates for materials (cement, rod, sand) and labor. Generate project-wise, tower-wise, or floor-wise cost estimates. Track budgeted vs. actual costs in real-time.</p>
+        <Table
+          heads={['Cost Type', 'How it is calculated']}
+          rows={[
+            ['Material Cost', 'Quantity requested x current vendor rate'],
+            ['Labor Cost', 'Man-days or sqft rate analysis for contractors'],
+            ['Equipment Cost', 'Machinery rental rate x days of usage'],
+          ]}
+        />
+        <p className={S.warn}>⚠️ Variation Orders (changes in design or material specification) must go through multi-stage approval before updating the actual project budget.</p>
+      </div>
+    ),
+  },
+
+  procurement: {
+    title: 'Procurement & Inventory Control',
+    content: (
+      <div>
+        <p className={S.p}>Seamless supply chain from Material Requisition to warehouse inventory tracking.</p>
+        <h3 className={S.h3}>Requisition & RFQ Workflow</h3>
+        <p className={S.p}>Site engineers submit Material Requisitions. Procurement department floats RFQs to approved vendors. Receive quotations and auto-generate Comparative Statements side-by-side.</p>
+        <h3 className={S.h3}>Goods Receive Note (GRN) & Store Ledger</h3>
+        <p className={S.p}>Upon delivery, site storekeepers check materials and issue a Goods Receive Note (GRN). Real-time inventory tracking logs batches, issue to contractor, store transfers, and returns.</p>
+        <ul className={S.ul}>
+          <li><strong className="text-slate-900 font-bold">Cement & Sand:</strong> Track bags/cft issued daily with wastage limits</li>
+          <li><strong className="text-slate-900 font-bold">Steel Rods:</strong> Track weight in tons and wastage ratios</li>
+          <li><strong className="text-slate-900 font-bold">Bricks & Tiles:</strong> Monitor breakage percentages and store stock levels</li>
+        </ul>
+        <p className={S.info}>💡 Store alerts notify the procurement officer automatically when warehouse stock levels fall below the minimum reorder threshold.</p>
+      </div>
+    ),
+  },
+
+  contractors: {
+    title: 'Contractor Management',
+    content: (
+      <div>
+        <p className={S.p}>Manage subcontractors, work orders, and billing certifications.</p>
+        <h3 className={S.h3}>Contractor Profiles & Work Orders</h3>
+        <p className={S.p}>Register contractor profiles, track licenses, trade experience, and ledgers. Issue Work Orders specifying unit rates (e.g. RCC per cft or plastering per sqft).</p>
+        <h3 className={S.h3}>Running Bills & Certification (RA Bills)</h3>
+        <p className={S.p}>Process Running Account (RA) bills. Site engineers verify work completed in the Measurement Book (MB). The system automatically deducts security money, retention money, and advances before certifying the final payable amount.</p>
+        <Table
+          heads={['Deduction Type', 'Standard Percentage', 'Description']}
+          rows={[
+            ['Security Money', '5% - 10%', 'Held until defects liability period ends'],
+            ['Advance Recovery', 'Variable', 'Pro-rata recovery of mobilization advance'],
+            ['TDS / VAT', 'As per NBR', 'Tax withheld at source for local contractors'],
+          ]}
+        />
+      </div>
+    ),
+  },
+
+  progress: {
+    title: 'Construction Progress Tracking',
+    content: (
+      <div>
+        <p className={S.p}>Monitor on-site execution against timelines, budgets, and work plans.</p>
+        <h3 className={S.h3}>Tower & Floor Progress Tracker</h3>
+        <p className={S.p}>Log progress at the tower, floor, or individual unit level. Site engineers submit Daily Progress Reports (DPR) with photos directly from their mobile phones.</p>
+        <h3 className={S.h3}>Gantt Charts & Critical Path</h3>
+        <p className={S.p}>Track milestones (piling, casting, brickwork, finishing). Generate Gantt charts showing actual progress vs planned timelines. Perform delay analysis and critical path calculations.</p>
+        <p className={S.info}>💡 Visual dashboards display percentage completion of each structure using dynamic colors (e.g. green for on-schedule, red for delayed).</p>
+      </div>
+    ),
+  },
+
+  engineering: {
+    title: 'Engineering & Quality Assurance',
+    content: (
+      <div>
+        <p className={S.p}>Ensure building quality and manage construction documents.</p>
+        <h3 className={S.h3}>RFI (Request for Information) & Drawings</h3>
+        <p className={S.p}>Site teams submit RFIs to head office architects or structural consultants. Store structural, plumbing, and electrical drawing revisions. Version control ensures site engineers always work with the latest approved design.</p>
+        <h3 className={S.h3}>Quality Inspections & Snag Lists</h3>
+        <p className={S.p}>Perform concrete cylinder test logs and sand FM checking. Issue Site Instructions or Quality Non-Conformance alerts. Log snag lists during final handover prep and assign them to subcontractors for rectification.</p>
+      </div>
+    ),
+  },
+
+  portals: {
+    title: 'Portals & Mobile Apps',
+    content: (
+      <div>
+        <p className={S.p}>Portals and mobile apps keep buyers informed and management in control.</p>
+        <h3 className={S.h3}>Customer Self-Service Portal</h3>
+        <p className={S.p}>Buyers login to view their payment plans, download official money receipts, read their provisional agreements, and track construction progress photos of their specific flat.</p>
+        <h3 className={S.h3}>Owner & Executive Dashboards</h3>
+        <p className={S.p}>Real-time dashboard for Managing Directors showing key metrics: sales pipeline velocity, monthly collections, cash flow forecast, project ROI, and subcontractor payouts.</p>
+      </div>
+    ),
+  },
+
+  'ai-analytics': {
+    title: 'AI Predictions & KPIs',
+    content: (
+      <div>
+        <p className={S.p}>Leverage predictive modeling to reduce costs and avoid construction delays.</p>
+        <h3 className={S.h3}>AI Collection & Sales Predictions</h3>
+        <p className={S.p}>Predict next month&apos;s collections based on historical payment patterns and lead warmth scores. Identify which buyers are likely to default on upcoming installments.</p>
+        <h3 className={S.h3}>AI Cost Overrun & Delay Alerts</h3>
+        <p className={S.p}>Analyze material price trends and site log delays to alert management if a project is forecasted to exceed its budget or completion deadline.</p>
+      </div>
+    ),
+  },
+
+  'config-bd': {
+    title: 'Bangladesh Features & Compliance',
+    content: (
+      <div>
+        <p className={S.p}>Localizations tailored for Bangladesh real estate rules and regulatory bodies.</p>
+        <h3 className={S.h3}>RAJUK Plan & Utility Tracking</h3>
+        <p className={S.p}>Track RAJUK approval stages, plan version numbers, and NOCs from civil aviation and fire department. Monitor gas connection pipelines, WASA water connections, and DESCO/DPDC substation installation files.</p>
+        <h3 className={S.h3}>VAT, Tax & Bank Loan Coordination</h3>
+        <p className={S.p}>Calculate registration VAT and property withholding taxes according to National Board of Revenue (NBR) rules. Log home buyer bank loan files for tripartite agreement tracking.</p>
+      </div>
+    ),
+  },
+
   employees: {
     title: 'Employees',
     content: (
@@ -398,10 +579,10 @@ const SECTIONS = {
         <h3 className={S.h3}>Add an Employee</h3>
         <p className={S.p}>Employees → &quot;+ New Employee&quot;:</p>
         <ul className={S.ul}>
-          <li><strong className="text-gray-200">Personal:</strong> name, phone, email, NID, gender, religion, blood group, date of birth, photo</li>
-          <li><strong className="text-gray-200">Employment:</strong> joining date, department, section, designation, branch, grade, reporting manager</li>
-          <li><strong className="text-gray-200">Salary:</strong> assign a Salary Structure (the grade must have a salary policy linked)</li>
-          <li><strong className="text-gray-200">Documents:</strong> upload NID copy, photo, contract → Save</li>
+          <li><strong className="text-slate-900 font-bold">Personal:</strong> name, phone, email, NID, gender, religion, blood group, date of birth, photo</li>
+          <li><strong className="text-slate-900 font-bold">Employment:</strong> joining date, department, section, designation, branch, grade, reporting manager</li>
+          <li><strong className="text-slate-900 font-bold">Salary:</strong> assign a Salary Structure (the grade must have a salary policy linked)</li>
+          <li><strong className="text-slate-900 font-bold">Documents:</strong> upload NID copy, photo, contract → Save</li>
         </ul>
         <h3 className={S.h3}>Employee Profile Tabs</h3>
         <Table
@@ -670,29 +851,47 @@ const SECTIONS = {
     title: 'Accounting & Journals',
     content: (
       <div>
-        <p className={S.p}>Unova Estate uses double-entry bookkeeping. Most journal entries are created automatically from sales payments, payroll, expenses, and purchases. Manual entries are for adjustments.</p>
-        <h3 className={S.h3}>Create a Journal Voucher</h3>
+        <p className={S.p}>Unova Estate features a full double-entry accounting engine specifically optimized for real estate developers, supporting multi-level cost allocation, project-wise financial statements, and automated banking workflows.</p>
+
+        <h3 className={S.h3}>1. Multi-Level Cost & Profit Centers</h3>
+        <p className={S.p}>Structure your accounts to track expenses down to the exact asset level. Post vouchers to five nested cost center tiers: <strong>Company → Project → Tower → Floor → Flat</strong>. This allows you to measure the exact profitability of any individual unit or structural block.</p>
+        <p className={S.p}>Group operations into distinct Profit Centers: <em>Residential Sales, Commercial Sales, Land Development, Rental Properties, and Construction Services</em> to run independent business unit reports.</p>
+
+        <h3 className={S.h3}>2. Project-wise Financial Statements</h3>
+        <p className={S.p}>Generate complete financial statements filtered by project in one click. Under Accounting → Reports, view project-specific:</p>
         <ul className={S.ul}>
-          <li>Accounting → Journal Vouchers → &quot;+ New Voucher&quot;</li>
-          <li>Date, reference number (optional), description</li>
-          <li>Add journal lines: each line has a debit account and a credit account and an amount</li>
-          <li>Total debits must equal total credits — the system enforces this</li>
-          <li>Save → voucher is posted</li>
+          <li><strong>Balance Sheet:</strong> Project assets (construction materials, land bank value) and liabilities</li>
+          <li><strong>Income Statement (P&L):</strong> Actual unit sales revenue minus project-specific costs</li>
+          <li><strong>Cash Flow:</strong> Inflow from buyers minus payouts to suppliers and contractors</li>
+          <li><strong>Trial Balance:</strong> Consolidated ledger check per project</li>
         </ul>
-        <h3 className={S.h3}>Correct a Posted Voucher</h3>
-        <p className={S.p}>Posted vouchers cannot be edited. To correct: create a reversing voucher with the exact opposite entries, then create a new correct voucher.</p>
-        <h3 className={S.h3}>Chart of Accounts</h3>
-        <p className={S.p}>Configuration → Chart of Accounts. Account types: Assets, Liabilities, Income, Expenses, Equity. Each account has a unique code and name. Sub-accounts can be nested under parent accounts. Do not delete accounts that have existing transactions.</p>
-        <h3 className={S.h3}>Financial Reports</h3>
-        <Table
-          heads={['Report', 'How to access']}
-          rows={[
-            ['Cashflow Statement', 'Accounting → Cashflow → select date range'],
-            ['Trial Balance', 'Accounting → Trial Balance → select date'],
-            ['Profit & Loss', 'Accounting → P&L → select period'],
-            ['Balance Sheet', 'Accounting → Balance Sheet → select date'],
-          ]}
-        />
+
+        <h3 className={S.h3}>3. Budget Control & Live Variance Dashboard</h3>
+        <p className={S.p}>Define budgets for every project department: Land, Construction, Marketing, HR, Admin, Legal, and Utilities. If a purchase order or voucher exceeds the allocated budget limit, the system blocks the transaction and sends an instant alert to the CFO.</p>
+        <p className={S.p}>Monitor project health on the <strong>Live Variance Dashboard</strong> (e.g. Budget: 50Cr, Spent: 44Cr, Variance: 6Cr) with forecasted cash flow analysis for 30-day, 90-day, and 1-year windows.</p>
+
+        <h3 className={S.h3}>4. Project Cost Auto-Allocation</h3>
+        <p className={S.p}>Automatically distribute head office administrative expenses (e.g. corporate office rent, utility bills, management salaries, marketing campaigns) across active projects using dynamic allocation rules (such as ratio of project size or sales volume).</p>
+
+        <h3 className={S.h3}>5. Auto Bank Reconciliation & Cheques</h3>
+        <p className={S.p}>Upload monthly bank statements from major local banks (City Bank, BRAC Bank, Dutch-Bangla Bank, EBL, UCB) to automatically match bank ledger transactions with posted vouchers.</p>
+        <p className={S.p}>Track post-dated cheques (PDC), receipt clearances, returns, and payment reminders under Cheque Register.</p>
+
+        <h3 className={S.h3}>6. VAT, Tax & AIT Compliance (NBR)</h3>
+        <p className={S.p}>Generate monthly NBR VAT Return files, track Advance Income Tax (AIT), Tax Deducted at Source (TDS), and print automated tax certificates for contractors and suppliers.</p>
+
+        <h3 className={S.h3}>7. Multi-Stage Voucher Approval Workflow</h3>
+        <p className={S.p}>Ensure internal control compliance. Every transaction follows a custom approval path before posting to the ledger:</p>
+        <p className={S.p} className="text-center font-bold text-slate-800 text-xs">Account Officer (Prepare) → Account Manager (Verify) → CFO (Approve) → Managing Director (Sign-off)</p>
+
+        <h3 className={S.h3}>8. AI-Powered Accounting Audit Alerts</h3>
+        <p className={S.p}>Our built-in AI assistant runs automated background checks on your ledger books to detect anomalies:</p>
+        <ul className={S.ul}>
+          <li><strong>Wrong Entry Detection:</strong> Alerts if a transaction is posted to an unusual ledger account based on historic patterns</li>
+          <li><strong>Duplicate Payment Prevention:</strong> Flags matching voucher amounts or vendor bills</li>
+          <li><strong>Expense Anomaly & Fraud Alerts:</strong> Warns when expenses exceed normal deviation limits</li>
+        </ul>
+        <p className={S.info}>💡 Audit Trail logs every ledger change, storing the exact Timestamp, User ID, Old Value, and New Value for compliance audits.</p>
       </div>
     ),
   },
@@ -947,9 +1146,9 @@ const SECTIONS = {
           { q: 'WhatsApp campaign কাজ করছে না?', a: 'Configuration → API Integrations → WhatsApp check করুন। Meta App ID, Business Account ID, Phone Number ID, এবং Access Token সব correct কিনা verify করুন। Outbound messages Meta-approved template ছাড়া পাঠানো যাবে না।' },
           { q: 'নতুন employee add করলে payroll এ আসছে না?', a: 'Employee এর Grade এবং Salary Structure assign করা আছে কিনা দেখুন। Grade ছাড়া বা salary structure ছাড়া employee payroll generate এ include হবে না।' },
         ].map((item, i) => (
-          <div key={i} className="px-4 py-3.5 bg-white/[0.03] border border-white/[0.06] rounded-xl">
-            <p className="text-sm font-bold text-white mb-1">{item.q}</p>
-            <p className="text-xs text-gray-400 leading-relaxed">{item.a}</p>
+          <div key={i} className="px-4 py-3.5 bg-white border border-slate-200 rounded-xl shadow-sm">
+            <p className="text-sm font-bold text-slate-800 mb-1">{item.q}</p>
+            <p className="text-xs text-slate-500 leading-relaxed">{item.a}</p>
           </div>
         ))}
       </div>
@@ -960,7 +1159,7 @@ const SECTIONS = {
     title: 'Contact Support',
     content: (
       <div>
-        <p className="text-sm text-gray-400 mb-5">Our support team is available Sunday – Thursday, 9 am – 6 pm (Bangladesh Standard Time).</p>
+        <p className="text-sm text-slate-500 mb-5">Our support team is available Sunday – Thursday, 9 am – 6 pm (Bangladesh Standard Time).</p>
         <div className="grid sm:grid-cols-2 gap-3">
           {[
             { icon: '💬', label: 'WhatsApp', value: '+880 1766-774016', href: 'https://wa.me/8801766774016', desc: 'Fastest response — usually within minutes' },
@@ -968,16 +1167,16 @@ const SECTIONS = {
             { icon: '📞', label: 'Phone', value: '+880 1766-774016', href: 'tel:+8801766774016', desc: 'Available during office hours' },
             { icon: '📍', label: 'Office', value: 'House 12, Road 5, Banani, Dhaka-1213', href: null, desc: 'By appointment only' },
           ].map((c, i) => (
-            <div key={i} className="bg-white/[0.04] border border-white/10 rounded-xl p-4">
+            <div key={i} className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
               <div className="flex items-center gap-2 mb-1">
                 <span className="text-lg">{c.icon}</span>
-                <p className="text-xs font-bold text-white">{c.label}</p>
+                <p className="text-xs font-bold text-slate-800">{c.label}</p>
               </div>
               {c.href ? (
                 <a href={c.href} target={c.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer"
-                  className="text-sm text-indigo-400 hover:text-indigo-300 transition-colors font-medium">{c.value}</a>
+                  className="text-sm text-indigo-600 hover:text-indigo-500 transition-colors font-medium">{c.value}</a>
               ) : (
-                <p className="text-sm text-gray-300">{c.value}</p>
+                <p className="text-sm text-slate-600">{c.value}</p>
               )}
               <p className="text-xs text-gray-500 mt-1">{c.desc}</p>
             </div>
@@ -991,6 +1190,27 @@ const SECTIONS = {
 export default function DocsClient() {
   const [active, setActive]           = useState('introduction');
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [expandedGroups, setExpandedGroups] = useState(() => {
+    // Find parent group of initial active item
+    const initialActive = 'introduction';
+    const defaultExpanded = {};
+    NAV.forEach(group => {
+      if (group.items.some(item => item.id === initialActive)) {
+        defaultExpanded[group.group] = true;
+      }
+    });
+    return defaultExpanded;
+  });
+
+  useEffect(() => {
+    const parentGroup = NAV.find(g => g.items.some(i => i.id === active));
+    if (parentGroup) {
+      setExpandedGroups(prev => ({
+        ...prev,
+        [parentGroup.group]: true
+      }));
+    }
+  }, [active]);
 
   const section = SECTIONS[active];
   const allItems = NAV.flatMap(g => g.items);
@@ -999,85 +1219,107 @@ export default function DocsClient() {
   const next = allItems[idx + 1];
 
   return (
-    <div className="min-h-screen bg-[#080810] text-white font-sans">
+    <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
 
       {/* Top bar */}
-      <header className="fixed top-0 left-0 right-0 z-50 h-14 border-b border-white/5 bg-[#080810]/90 backdrop-blur-xl flex items-center px-5 gap-4">
-        <Link href="/" className="flex items-center gap-2 mr-4 flex-shrink-0">
-          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center">
-            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M3 9.75L12 3l9 6.75V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.75z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M9 21V12h6v9" />
-            </svg>
-          </div>
-          <span className="text-sm font-extrabold">Unova<span className="text-indigo-400"> Estate</span></span>
+      <header className="fixed top-0 left-0 right-0 z-50 h-14 border-b border-slate-200 bg-white flex items-center px-5 gap-4">
+        <Link href="/" className="flex items-center mr-4 flex-shrink-0">
+          <img src="/unova-real-estate-software-logo.png" alt="Unova Estate Real Estate CRM & ERP Software Logo" className="h-8 w-auto" loading="eager" />
         </Link>
-        <div className="h-4 w-px bg-white/10 hidden sm:block" />
-        <span className="text-xs text-gray-500 hidden sm:block">Documentation</span>
+        <div className="h-4 w-px bg-slate-200 hidden sm:block" />
+        <span className="text-xs text-slate-500 hidden sm:block">Documentation</span>
         <div className="flex-1" />
-        <button onClick={() => setSidebarOpen(v => !v)} className="md:hidden p-2 text-gray-400 hover:text-white transition-colors">
+        <button onClick={() => setSidebarOpen(v => !v)} className="md:hidden p-2 text-slate-500 hover:text-slate-900 transition-colors">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
-        <Link href="/" className="text-xs font-medium text-gray-400 hover:text-white transition-colors hidden sm:block">← Back to site</Link>
+        <Link href="/" className="text-xs font-semibold text-slate-500 hover:text-slate-900 transition-colors hidden sm:block">← Back to site</Link>
       </header>
 
       <div className="flex pt-14">
 
         {/* Sidebar */}
-        <aside className={`fixed md:sticky top-14 left-0 z-40 h-[calc(100vh-3.5rem)] w-60 flex-shrink-0 bg-[#080810] md:bg-transparent border-r border-white/5 overflow-y-auto transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
-          <nav className="p-4 space-y-5">
+        <aside className={`fixed md:sticky top-14 left-0 z-40 h-[calc(100vh-3.5rem)] w-60 flex-shrink-0 bg-slate-50 md:bg-transparent border-r border-slate-200 overflow-y-auto transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
+          <nav className="p-4 space-y-3.5">
             {NAV.map(group => (
-              <div key={group.group}>
-                <p className="text-[10px] font-bold uppercase tracking-widest text-gray-600 mb-1.5">{group.group}</p>
-                <ul className="space-y-0.5">
-                  {group.items.map(item => (
-                    <li key={item.id}>
-                      <button
-                        onClick={() => { setActive(item.id); setSidebarOpen(false); }}
-                        className={`w-full text-left px-3 py-1.5 rounded-lg text-sm transition-all ${
-                          active === item.id
-                            ? 'bg-indigo-500/15 text-indigo-300 font-semibold'
-                            : 'text-gray-500 hover:text-white hover:bg-white/5'
-                        }`}>
-                        {item.label}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
+              <div key={group.group} className="space-y-1">
+                <button
+                  onClick={() => {
+                    setExpandedGroups(prev => ({
+                      ...prev,
+                      [group.group]: !prev[group.group]
+                    }));
+                  }}
+                  className="w-full flex items-center justify-between text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-slate-700 transition-colors py-1 text-left"
+                >
+                  <span>{group.group}</span>
+                  <svg
+                    className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${
+                      expandedGroups[group.group] ? 'rotate-90' : ''
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+                
+                <div
+                  className={`pl-1 transition-all duration-300 overflow-hidden ${
+                    expandedGroups[group.group] ? 'max-h-[500px] opacity-100 mt-1 mb-3.5' : 'max-h-0 opacity-0 pointer-events-none'
+                  }`}
+                >
+                  <ul className="space-y-0.5 border-l border-slate-200/80 pl-2">
+                    {group.items.map(item => (
+                      <li key={item.id}>
+                        <button
+                          onClick={() => { setActive(item.id); setSidebarOpen(false); }}
+                          className={`w-full text-left px-3 py-1.5 rounded-lg text-sm transition-all ${
+                            active === item.id
+                              ? 'bg-indigo-50 text-indigo-700 font-extrabold border border-indigo-200/60 shadow-sm'
+                              : 'text-slate-600 hover:text-slate-950 hover:bg-slate-200/40'
+                          }`}
+                        >
+                          {item.label}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             ))}
           </nav>
         </aside>
 
         {/* Mobile overlay */}
-        {sidebarOpen && <div className="fixed inset-0 z-30 bg-black/40 md:hidden" onClick={() => setSidebarOpen(false)} />}
+        {sidebarOpen && <div className="fixed inset-0 z-30 bg-slate-900/20 md:hidden" onClick={() => setSidebarOpen(false)} />}
 
         {/* Content */}
         <main className="flex-1 min-w-0 px-6 md:px-12 py-10 max-w-3xl">
           {section && (
             <>
-              <h1 className="text-2xl font-black text-white mb-6 pb-5 border-b border-white/5">{section.title}</h1>
+              <h1 className="text-2xl font-black text-slate-900 mb-6 pb-5 border-b border-slate-200">{section.title}</h1>
               {section.content}
             </>
           )}
 
           {/* Prev / Next */}
-          <div className="mt-14 pt-6 border-t border-white/5 flex justify-between gap-4">
+          <div className="mt-14 pt-6 border-t border-slate-200 flex justify-between gap-4">
             <div>
               {prev && (
-                <button onClick={() => setActive(prev.id)} className="flex flex-col items-start gap-0.5 group">
-                  <span className="text-[10px] text-gray-600 uppercase tracking-widest">Previous</span>
-                  <span className="text-sm text-gray-400 group-hover:text-white transition-colors">← {prev.label}</span>
+                <button onClick={() => setActive(prev.id)} className="flex flex-col items-start gap-0.5 group text-left">
+                  <span className="text-[10px] text-slate-400 uppercase tracking-widest">Previous</span>
+                  <span className="text-sm text-slate-500 group-hover:text-indigo-600 transition-colors">← {prev.label}</span>
                 </button>
               )}
             </div>
             <div>
               {next && (
-                <button onClick={() => setActive(next.id)} className="flex flex-col items-end gap-0.5 group">
-                  <span className="text-[10px] text-gray-600 uppercase tracking-widest">Next</span>
-                  <span className="text-sm text-gray-400 group-hover:text-white transition-colors">{next.label} →</span>
+                <button onClick={() => setActive(next.id)} className="flex flex-col items-end gap-0.5 group text-right">
+                  <span className="text-[10px] text-slate-400 uppercase tracking-widest">Next</span>
+                  <span className="text-sm text-slate-500 group-hover:text-indigo-600 transition-colors">{next.label} →</span>
                 </button>
               )}
             </div>
