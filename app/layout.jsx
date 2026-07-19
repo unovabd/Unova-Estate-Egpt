@@ -1,4 +1,5 @@
 import './globals.css';
+import HoverPrefetch from '@/components/HoverPrefetch';
 
 export const metadata = {
   title: 'Unova Estate — AI-Powered Real Estate ERP for Bangladesh',
@@ -46,6 +47,23 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Unova Estate",
+    "operatingSystem": "All",
+    "applicationCategory": "BusinessApplication",
+    "description": "Bangladesh's first AI-powered real estate ERP. Manage leads, properties, sales orders, commissions, HR, payroll, and marketing.",
+    "areaServed": {
+      "@type": "Country",
+      "name": "Bangladesh"
+    },
+    "targetAudience": {
+      "@type": "Audience",
+      "audienceType": "Real Estate Developers in Bangladesh"
+    }
+  };
+
   return (
     <html lang="en">
       <head>
@@ -55,8 +73,15 @@ export default function RootLayout({ children }) {
           href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800;900&display=swap"
           rel="stylesheet"
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {children}
+        <HoverPrefetch />
+      </body>
     </html>
   );
 }

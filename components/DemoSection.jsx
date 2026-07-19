@@ -3,7 +3,7 @@
 const CONTACT = {
   phones:   [{ label: 'Sales', number: '+880 1766-774016' }, { label: 'Support', number: '+880 1766-774016' }],
   emails:   [{ label: 'Sales', address: 'sales@unovaestate.com' }, { label: 'Support', address: 'support@unovaestate.com' }],
-  location: 'House 12, Road 5, Banani, Dhaka-1213, Bangladesh',
+  location: 'Flat: B-5, House: 12, Road: 02, Block: J, Baridhara, Vatara, Dhaka-1212',
   hours:    'Sunday – Thursday (09 am – 06 pm)',
   whatsapp: 'https://wa.me/8801766774016',
 };

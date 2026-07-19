@@ -1165,7 +1165,7 @@ const SECTIONS = {
             { icon: '💬', label: 'WhatsApp', value: '+880 1766-774016', href: 'https://wa.me/8801766774016', desc: 'Fastest response — usually within minutes' },
             { icon: '📧', label: 'Email Support', value: 'support@unovaestate.com', href: 'mailto:support@unovaestate.com', desc: 'For detailed technical queries' },
             { icon: '📞', label: 'Phone', value: '+880 1766-774016', href: 'tel:+8801766774016', desc: 'Available during office hours' },
-            { icon: '📍', label: 'Office', value: 'House 12, Road 5, Banani, Dhaka-1213', href: null, desc: 'By appointment only' },
+            { icon: '📍', label: 'Office', value: 'Flat: B-5, House: 12, Road: 02, Block: J, Baridhara, Vatara, Dhaka-1212', href: null, desc: 'By appointment only' },
           ].map((c, i) => (
             <div key={i} className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
               <div className="flex items-center gap-2 mb-1">

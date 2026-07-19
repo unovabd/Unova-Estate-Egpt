@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import AskAI from './AskAI';
 import ContactSection from './ContactSection';
+import Footer from './Footer';
 
 /* ─── Icon helpers ──────────────────────────────────────────── */
 const Icon = ({ d, className = 'w-6 h-6' }) => (
@@ -132,8 +133,36 @@ const faqs = [
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://app-estate-unova.vercel.app';
 
-export default function LandingPage() {
+export default function LandingPage({ posts = [] }) {
   const router = useRouter();
+  
+  const featuredPosts = posts.slice(0, 5);
+  const col1Posts = [featuredPosts[0], featuredPosts[3]].filter(Boolean);
+  const centerPost = featuredPosts[2];
+  const col2Posts = [featuredPosts[1], featuredPosts[4]].filter(Boolean);
+
+  const formatDate = (dateStr) => {
+    if (!dateStr) return '';
+    const parts = dateStr.split('-');
+    if (parts.length !== 3) return dateStr;
+    const year = parts[0];
+    const monthIndex = parseInt(parts[1], 10) - 1;
+    const day = parseInt(parts[2], 10);
+
+    const months = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    const month = months[monthIndex] || '';
+
+    let suffix = 'th';
+    if (day === 1 || day === 21 || day === 31) suffix = 'st';
+    else if (day === 2 || day === 22) suffix = 'nd';
+    else if (day === 3 || day === 23) suffix = 'rd';
+
+    return `${month} ${day}${suffix}, ${year}`;
+  };
+
   const [openFaq, setOpenFaq]           = useState(null);
   const [activeModule, setActiveModule] = useState(0);
   const [billingYearly, setBillingYearly] = useState(false);
@@ -214,14 +243,12 @@ export default function LandingPage() {
           </Link>
 
           <div className="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
-            {['features', 'how-it-works', 'pricing'].map(id => (
-              <button key={id} onClick={() => scrollTo(id)}
-                className="hover:text-slate-950 transition-colors capitalize">
-                {id === 'how-it-works' ? 'How It Works' : id.charAt(0).toUpperCase() + id.slice(1)}
-              </button>
-            ))}
+            <button onClick={() => scrollTo('features')} className="hover:text-slate-950 transition-colors">Features</button>
+            <Link href="/solutions" className="hover:text-slate-950 transition-colors">Solutions</Link>
+            <Link href="/resources" className="hover:text-slate-950 transition-colors">Resources</Link>
+            <Link href="/compare" className="hover:text-slate-950 transition-colors">Compare</Link>
+            <button onClick={() => scrollTo('pricing')} className="hover:text-slate-950 transition-colors">Pricing</button>
             <button onClick={() => scrollTo('contact')} className="hover:text-slate-950 transition-colors">Contact</button>
-            <Link href="/docs" className="hover:text-slate-950 transition-colors">Docs</Link>
             <AskAI onOpenChange={setAiOpen} />
           </div>
 
@@ -604,6 +631,100 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ════ COMPETITOR COMPARISON ════ */}
+      <section className="relative z-10 py-24 px-5 border-t border-slate-200/60 bg-slate-50/50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16 space-y-4">
+            <p className="text-xs font-black uppercase tracking-widest text-[#6DC042]">Comparison Study</p>
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight text-slate-900 leading-tight">
+              Why Real Estate Developers Switch to Unova
+            </h2>
+            <p className="text-slate-500 max-w-xl mx-auto text-xs md:text-sm">
+              Discover how Unova replaces slow manual registers and generic CRMs with automated property workflows.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                competitor: 'Zoho CRM',
+                slug: 'unova-vs-zoho',
+                img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&q=80',
+                desc: 'Zoho CRM is a general pipeline tool. It lacks automated installment charts, landowner flat split calculations, and local Bangladeshi check ledger configurations.',
+                badge: 'vs Zoho CRM'
+              },
+              {
+                competitor: 'Salesforce',
+                slug: 'unova-vs-salesforce',
+                img: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=400&q=80',
+                desc: 'Salesforce requires massive customization times (6-12 months), expensive consultants, and offers no native site engineering progress reports out-of-the-box.',
+                badge: 'vs Salesforce'
+              },
+              {
+                competitor: 'HubSpot',
+                slug: 'unova-vs-hubspot',
+                img: 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?auto=format&fit=crop&w=400&q=80',
+                desc: 'HubSpot is excellent for inbound marketing campaigns but cannot handle double-entry accounting cost-centers or site store inventory logs.',
+                badge: 'vs HubSpot'
+              },
+              {
+                competitor: 'Bitrix24',
+                slug: 'unova-vs-bitrix24',
+                img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=400&q=80',
+                desc: 'Bitrix24 has complex, cluttered dashboard menus and lacks post-dated cheque vaults, automatic due warnings, and local SMS gateway integration.',
+                badge: 'vs Bitrix24'
+              }
+            ].map((item, index) => (
+              <div 
+                key={index} 
+                className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm hover:shadow-md hover:border-indigo-500/30 transition-all duration-300 flex flex-col justify-between group hover:scale-[1.01]"
+              >
+                <div>
+                  <Link href={`/compare/${item.slug}`} className="block group/link">
+                    <div className="w-full h-32 rounded-xl overflow-hidden mb-4 relative bg-slate-100 border border-slate-200/50">
+                      <img
+                        src={item.img}
+                        alt={`Unova vs ${item.competitor}`}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover/link:scale-105"
+                        loading="lazy"
+                      />
+                      <div className="absolute top-2 left-2 px-2 py-0.5 bg-white/95 text-indigo-600 text-[9px] font-black uppercase tracking-wider rounded shadow-sm backdrop-blur-sm">
+                        {item.badge}
+                      </div>
+                    </div>
+                    <h3 className="text-sm font-extrabold text-slate-900 mb-2 group-hover/link:text-indigo-600 transition-colors">
+                      Unova vs {item.competitor}
+                    </h3>
+                  </Link>
+                  <p className="text-slate-500 text-[11px] leading-relaxed mb-5">
+                    {item.desc}
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-slate-100">
+                  <Link 
+                    href={`/compare/${item.slug}`} 
+                    className="text-xs font-bold text-indigo-600 hover:text-indigo-500 flex items-center gap-1 group-hover:gap-1.5 transition-all"
+                  >
+                    Read Comparison Study
+                    <span>→</span>
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Link 
+              href="/compare" 
+              className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-full transition-all shadow-md hover:shadow-lg"
+            >
+              See All Comparisons
+              <span>→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ════ PRICING ════ */}
       <section id="pricing" className="relative z-10 py-24 px-5 border-t border-slate-200/60 bg-white">
         <div className="max-w-5xl mx-auto">
@@ -729,7 +850,135 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ════ BLOG SECTION ════ */}
+      <section className="relative z-10 py-24 px-5 border-t border-slate-200/60 bg-slate-50">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-xs font-semibold text-indigo-600">
+              <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
+              ✨ Unova Insights
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight text-slate-900">
+              Knowledge to Scale Your Property Business
+            </h2>
+            <p className="text-slate-500 text-sm max-w-xl mx-auto leading-relaxed">
+              Discover battle-tested strategies, construction cost control guides, and automation secrets to increase your property conversion rates and maximize profits.
+            </p>
+          </div>
+
+          {/* Bento Grid Layout */}
+          {featuredPosts.length > 0 ? (
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-stretch">
+              {/* Column 1: Left stacked posts */}
+              <div className="flex flex-col justify-between gap-8 lg:col-span-1">
+                {col1Posts.map((post) => (
+                  <div key={post.slug} className="group flex flex-col gap-4">
+                    <Link href={`/blog/${post.slug}`} className="relative block aspect-[16/10] w-full rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                      <img 
+                        src={post.image || "https://images.unsplash.com/photo-1560518883-ce09059eeffa"} 
+                        alt={post.title} 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                      />
+                      <span className="absolute top-4 left-4 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full text-[10px] font-bold text-slate-800 flex items-center gap-1.5 shadow-sm">
+                        <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></span>
+                        {post.category}
+                      </span>
+                    </Link>
+                    <div className="space-y-1.5 px-1">
+                      <span className="text-xs text-slate-400 font-medium block">{formatDate(post.date)}</span>
+                      <h3 className="text-sm font-extrabold text-slate-900 group-hover:text-indigo-600 transition-colors leading-snug line-clamp-2">
+                        <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                      </h3>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Column 2: Center Featured post (tall) */}
+              <div className="flex flex-col h-full justify-center lg:col-span-2">
+                {centerPost && (
+                  <div className="group flex flex-col justify-between h-full border border-slate-200/50 bg-white rounded-3xl p-4 shadow-sm hover:shadow-md transition-all duration-300">
+                    <div className="flex flex-col gap-5 h-full">
+                      <Link href={`/blog/${centerPost.slug}`} className="relative block aspect-[16/10] w-full rounded-2xl overflow-hidden">
+                        <img 
+                          src={centerPost.image || "https://images.unsplash.com/photo-1504307651254-35680f356dfd"} 
+                          alt={centerPost.title} 
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                        />
+                        <span className="absolute top-4 left-4 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full text-[10px] font-bold text-slate-800 flex items-center gap-1.5 shadow-sm">
+                          <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span>
+                          {centerPost.category}
+                        </span>
+                      </Link>
+                      <div className="space-y-3 px-2 flex-grow flex flex-col justify-between">
+                        <div className="space-y-2">
+                          <span className="text-xs text-slate-400 font-medium block">{formatDate(centerPost.date)}</span>
+                          <h3 className="text-base md:text-lg font-black text-slate-900 group-hover:text-indigo-600 transition-colors leading-snug line-clamp-2">
+                            <Link href={`/blog/${centerPost.slug}`}>{centerPost.title}</Link>
+                          </h3>
+                          <p className="text-slate-500 text-xs leading-relaxed line-clamp-3">
+                            {centerPost.excerpt}
+                          </p>
+                        </div>
+                        <div className="pt-4 border-t border-slate-100 flex justify-between items-center text-xs font-bold text-indigo-600">
+                          <span>Read Article</span>
+                          <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Column 3: Right stacked posts */}
+              <div className="flex flex-col justify-between gap-8 lg:col-span-1">
+                {col2Posts.map((post) => (
+                  <div key={post.slug} className="group flex flex-col gap-4">
+                    <Link href={`/blog/${post.slug}`} className="relative block aspect-[16/10] w-full rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                      <img 
+                        src={post.image || "https://images.unsplash.com/photo-1554469384-e58fac16e23a"} 
+                        alt={post.title} 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                      />
+                      <span className="absolute top-4 left-4 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full text-[10px] font-bold text-slate-800 flex items-center gap-1.5 shadow-sm">
+                        <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></span>
+                        {post.category}
+                      </span>
+                    </Link>
+                    <div className="space-y-1.5 px-1">
+                      <span className="text-xs text-slate-400 font-medium block">{formatDate(post.date)}</span>
+                      <h3 className="text-sm font-extrabold text-slate-900 group-hover:text-indigo-600 transition-colors leading-snug line-clamp-2">
+                        <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                      </h3>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="text-center py-12 bg-white rounded-3xl border border-slate-200/60 max-w-md mx-auto shadow-sm">
+              <span className="text-4xl mb-4 block">📝</span>
+              <p className="text-slate-500 text-xs font-semibold">No blog articles published yet.</p>
+            </div>
+          )}
+
+          {/* Footer Link */}
+          <div className="text-center mt-16">
+            <Link href="/blog" className="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-indigo-600 transition-all group">
+              View All Insights 
+              <svg className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ════ FINAL CTA ════ */}
+
       <section className="relative z-10 py-24 px-5 border-t border-slate-200/60 bg-white">
         <div className="max-w-3xl mx-auto text-center relative">
           <div className="absolute inset-0 bg-indigo-600/[0.02] blur-3xl rounded-full pointer-events-none" />
@@ -765,89 +1014,7 @@ export default function LandingPage() {
       <ContactSection />
 
       {/* ════ FOOTER ════ */}
-      <footer className="relative z-10 border-t border-slate-200 bg-slate-100/50 pt-16 pb-10 px-5 text-sm text-slate-500">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-5 gap-10 mb-12">
-          <div className="md:col-span-2">
-            <div className="flex items-center mb-4">
-              <img src="/unova-real-estate-software-logo.png" alt="Unova Estate Real Estate CRM & ERP Software Logo" className="h-9 w-auto" loading="lazy" />
-            </div>
-            <p className="text-slate-500 leading-relaxed max-w-xs">The all-in-one business management platform built exclusively for property companies.</p>
-            <a href="https://wa.me/8801766774016" target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-5 text-xs font-semibold text-emerald-600 hover:text-emerald-500 transition-colors">
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-              </svg>
-              WhatsApp: +880 1766 774 016
-            </a>
-            
-            <div className="flex items-center gap-3.5 mt-6">
-              {/* Facebook */}
-              <a href="https://www.facebook.com/unovarem" target="_blank" rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full bg-slate-200/50 text-slate-600 hover:bg-indigo-600 hover:text-white flex items-center justify-center transition-all shadow-sm"
-                title="Facebook">
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
-              </a>
-
-              {/* YouTube */}
-              <a href="https://www.youtube.com/@UnovaSoftware" target="_blank" rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full bg-slate-200/50 text-slate-600 hover:bg-indigo-600 hover:text-white flex items-center justify-center transition-all shadow-sm"
-                title="YouTube">
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M23.498 6.163a3.003 3.003 0 00-2.11-2.11C19.518 3.545 12 3.545 12 3.545s-7.518 0-9.388.508a3.003 3.003 0 00-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 002.11 2.11c1.87.508 9.388.508 9.388.508s7.518 0 9.388-.508a3.003 3.003 0 002.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                </svg>
-              </a>
-
-              {/* LinkedIn */}
-              <a href="https://www.linkedin.com/company/theunova/" target="_blank" rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full bg-slate-200/50 text-slate-600 hover:bg-indigo-600 hover:text-white flex items-center justify-center transition-all shadow-sm"
-                title="LinkedIn">
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-
-          <div>
-            <h4 className="text-slate-900 font-bold mb-4 text-xs uppercase tracking-widest">Product</h4>
-            <ul className="space-y-2.5">
-              <li><button onClick={() => scrollTo('features')} className="hover:text-slate-950 transition-colors">Features</button></li>
-              <li><button onClick={() => scrollTo('how-it-works')} className="hover:text-slate-950 transition-colors">How It Works</button></li>
-              <li><button onClick={() => scrollTo('pricing')} className="hover:text-slate-950 transition-colors">Pricing</button></li>
-              <li><Link href="/docs" className="hover:text-slate-950 transition-colors">Documentation</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-slate-900 font-bold mb-4 text-xs uppercase tracking-widest">Modules</h4>
-            <ul className="space-y-2.5">
-              {['CRM & Leads', 'Property Management', 'Sales & Commissions', 'HR & Payroll', 'Marketing', 'Accounting'].map(m => (
-                <li key={m}><span className="cursor-default text-slate-500">{m}</span></li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-slate-900 font-bold mb-4 text-xs uppercase tracking-widest">Company</h4>
-            <ul className="space-y-2.5">
-              <li><Link href="https://rems.unova.bd/login" className="hover:text-slate-950 transition-colors">Sign In</Link></li>
-              <li><Link href={`${APP_URL}/company-register`} className="hover:text-slate-950 transition-colors">Register Company</Link></li>
-              <li><Link href="/docs" className="hover:text-slate-950 transition-colors">Documentation</Link></li>
-              <li>
-                <a href="https://wa.me/8801766774016" target="_blank" rel="noopener noreferrer"
-                  className="hover:text-slate-950 transition-colors">Contact Support</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="max-w-7xl mx-auto pt-8 border-t border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-          <p>© 2026 Unova Estate. All rights reserved.</p>
-          <p>Powered by <span className="text-slate-500 font-semibold">Unova</span></p>
-        </div>
-      </footer>
+      <Footer />
 
       {/* Scroll to top */}
       <button
