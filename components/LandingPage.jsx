@@ -723,7 +723,7 @@ export default function LandingPage({ posts = [] }) {
             </button>
             <span className={`text-sm font-semibold transition-colors ${billingYearly ? 'text-slate-900' : 'text-slate-400'}`}>
               Yearly
-              <span className="ml-2 text-[10px] font-black bg-emerald-100 text-emerald-600 px-2 py-0.5 rounded-full">Save 20%</span>
+              <span className="ml-2 text-[10px] font-black bg-emerald-100 text-emerald-600 px-2 py-0.5 rounded-full">Save 10%</span>
             </span>
           </div>
 
@@ -733,8 +733,8 @@ export default function LandingPage({ posts = [] }) {
               { name: 'Professional', monthly: 75, highlight: true,  badge: 'Most Popular' },
               { name: 'Advanced',     monthly: 100, highlight: false, badge: null },
             ].map((pkg, i) => {
-              const monthlyPrice = billingYearly ? Math.round(pkg.monthly * 0.8) : pkg.monthly;
-              const yearlyTotal  = Math.round(pkg.monthly * 0.8 * 12);
+              const monthlyPrice = billingYearly ? Math.round(pkg.monthly * 0.9) : pkg.monthly;
+              const yearlyTotal  = Math.round(pkg.monthly * 0.9 * 12);
               return (
                 <div key={i} className={`relative rounded-3xl p-8 flex flex-col border transition-all ${
                   pkg.highlight
