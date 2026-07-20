@@ -1240,7 +1240,7 @@ export default function DocsClient() {
       <div className="flex pt-14">
 
         {/* Sidebar */}
-        <aside className={`fixed md:sticky top-14 left-0 z-40 h-[calc(100vh-3.5rem)] w-60 flex-shrink-0 bg-slate-50 md:bg-transparent border-r border-slate-200 overflow-y-auto transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
+        <aside className={`fixed md:sticky top-14 left-0 z-40 h-[calc(100vh-3.5rem)] w-72 md:w-80 flex-shrink-0 bg-slate-50 md:bg-transparent border-r border-slate-200 overflow-y-auto custom-scrollbar-thin transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
           <nav className="p-4 space-y-3.5">
             {NAV.map(group => (
               <div key={group.group} className="space-y-1">
@@ -1276,10 +1276,10 @@ export default function DocsClient() {
                       <li key={item.id}>
                         <button
                           onClick={() => { setActive(item.id); setSidebarOpen(false); }}
-                          className={`w-full text-left px-3 py-1.5 rounded-lg text-sm transition-all ${
+                          className={`w-full text-left px-3 py-1.5 text-xs md:text-sm transition-all ${
                             active === item.id
-                              ? 'bg-indigo-50 text-indigo-700 font-extrabold border border-indigo-200/60 shadow-sm'
-                              : 'text-slate-600 hover:text-slate-950 hover:bg-slate-200/40'
+                              ? 'text-indigo-600 font-black pl-3 border-l-2 border-indigo-600 -ml-[1px]'
+                              : 'text-slate-600 hover:text-slate-950 font-medium hover:pl-2'
                           }`}
                         >
                           {item.label}
