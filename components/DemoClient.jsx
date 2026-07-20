@@ -32,10 +32,11 @@ export default function DemoClient() {
 
           <div className="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
             <Link href="/#features" className="hover:text-slate-950 transition-colors">Features</Link>
-            <Link href="/#how-it-works" className="hover:text-slate-950 transition-colors">How It Works</Link>
+            <Link href="/solutions" className="hover:text-slate-950 transition-colors">Solutions</Link>
+            <Link href="/resources" className="hover:text-slate-950 transition-colors">Resources</Link>
+            <Link href="/docs" className="hover:text-slate-950 transition-colors">Docs</Link>
             <Link href="/#pricing" className="hover:text-slate-950 transition-colors">Pricing</Link>
             <Link href="/#contact" className="hover:text-slate-950 transition-colors">Contact</Link>
-            <Link href="/docs" className="hover:text-slate-950 transition-colors">Docs</Link>
             <AskAI onOpenChange={setAiOpen} />
           </div>
 

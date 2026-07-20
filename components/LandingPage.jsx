@@ -258,7 +258,7 @@ export default function LandingPage({ posts = [] }) {
             <button onClick={() => scrollTo('features')} className="hover:text-slate-950 transition-colors">Features</button>
             <Link href="/solutions" className="hover:text-slate-950 transition-colors">Solutions</Link>
             <Link href="/resources" className="hover:text-slate-950 transition-colors">Resources</Link>
-            <Link href="/compare" className="hover:text-slate-950 transition-colors">Compare</Link>
+            <Link href="/docs" className="hover:text-slate-950 transition-colors">Docs</Link>
             <button onClick={() => scrollTo('pricing')} className="hover:text-slate-950 transition-colors">Pricing</button>
             <button onClick={() => scrollTo('contact')} className="hover:text-slate-950 transition-colors">Contact</button>
             <AskAI onOpenChange={setAiOpen} />
@@ -729,9 +729,9 @@ export default function LandingPage({ posts = [] }) {
 
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { name: '1 – 10 Employees',  monthly: 40, highlight: false, badge: null },
-              { name: '10 – 20 Employees', monthly: 75, highlight: true,  badge: 'Most Popular' },
-              { name: '20 – 40 Employees', monthly: 100, highlight: false, badge: null },
+              { name: 'Starter',      monthly: 40, highlight: false, badge: null },
+              { name: 'Professional', monthly: 75, highlight: true,  badge: 'Most Popular' },
+              { name: 'Advanced',     monthly: 100, highlight: false, badge: null },
             ].map((pkg, i) => {
               const monthlyPrice = billingYearly ? Math.round(pkg.monthly * 0.8) : pkg.monthly;
               const yearlyTotal  = Math.round(pkg.monthly * 0.8 * 12);
@@ -747,7 +747,7 @@ export default function LandingPage({ posts = [] }) {
                     </div>
                   )}
                   <div className="mb-7">
-                    <h3 className="text-lg font-black text-slate-900 mb-1">{pkg.name}</h3>
+                    <h3 className="text-2xl font-black text-slate-900 mb-1">{pkg.name}</h3>
                     <div className="mt-4 flex items-end gap-2">
                       <p className="text-4xl font-black text-slate-900">$ {monthlyPrice.toLocaleString()}</p>
                       <p className="text-xs text-slate-500 mb-1.5">/month</p>
@@ -778,11 +778,11 @@ export default function LandingPage({ posts = [] }) {
           </div>
 
           <div className="mt-8 text-center flex flex-col items-center gap-4">
-            <div className="inline-block px-6 py-3 rounded-2xl border border-slate-200 bg-slate-50/50">
-              <p className="text-sm text-slate-700">
-                <span>More than 40 employees?</span>{' '}
-                <button onClick={() => goToDemo('demo')} className="text-[#6DC042] hover:text-[#5da538] font-bold transition-colors">
-                  Contact us for a custom plan →
+            <div className="inline-block px-6 py-3.5 rounded-2xl border border-indigo-200 bg-indigo-50/50 shadow-sm">
+              <p className="text-sm font-bold text-slate-800">
+                <span>Need an Enterprise Plan? (Custom Private Cloud & Dedicated Setup)</span>{' '}
+                <button onClick={() => goToDemo('demo')} className="text-indigo-600 hover:text-indigo-500 font-extrabold underline ml-1 transition-colors">
+                  Contact Us for Enterprise Pricing →
                 </button>
               </p>
             </div>
