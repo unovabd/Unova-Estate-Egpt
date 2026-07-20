@@ -1246,10 +1246,10 @@ export default function DocsClient() {
               <div key={group.group} className="space-y-1">
                 <button
                   onClick={() => {
-                    setExpandedGroups(prev => ({
-                      ...prev,
-                      [group.group]: !prev[group.group]
-                    }));
+                    setExpandedGroups(prev => {
+                      const isExpanded = !!prev[group.group];
+                      return isExpanded ? {} : { [group.group]: true };
+                    });
                   }}
                   className="w-full flex items-center justify-between text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-slate-700 transition-colors py-1 text-left"
                 >
