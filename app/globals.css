@@ -1,3 +1,54 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .prose-custom h1 {
+    @apply text-2xl md:text-3xl font-black text-slate-900 tracking-tight mt-10 mb-5 pb-3 border-b border-slate-200;
+  }
+  .prose-custom h2 {
+    @apply text-xl md:text-2xl font-black text-slate-900 tracking-tight mt-10 mb-4 pb-2 border-b border-slate-100 flex items-center gap-2;
+  }
+  .prose-custom h3 {
+    @apply text-base md:text-lg font-bold text-slate-900 tracking-tight mt-8 mb-3;
+  }
+  .prose-custom p {
+    @apply text-slate-600 text-xs md:text-sm leading-relaxed mb-5 font-normal;
+  }
+  .prose-custom blockquote {
+    @apply border-l-4 border-[#6DC042] bg-gradient-to-r from-emerald-50/70 via-indigo-50/20 to-transparent p-5 md:p-6 rounded-r-2xl my-8 text-slate-800 text-xs md:text-sm font-semibold italic shadow-sm leading-relaxed relative overflow-hidden;
+  }
+  .prose-custom table {
+    @apply w-full text-xs text-left border-collapse my-8 rounded-2xl overflow-hidden shadow-sm border border-slate-200/90;
+  }
+  .prose-custom th {
+    @apply bg-slate-900 text-white font-extrabold p-3.5 text-[11px] tracking-wider uppercase border-b border-slate-800;
+  }
+  .prose-custom td {
+    @apply p-3.5 border-b border-slate-100 text-slate-700 bg-white font-medium text-xs md:text-sm;
+  }
+  .prose-custom tr:nth-child(even) td {
+    @apply bg-slate-50/50;
+  }
+  .prose-custom tr:hover td {
+    @apply bg-indigo-50/30 text-slate-900;
+  }
+  .prose-custom ul {
+    @apply space-y-2.5 my-6 pl-5 list-disc text-xs md:text-sm text-slate-600;
+  }
+  .prose-custom ol {
+    @apply space-y-2.5 my-6 pl-5 list-decimal text-xs md:text-sm text-slate-600;
+  }
+  .prose-custom li strong {
+    @apply font-bold text-slate-900;
+  }
+  .prose-custom img {
+    @apply rounded-2xl shadow-md border border-slate-200/80 my-8 w-full object-cover max-h-[440px];
+  }
+  .prose-custom hr {
+    @apply my-10 border-slate-200;
+  }
+  .prose-custom a {
+    @apply font-bold text-indigo-600 hover:text-indigo-500 underline underline-offset-4 transition-colors;
+  }
+}

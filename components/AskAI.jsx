@@ -41,8 +41,13 @@ const SUGGESTIONS = [
   'Commission ও payroll কীভাবে কাজ করে?',
 ];
 
-export default function AskAI({ onOpenChange }) {
-  const [open, setOpen]         = useState(false);
+export default function AskAI({ open: externalOpen, isOpen, onOpenChange }) {
+  const isControlled = externalOpen !== undefined || isOpen !== undefined;
+  const activeOpenProp = externalOpen !== undefined ? externalOpen : isOpen;
+
+  const [internalOpen, setInternalOpen] = useState(false);
+  const open = isControlled ? activeOpenProp : internalOpen;
+
   const [input, setInput]       = useState('');
   const [messages, setMessages] = useState([
     { role: 'bot', text: "Hi! I'm the Unova Estate AI assistant. Ask me anything about the software — in Bangla, English, or Banglish! 😊" },
@@ -53,7 +58,9 @@ export default function AskAI({ onOpenChange }) {
 
   const toggle = (v) => {
     const next = typeof v === 'function' ? v(open) : v;
-    setOpen(next);
+    if (!isControlled) {
+      setInternalOpen(next);
+    }
     onOpenChange?.(next);
   };
 

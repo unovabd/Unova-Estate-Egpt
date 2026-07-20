@@ -88,7 +88,7 @@ export default function ResourcesClient() {
             <Link href="/resources" className="hover:text-slate-950 transition-colors">Resources</Link>
             <Link href="/#pricing" className="hover:text-slate-950 transition-colors">Pricing</Link>
             <Link href="/#contact" className="hover:text-slate-950 transition-colors">Contact</Link>
-            <AskAI onOpenChange={setAiOpen} />
+            <AskAI open={aiOpen} onOpenChange={setAiOpen} />
           </div>
 
           <div className="flex items-center gap-3">

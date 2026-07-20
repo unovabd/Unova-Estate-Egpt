@@ -98,6 +98,18 @@ const modules = [
     desc: 'Enterprise-grade double-entry accounting. Track project-wise financial statements, manage multi-level cost centers (Project/Tower/Floor/Flat), auto-reconcile bank statements, and run AI audit checks.',
     points: ['Project-wise Balance Sheet & P&L', 'Multi-level cost & profit centers', 'Auto Bank Reconciliation & PDC management', 'AI Wrong Entry & Anomaly Alerts'],
   },
+  {
+    color: 'indigo',
+    icon: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z',
+    title: 'Role-Based Access',
+    desc: 'Control who sees what. Managing Directors get full KPI dashboards, Sales Managers track team pipelines, Executives manage daily tasks, and HR/Finance run payroll.',
+    points: [
+      '👔 Managing Director: Full KPI dashboard',
+      '📈 Sales Manager: Team assignments & reports',
+      '🤝 Sales Executive: Personal leads & reminders',
+      '🧾 HR & Finance: Payroll & expense approvals'
+    ],
+  },
 ];
 
 const salesSteps = [
@@ -370,7 +382,7 @@ export default function LandingPage({ posts = [] }) {
       <section id="features" className="relative z-10 py-24 px-5 border-t border-slate-200/60 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#6DC042] mb-3">10 integrated modules. One login.</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-[#6DC042] mb-3">11 integrated modules. One login.</p>
             <h2 className="text-3xl md:text-5xl font-black tracking-tight text-slate-900 mb-4">Everything in one platform.</h2>
             <p className="text-slate-500 max-w-xl mx-auto">No more switching between a CRM, a construction ERP, a land feasibility spreadsheet, and separate HR systems. Unova Estate replaces all of them.</p>
           </div>
@@ -436,6 +448,29 @@ export default function LandingPage({ posts = [] }) {
             </div>
             <div className="relative rounded-2xl overflow-hidden shadow-md border border-slate-200 bg-white p-1.5 transition-transform duration-300 hover:scale-[1.01]">
               <img src="/unova-estate-multi-device-responsive-dashboard.png" alt="Unova Estate Multi-Device Mobile, Tablet, and Desktop CRM Dashboard" className="w-full rounded-xl object-cover" loading="lazy" width="800" height="500" />
+            </div>
+          </div>
+
+          {/* Mockup 3 — Funnel & Analytics Dashboard */}
+          <div className="mt-16 bg-slate-50 border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="order-2 md:order-1 relative rounded-2xl overflow-hidden shadow-md border border-slate-200 bg-white p-1.5 transition-transform duration-300 hover:scale-[1.01]">
+                <img src="/unova-property-sales-funnel-analytics-dashboard.png" alt="Unova Estate CRM Sales Funnel and Analytics Dashboard Charts" className="w-full rounded-xl object-cover" loading="lazy" width="800" height="500" />
+              </div>
+              <div className="order-1 md:order-2">
+                <span className="text-xs font-bold uppercase tracking-widest text-[#6DC042] mb-3 block">Data-Driven Insights</span>
+                <h3 className="text-2xl md:text-4xl font-black text-slate-900 leading-tight mb-4">
+                  Make smarter decisions with real-time analytics.
+                </h3>
+                <p className="text-slate-500 text-sm leading-relaxed mb-6">
+                  Track your sales funnel from initial leads down to finalized bookings. See agent performance, cost breakdowns, payment collection rates, and monthly commission payouts in clean, interactive charts.
+                </p>
+                <button onClick={() => goToDemo('demo')}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm text-white bg-[#6DC042] hover:bg-[#5da538] shadow-md transition-all">
+                  Try it Live
+                  <Icon d="M14 5l7 7m0 0l-7 7m7-7H3" className="w-4 h-4" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -544,63 +579,9 @@ export default function LandingPage({ posts = [] }) {
             </div>
           </div>
 
-          {/* Mockup 3 — Funnel & Analytics Dashboard */}
-          <div className="mt-24 bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div className="order-2 md:order-1 relative rounded-2xl overflow-hidden shadow-md border border-slate-200 bg-white p-1.5 transition-transform duration-300 hover:scale-[1.01]">
-                <img src="/unova-property-sales-funnel-analytics-dashboard.png" alt="Unova Estate CRM Sales Funnel and Analytics Dashboard Charts" className="w-full rounded-xl object-cover" loading="lazy" width="800" height="500" />
-              </div>
-              <div className="order-1 md:order-2">
-                <span className="text-xs font-bold uppercase tracking-widest text-[#6DC042] mb-3 block">Data-Driven Insights</span>
-                <h3 className="text-2xl md:text-4xl font-black text-slate-900 leading-tight mb-4">
-                  Make smarter decisions with real-time analytics.
-                </h3>
-                <p className="text-slate-500 text-sm leading-relaxed mb-6">
-                  Track your sales funnel from initial leads down to finalized bookings. See agent performance, cost breakdowns, payment collection rates, and monthly commission payouts in clean, interactive charts.
-                </p>
-                <button onClick={() => goToDemo('demo')}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm text-white bg-[#6DC042] hover:bg-[#5da538] shadow-md transition-all">
-                  Try it Live
-                  <Icon d="M14 5l7 7m0 0l-7 7m7-7H3" className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* ════ ROLES ════ */}
-      <section className="relative z-10 py-24 px-5 border-t border-slate-200/60 bg-white">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14">
-            <p className="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-3">Every team member sees only what they need.</p>
-            <h2 className="text-3xl md:text-5xl font-black tracking-tight text-slate-900 mb-4">Role-Based Access System</h2>
-            <p className="text-slate-500 max-w-xl mx-auto">Give each person access to exactly what they need. Nothing more, nothing less. Fully configured by admin.</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {[
-              { role: 'Managing Director', icon: '👔', gets: ['Real-time dashboard KPIs', 'Full pipeline visibility', 'Finance & payroll overview', 'Approval queue at a glance'] },
-              { role: 'Sales Manager', icon: '📈', gets: ['Team lead assignments', 'Pipeline stage reports', 'Commission tracking', 'Campaign results'] },
-              { role: 'Sales Executive', icon: '🤝', gets: ['Personal lead pipeline', 'Follow-up reminders', 'Property availability', 'Own commission history'] },
-              { role: 'HR & Finance', icon: '🧾', gets: ['Attendance & leave approvals', 'One-click payroll processing', 'Expense approvals', 'PF & loan management'] },
-            ].map((r, i) => (
-              <div key={i} className="bg-slate-50/50 border border-slate-200 rounded-2xl p-6 hover:border-indigo-500/25 transition-colors shadow-sm">
-                <div className="text-3xl mb-4">{r.icon}</div>
-                <h3 className="text-base font-black text-slate-900 mb-4">{r.role}</h3>
-                <ul className="space-y-2">
-                  {r.gets.map((g, gi) => (
-                    <li key={gi} className="flex items-start gap-2 text-xs text-slate-600">
-                      <CheckIcon cls="w-3.5 h-3.5 text-indigo-600 flex-shrink-0 mt-0.5" />
-                      {g}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ════ TESTIMONIALS ════ */}
       <section className="relative z-10 py-24 px-5 border-t border-slate-200/60 bg-slate-50">
@@ -857,13 +838,13 @@ export default function LandingPage({ posts = [] }) {
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-xs font-semibold text-indigo-600">
               <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
-              ✨ Unova Insights
+              ✨ Unova Blog
             </div>
             <h2 className="text-3xl md:text-5xl font-black tracking-tight text-slate-900">
-              Knowledge to Scale Your Property Business
+              Simple Guides to Grow Your Business
             </h2>
             <p className="text-slate-500 text-sm max-w-xl mx-auto leading-relaxed">
-              Discover battle-tested strategies, construction cost control guides, and automation secrets to increase your property conversion rates and maximize profits.
+              Read our easy guides to learn how to save construction costs, get more property buyers, and make your daily work easier.
             </p>
           </div>
 

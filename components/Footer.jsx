@@ -71,6 +71,7 @@ export default function Footer() {
               <li><Link href="/resources/roi-calculator" className="hover:text-slate-950 transition-colors">ROI Calculator</Link></li>
               <li><Link href="/compare" className="hover:text-slate-950 transition-colors">Comparison Studies</Link></li>
               <li><Link href="/resources/glossary" className="hover:text-slate-950 transition-colors">Real Estate Glossary</Link></li>
+              <li><Link href="/faq" className="hover:text-slate-950 transition-colors">Frequently Asked Questions (FAQ)</Link></li>
             </ul>
           </div>
 
