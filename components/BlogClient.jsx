@@ -9,6 +9,7 @@ export default function BlogClient({ posts }) {
   const [aiOpen, setAiOpen]             = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [searchQuery, setSearchQuery]     = useState('');
+  const [activeCategory, setActiveCategory] = useState('all');
 
   useEffect(() => {
     const onScroll = () => setShowScrollTop(window.scrollY > 400);
@@ -16,9 +17,27 @@ export default function BlogClient({ posts }) {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  const categories = [
+    { id: 'all', label: 'All Posts' },
+    { id: 'guides', label: 'Guides & How-Tos' },
+    { id: 'statistics', label: 'Statistics & Trends' },
+    { id: 'best-practices', label: 'Best Practices' },
+    { id: 'glossary', label: 'Real Estate Glossary' },
+    { id: 'product-news', label: 'Product News' }
+  ];
+
   const filteredPosts = posts.filter(post => {
-    return post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-           post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+    const pCat = (post.category || '').toLowerCase();
+    const matchesCategory = activeCategory === 'all' || 
+      (activeCategory === 'guides' && (pCat.includes('guide') || pCat.includes('how'))) ||
+      (activeCategory === 'statistics' && (pCat.includes('stat') || pCat.includes('trend') || pCat.includes('market') || pCat.includes('report'))) ||
+      (activeCategory === 'best-practices' && (pCat.includes('practice') || pCat.includes('cost') || pCat.includes('sales') || pCat.includes('automation'))) ||
+      (activeCategory === 'glossary' && (pCat.includes('glossary') || pCat.includes('term') || pCat.includes('dictionary'))) ||
+      (activeCategory === 'product-news' && (pCat.includes('product') || pCat.includes('news') || pCat.includes('update') || pCat.includes('launch')));
+
+    const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
   });
 
   return (
@@ -40,7 +59,7 @@ export default function BlogClient({ posts }) {
           <div className="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
             <Link href="/#features" className="hover:text-slate-950 transition-colors">Features</Link>
             <Link href="/solutions" className="hover:text-slate-950 transition-colors">Solutions</Link>
-            <Link href="/resources" className="hover:text-slate-950 transition-colors">Resources</Link>
+            <Link href="/blog" className="hover:text-slate-950 transition-colors">Blog</Link>
             <Link href="/docs" className="hover:text-slate-950 transition-colors">Docs</Link>
             <Link href="/#pricing" className="hover:text-slate-950 transition-colors">Pricing</Link>
             <Link href="/#contact" className="hover:text-slate-950 transition-colors">Contact</Link>
@@ -62,10 +81,10 @@ export default function BlogClient({ posts }) {
       <main className="relative z-10 pt-32 pb-24 px-5 max-w-5xl mx-auto w-full flex-1">
         
         {/* HEADER */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-xs font-semibold text-indigo-600">
             <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
-            Unova Blog
+            Unova Blog & Insights
           </div>
 
           <h1 className="text-4xl md:text-5xl font-black tracking-tight leading-tight text-slate-900">
@@ -73,22 +92,42 @@ export default function BlogClient({ posts }) {
           </h1>
 
           <p className="text-slate-500 text-sm leading-relaxed max-w-xl mx-auto">
-            Discover tips, automation guides, cost estimating strategies, and user stories from leading builders.
+            Discover guides, market statistics, best practices, real estate glossary, and product news from leading builders.
           </p>
         </div>
 
-        {/* SEARCH BAR */}
-        <div className="max-w-md mx-auto mb-16 relative">
-          <input
-            type="text"
-            placeholder="Search articles..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-11 pr-4 py-3 rounded-full text-xs bg-white border border-slate-200 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 shadow-sm"
-          />
-          <svg className="absolute left-4 top-3.5 w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
+        {/* SEARCH & CATEGORY FILTERS */}
+        <div className="max-w-4xl mx-auto mb-16 space-y-6">
+          {/* Search Bar */}
+          <div className="relative w-full max-w-md mx-auto">
+            <input
+              type="text"
+              placeholder="Search articles by keywords..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-11 pr-4 py-3 rounded-full text-xs bg-white border border-slate-200/90 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/10 shadow-sm font-medium transition-all"
+            />
+            <svg className="absolute left-4 top-3.5 w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+
+          {/* Category Tabs */}
+          <div className="flex flex-wrap gap-2 justify-center">
+            {categories.map(c => (
+              <button
+                key={c.id}
+                onClick={() => setActiveCategory(c.id)}
+                className={`px-4 py-2 rounded-full text-xs font-semibold transition-all border ${
+                  activeCategory === c.id
+                    ? 'bg-indigo-600 text-white border-indigo-600 shadow-md'
+                    : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300 hover:text-slate-900 shadow-sm'
+                }`}
+              >
+                {c.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* BLOG GRID */}
@@ -118,10 +157,8 @@ export default function BlogClient({ posts }) {
                     href={`/blog/${post.slug}`}
                     className="text-xs font-bold text-indigo-600 hover:text-indigo-500 flex items-center gap-1"
                   >
-                    Read Article 
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
-                    </svg>
+                    Read Post
+                    <span>→</span>
                   </Link>
                 </div>
               </div>
@@ -130,10 +167,11 @@ export default function BlogClient({ posts }) {
         ) : (
           <div className="text-center py-16 bg-white border border-slate-200/60 rounded-3xl max-w-md mx-auto shadow-sm">
             <span className="text-4xl mb-4 block">🔍</span>
-            <h3 className="text-sm font-bold text-slate-800 mb-1">No articles found</h3>
-            <p className="text-slate-500 text-xs">Try different keywords.</p>
+            <h3 className="text-base font-bold text-slate-800 mb-1">No articles found</h3>
+            <p className="text-slate-500 text-xs">Try searching for different keywords or categories.</p>
           </div>
         )}
+
       </main>
 
       <Footer />

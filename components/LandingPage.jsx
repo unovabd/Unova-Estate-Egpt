@@ -257,7 +257,7 @@ export default function LandingPage({ posts = [] }) {
           <div className="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
             <button onClick={() => scrollTo('features')} className="hover:text-slate-950 transition-colors">Features</button>
             <Link href="/solutions" className="hover:text-slate-950 transition-colors">Solutions</Link>
-            <Link href="/resources" className="hover:text-slate-950 transition-colors">Resources</Link>
+            <Link href="/blog" className="hover:text-slate-950 transition-colors">Blog</Link>
             <Link href="/docs" className="hover:text-slate-950 transition-colors">Docs</Link>
             <button onClick={() => scrollTo('pricing')} className="hover:text-slate-950 transition-colors">Pricing</button>
             <button onClick={() => scrollTo('contact')} className="hover:text-slate-950 transition-colors">Contact</button>

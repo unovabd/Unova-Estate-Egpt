@@ -63,14 +63,14 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* RESOURCES */}
+          {/* RESOURCES & DOWNLOADS */}
           <div className="space-y-4">
-            <h4 className="text-slate-900 font-bold text-xs uppercase tracking-wider">RESOURCES</h4>
+            <h4 className="text-slate-900 font-bold text-xs uppercase tracking-wider">RESOURCES & DOWNLOADS</h4>
             <ul className="space-y-2.5 text-xs">
+              <li><Link href="/blog" className="hover:text-slate-950 transition-colors">Blog & Insights</Link></li>
               <li><Link href="/docs" className="hover:text-slate-950 transition-colors">User Documentation</Link></li>
-              <li><Link href="/resources/roi-calculator" className="hover:text-slate-950 transition-colors">ROI Calculator</Link></li>
+              <li><Link href="/resources/downloads" className="hover:text-slate-950 transition-colors font-bold text-indigo-600">Downloads (Leaflet & Profile)</Link></li>
               <li><Link href="/compare" className="hover:text-slate-950 transition-colors">Comparison Studies</Link></li>
-              <li><Link href="/resources/glossary" className="hover:text-slate-950 transition-colors">Real Estate Glossary</Link></li>
               <li><Link href="/faq" className="hover:text-slate-950 transition-colors">Frequently Asked Questions (FAQ)</Link></li>
             </ul>
           </div>
