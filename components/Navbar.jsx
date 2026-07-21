@@ -20,8 +20,8 @@ export default function Navbar({ activePage = '' }) {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       scrolled
-        ? 'bg-white/95 backdrop-blur-xl border-b border-slate-200/80 shadow-sm py-2.5'
-        : 'bg-white/90 backdrop-blur-md border-b border-slate-200/50 py-3'
+        ? 'bg-white/95 backdrop-blur-xl border-b border-slate-200/80 shadow-sm py-2'
+        : 'bg-white/90 backdrop-blur-md border-b border-slate-200/50 py-2.5'
     }`}>
       <div className="max-w-7xl mx-auto px-4 md:px-5 flex items-center justify-between">
         {/* Brand Logo */}
@@ -85,11 +85,11 @@ export default function Navbar({ activePage = '' }) {
         </div>
       </div>
 
-      {/* MOBILE SCROLLABLE PILL BAR */}
-      <div className="md:hidden border-t border-slate-100 mt-2 pt-2 px-4 flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth">
+      {/* MOBILE SCROLLABLE PILL BAR (CENTERED, BALANCED SPACING & LARGER) */}
+      <div className="md:hidden border-t border-slate-100 mt-1.5 py-1.5 px-4 flex items-center justify-center gap-2.5 overflow-x-auto no-scrollbar scroll-smooth">
         <Link
           href="/#features"
-          className={`text-[11px] font-bold px-3 py-1 rounded-full whitespace-nowrap transition-all ${
+          className={`text-xs font-bold px-4 py-1.5 rounded-full whitespace-nowrap transition-all shadow-sm ${
             activePage === 'features' ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
           }`}
         >
@@ -97,7 +97,7 @@ export default function Navbar({ activePage = '' }) {
         </Link>
         <Link
           href="/solutions"
-          className={`text-[11px] font-bold px-3 py-1 rounded-full whitespace-nowrap transition-all ${
+          className={`text-xs font-bold px-4 py-1.5 rounded-full whitespace-nowrap transition-all shadow-sm ${
             activePage === 'solutions' ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
           }`}
         >
@@ -105,7 +105,7 @@ export default function Navbar({ activePage = '' }) {
         </Link>
         <Link
           href="/#pricing"
-          className={`text-[11px] font-bold px-3 py-1 rounded-full whitespace-nowrap transition-all ${
+          className={`text-xs font-bold px-4 py-1.5 rounded-full whitespace-nowrap transition-all shadow-sm ${
             activePage === 'pricing' ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
           }`}
         >
@@ -113,7 +113,7 @@ export default function Navbar({ activePage = '' }) {
         </Link>
         <Link
           href="/#contact"
-          className={`text-[11px] font-bold px-3 py-1 rounded-full whitespace-nowrap transition-all ${
+          className={`text-xs font-bold px-4 py-1.5 rounded-full whitespace-nowrap transition-all shadow-sm ${
             activePage === 'contact' ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
           }`}
         >

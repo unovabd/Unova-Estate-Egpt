@@ -249,7 +249,7 @@ export default function LandingPage({ posts = [] }) {
       <Navbar activePage="home" />
 
       {/* ════ HERO ════ */}
-      <section className="relative pt-40 pb-24 px-5 z-10 overflow-hidden bg-slate-50/20">
+      <section className="relative pt-22 md:pt-40 pb-24 px-5 z-10 overflow-hidden bg-slate-50/20">
         <style dangerouslySetInnerHTML={{__html: `
           @keyframes shimmer {
             0% { background-position: -200% 0; }
@@ -317,19 +317,7 @@ export default function LandingPage({ posts = [] }) {
             </button>
           </div>
 
-          {/* Trust Bar (Social Proof) */}
-          <div className="mb-16 flex flex-col items-center justify-center gap-4">
-            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-              Trusted by top real estate teams in Bangladesh
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 opacity-50 grayscale hover:opacity-75 transition-opacity duration-300">
-              <span className="text-xs font-extrabold text-slate-500 tracking-wider">Assure Development</span>
-              <span className="text-xs font-extrabold text-slate-500 tracking-wider">Sheltech</span>
-              <span className="text-xs font-extrabold text-slate-500 tracking-wider">Shanta Holdings</span>
-              <span className="text-xs font-extrabold text-slate-500 tracking-wider">Concord Group</span>
-              <span className="text-xs font-extrabold text-slate-500 tracking-wider">bti</span>
-            </div>
-          </div>
+
 
           {/* Main Dashboard Preview Mockup (macOS Style Frame) */}
           <div className="relative mx-auto max-w-5xl rounded-2xl border border-slate-200/80 bg-white shadow-[0_30px_70px_rgba(27,42,59,0.15)] overflow-hidden mt-8 transition-all duration-500 hover:scale-[1.01] hover:border-[#6DC042]/30 group">

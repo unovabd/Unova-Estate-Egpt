@@ -60,7 +60,7 @@ export default function Footer() {
               <li><Link href="/solutions/erp-for-land-developers" className="hover:text-slate-950 transition-colors">Land Plot & Dag ERP</Link></li>
               <li><Link href="/solutions/lead-leakage-prevention" className="hover:text-slate-950 transition-colors">Lead Leakage Prevention</Link></li>
               <li><Link href="/solutions/installment-collection-automation" className="hover:text-slate-950 transition-colors">Installment Automation</Link></li>
-              <li><Link href="/solutions" className="hover:text-slate-950 font-semibold text-indigo-600 transition-colors">Explore All Solutions →</Link></li>
+              <li><Link href="/solutions" className="hover:text-slate-950 transition-colors">Explore All Solutions →</Link></li>
             </ul>
           </div>
 
@@ -68,7 +68,7 @@ export default function Footer() {
           <div className="space-y-4">
             <h4 className="text-slate-900 font-bold text-xs uppercase tracking-wider">RESOURCES & DOWNLOADS</h4>
             <ul className="space-y-2.5 text-xs">
-              <li><Link href="/calculator" className="hover:text-slate-950 font-semibold text-indigo-600 transition-colors">Plan Calculator 🧮</Link></li>
+              <li><Link href="/calculator" className="hover:text-slate-950 transition-colors">Plan Calculator</Link></li>
               <li><Link href="/docs" className="hover:text-slate-950 transition-colors">User Documentation</Link></li>
               <li><Link href="/resources/downloads" className="hover:text-slate-950 transition-colors">Downloads (Brochure & Leaflet)</Link></li>
               <li><Link href="/compare" className="hover:text-slate-950 transition-colors">Comparison Studies</Link></li>
