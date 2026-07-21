@@ -249,7 +249,7 @@ export default function LandingPage({ posts = [] }) {
       <Navbar activePage="home" />
 
       {/* ════ HERO ════ */}
-      <section className="relative pt-22 md:pt-40 pb-24 px-5 z-10 overflow-hidden bg-slate-50/20">
+      <section className="relative pt-[115px] md:pt-40 pb-24 px-5 z-10 overflow-hidden bg-slate-50/20">
         <style dangerouslySetInnerHTML={{__html: `
           @keyframes shimmer {
             0% { background-position: -200% 0; }
