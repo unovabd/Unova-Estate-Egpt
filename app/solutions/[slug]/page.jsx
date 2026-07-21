@@ -15,6 +15,9 @@ export async function generateMetadata({ params }) {
   return {
     title: `${data.title} - Real Estate Software Solutions | Unova Estate`,
     description: data.metaDescription,
+    alternates: {
+      canonical: `/solutions/${slug}`,
+    },
     openGraph: {
       title: `${data.title} - Unova Estate`,
       description: data.metaDescription,
@@ -33,7 +36,7 @@ export default async function Page({ params }) {
   const allSolutions = getSortedSolutionsData();
   const relatedSolutions = allSolutions
     .filter(s => s.slug !== slug)
-    .slice(0, 3); // Suggest 3 other solutions
+    .slice(0, 3);
 
   return (
     <SolutionDetailClient 

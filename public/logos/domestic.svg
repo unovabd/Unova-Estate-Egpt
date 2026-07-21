@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 120" width="100%" height="100%">
+  <rect width="100%" height="100%" fill="#ffffff" rx="16"/>
+  <g transform="translate(25, 25)">
+    <path d="M 10 10 L 40 10 C 55 10, 55 60, 40 60 L 10 60 Z" fill="#0F766E"/>
+    <path d="M 22 22 L 35 22 C 43 22, 43 48, 35 48 L 22 48 Z" fill="#ffffff"/>
+  </g>
+  <text x="95" y="52" font-family="'Inter', sans-serif" font-weight="900" font-size="22" fill="#134E4A" letter-spacing="0.5">DOMESTIC</text>
+  <text x="95" y="74" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#0F766E" letter-spacing="2">DEVELOPERS LTD</text>
+</svg>

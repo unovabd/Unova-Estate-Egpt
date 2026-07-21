@@ -49,40 +49,44 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Right side 3 columns */}
+        {/* Right side 3 clean columns */}
         <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-8">
           
-          {/* SOLUTIONS */}
+          {/* 1. SOLUTIONS & MODULES */}
           <div className="space-y-4">
             <h4 className="text-slate-900 font-bold text-xs uppercase tracking-wider">SOLUTIONS</h4>
             <ul className="space-y-2.5 text-xs">
-              <li><Link href="/solutions/erp-for-real-estate-developers" className="hover:text-slate-950 transition-colors">ERP for Developers</Link></li>
-              <li><Link href="/solutions/erp-for-land-developers" className="hover:text-slate-950 transition-colors">Land Joint-Venture</Link></li>
+              <li><Link href="/solutions/erp-for-real-estate-developers" className="hover:text-slate-950 transition-colors">ERP for Flat Developers</Link></li>
+              <li><Link href="/solutions/erp-for-land-developers" className="hover:text-slate-950 transition-colors">Land Plot & Dag ERP</Link></li>
               <li><Link href="/solutions/lead-leakage-prevention" className="hover:text-slate-950 transition-colors">Lead Leakage Prevention</Link></li>
-              <li><Link href="/solutions/installment-automation-solution" className="hover:text-slate-950 transition-colors">Installment Automation</Link></li>
+              <li><Link href="/solutions/installment-collection-automation" className="hover:text-slate-950 transition-colors">Installment Automation</Link></li>
+              <li><Link href="/solutions" className="hover:text-slate-950 font-semibold text-indigo-600 transition-colors">Explore All Solutions →</Link></li>
             </ul>
           </div>
 
-          {/* RESOURCES & DOWNLOADS */}
+          {/* 2. RESOURCES & DOWNLOADS */}
           <div className="space-y-4">
             <h4 className="text-slate-900 font-bold text-xs uppercase tracking-wider">RESOURCES & DOWNLOADS</h4>
             <ul className="space-y-2.5 text-xs">
-              <li><Link href="/blog" className="hover:text-slate-950 transition-colors">Blog & Insights</Link></li>
+              <li><Link href="/calculator" className="hover:text-slate-950 font-semibold text-indigo-600 transition-colors">Plan Calculator 🧮</Link></li>
               <li><Link href="/docs" className="hover:text-slate-950 transition-colors">User Documentation</Link></li>
-              <li><Link href="/resources/downloads" className="hover:text-slate-950 transition-colors font-bold text-indigo-600">Downloads (Leaflet & Profile)</Link></li>
+              <li><Link href="/resources/downloads" className="hover:text-slate-950 transition-colors">Downloads (Brochure & Leaflet)</Link></li>
               <li><Link href="/compare" className="hover:text-slate-950 transition-colors">Comparison Studies</Link></li>
               <li><Link href="/faq" className="hover:text-slate-950 transition-colors">Frequently Asked Questions (FAQ)</Link></li>
+              <li><Link href="/blog" className="hover:text-slate-950 transition-colors">Blog & Insights</Link></li>
             </ul>
           </div>
 
-          {/* COMPANY & TRUST */}
+          {/* 3. COMPANY & LEGAL */}
           <div className="space-y-4">
-            <h4 className="text-slate-900 font-bold text-xs uppercase tracking-wider">COMPANY & TRUST</h4>
+            <h4 className="text-slate-900 font-bold text-xs uppercase tracking-wider">COMPANY & LEGAL</h4>
             <ul className="space-y-2.5 text-xs">
-              <li><Link href="/#features" className="hover:text-slate-950 transition-colors">Why Unova</Link></li>
-              <li><Link href="/demo" className="hover:text-slate-950 transition-colors">Book a Free Demo</Link></li>
+              <li><Link href="/about" className="hover:text-slate-950 transition-colors">About Unova (Mission & Team)</Link></li>
+              <li><Link href="/security" className="hover:text-slate-950 transition-colors">Security & SLA Center</Link></li>
+              <li><Link href="/privacy" className="hover:text-slate-950 transition-colors">Privacy & Cookie Policy</Link></li>
+              <li><Link href="/terms" className="hover:text-slate-950 transition-colors">Terms & Refund Policy</Link></li>
               <li><Link href="/#contact" className="hover:text-slate-950 transition-colors">Contact Support</Link></li>
-              <li><Link href="https://rems.unova.bd/login" className="hover:text-slate-950 transition-colors">Sign In</Link></li>
+              <li><Link href="https://rems.unova.bd/login" className="hover:text-slate-950 font-semibold text-slate-900 transition-colors">Sign In →</Link></li>
             </ul>
           </div>
 
@@ -92,7 +96,7 @@ export default function Footer() {
 
       {/* Copyright & Social bar */}
       <div className="max-w-7xl mx-auto pt-8 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-        <p>© {new Date().getFullYear()} Unova Estate — Built for Property Developers. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Unova Estate — Built for Property Developers. All rights reserved. • <Link href="/clients" className="hover:text-slate-600 transition-colors">Case Studies</Link></p>
         <div className="flex gap-4">
           <a href="https://www.facebook.com/unovarem" target="_blank" rel="noopener noreferrer" className="hover:text-slate-600 transition-colors">Facebook</a>
           <a href="https://www.youtube.com/@UnovaSoftware" target="_blank" rel="noopener noreferrer" className="hover:text-slate-600 transition-colors">YouTube</a>

@@ -6,18 +6,9 @@ import axios from 'axios';
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api-estate-unova.free.laravel.cloud';
 
 const GeminiIcon = ({ className = 'w-4 h-4' }) => (
-  <svg className={className} viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="gemini-grad" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stopColor="#818cf8" />
-        <stop offset="50%" stopColor="#a78bfa" />
-        <stop offset="100%" stopColor="#6366f1" />
-      </linearGradient>
-    </defs>
-    <path
-      d="M14 2C14 2 15.2 8.8 18.5 11.5C21.8 14.2 26 14 26 14C26 14 21.8 13.8 18.5 16.5C15.2 19.2 14 26 14 26C14 26 12.8 19.2 9.5 16.5C6.2 13.8 2 14 2 14C2 14 6.2 14.2 9.5 11.5C12.8 8.8 14 2 14 2Z"
-      fill="url(#gemini-grad)"
-    />
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="#6366F1" />
+    <path d="M19 2L20.1 5.9L24 7L20.1 8.1L19 12L17.9 8.1L14 7L17.9 5.9L19 2Z" fill="#A855F7" />
   </svg>
 );
 
@@ -109,12 +100,14 @@ export default function AskAI({ open: externalOpen, isOpen, onOpenChange }) {
       {/* Nav trigger */}
       <button
         onClick={() => toggle(v => !v)}
-        className={`flex items-center gap-0.5 text-sm font-semibold transition-colors ${
-          open ? 'text-indigo-600' : 'text-slate-600 hover:text-slate-950'
+        className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap transition-all ${
+          open
+            ? 'bg-indigo-600 text-white shadow-sm'
+            : 'bg-indigo-50/90 text-indigo-700 border border-indigo-200/80 hover:bg-indigo-100 shadow-sm'
         }`}
       >
-        <GeminiIcon />
-        Ask AI
+        <GeminiIcon className="w-4 h-4 shrink-0" />
+        <span>Ask AI</span>
       </button>
 
       {/* Overlay */}

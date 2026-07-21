@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 120" width="100%" height="100%">
+  <rect width="100%" height="100%" fill="#ffffff" rx="16"/>
+  <g transform="translate(25, 25)">
+    <circle cx="30" cy="35" r="22" fill="#15803D"/>
+    <path d="M 30 18 L 42 45 L 18 45 Z" fill="#F59E0B"/>
+  </g>
+  <text x="95" y="52" font-family="'Inter', sans-serif" font-weight="900" font-size="20" fill="#14532D" letter-spacing="0.5">BASHUNDHARA</text>
+  <text x="95" y="74" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#15803D" letter-spacing="2">EAST WEST PROPERTY</text>
+</svg>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Navbar from './Navbar';
 import AskAI from './AskAI';
 import Footer from './Footer';
 
@@ -49,36 +50,11 @@ export default function BlogClient({ posts }) {
         <div className="absolute top-[40%] right-[-10%] w-[500px] h-[500px] bg-violet-600/[0.04] rounded-full blur-[120px]" />
       </div>
 
-      {/* NAVIGATION */}
-      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-slate-200/50 bg-white/80 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center">
-            <img src="/unova-real-estate-software-logo.png" alt="Unova Estate Logo" className="h-9 w-auto" loading="eager" />
-          </Link>
-
-          <div className="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
-            <Link href="/#features" className="hover:text-slate-950 transition-colors">Features</Link>
-            <Link href="/solutions" className="hover:text-slate-950 transition-colors">Solutions</Link>
-            <Link href="/blog" className="hover:text-slate-950 transition-colors">Blog</Link>
-            <Link href="/docs" className="hover:text-slate-950 transition-colors">Docs</Link>
-            <Link href="/#pricing" className="hover:text-slate-950 transition-colors">Pricing</Link>
-            <Link href="/#contact" className="hover:text-slate-950 transition-colors">Contact</Link>
-            <AskAI onOpenChange={setAiOpen} />
-          </div>
-
-          <div className="flex items-center gap-3">
-            <Link href="https://rems.unova.bd/login" className="text-sm font-semibold text-slate-600 hover:text-slate-950 transition-colors hidden sm:block">
-              Sign in
-            </Link>
-            <Link href="/demo" className="text-sm font-semibold bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-full transition-all shadow-md">
-              Request a Demo
-            </Link>
-          </div>
-        </div>
-      </nav>
+      {/* SHARED TOP NAVBAR */}
+      <Navbar activePage="blog" />
 
       {/* MAIN */}
-      <main className="relative z-10 pt-32 pb-24 px-5 max-w-5xl mx-auto w-full flex-1">
+      <main className="relative z-10 pt-32 pb-24 px-5 max-w-7xl mx-auto w-full flex-1">
         
         {/* HEADER */}
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
@@ -136,29 +112,45 @@ export default function BlogClient({ posts }) {
             {filteredPosts.map((post, index) => (
               <div
                 key={index}
-                className="bg-white border border-slate-200/80 rounded-3xl p-8 shadow-sm hover:shadow-md hover:border-indigo-500/30 transition-all duration-300 flex flex-col justify-between hover:scale-[1.01]"
+                className="group bg-white border border-slate-200/80 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:border-indigo-500/30 transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
-                  <div className="flex gap-2 items-center mb-4 text-[10px] font-bold text-indigo-600 uppercase tracking-wide">
-                    <span>{post.category}</span>
-                    <span className="text-slate-300">•</span>
-                    <span className="text-slate-400 font-medium">{post.readTime}</span>
-                  </div>
+                  {/* Card Cover Image */}
+                  <Link href={`/blog/${post.slug}`} className="block relative h-48 md:h-52 w-full overflow-hidden bg-slate-100">
+                    <img
+                      src={post.image || 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=600&auto=format&fit=crop'}
+                      alt={post.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1 rounded-full text-[10px] font-bold bg-white/90 backdrop-blur-md text-indigo-700 border border-slate-200 shadow-sm uppercase tracking-wider">
+                        {post.category || 'Real Estate'}
+                      </span>
+                    </div>
+                  </Link>
 
-                  <h2 className="text-xl font-extrabold text-slate-900 mb-3 leading-snug hover:text-indigo-600 transition-colors">
-                    <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-                  </h2>
-                  <p className="text-slate-500 text-xs leading-relaxed mb-6">{post.excerpt}</p>
+                  <div className="p-6 md:p-8">
+                    <div className="flex gap-2 items-center mb-3 text-[10px] font-bold text-slate-400 uppercase tracking-wide">
+                      <span>{post.readTime || '5 min read'}</span>
+                      <span>•</span>
+                      <span>Published {post.date}</span>
+                    </div>
+
+                    <h2 className="text-xl font-black text-slate-900 mb-3 leading-snug group-hover:text-indigo-600 transition-colors">
+                      <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                    </h2>
+                    <p className="text-slate-500 text-xs leading-relaxed line-clamp-3">{post.excerpt}</p>
+                  </div>
                 </div>
 
-                <div className="flex justify-between items-center border-t border-slate-100 pt-6 mt-4">
-                  <span className="text-[10px] text-slate-400">Published on {post.date}</span>
+                <div className="px-6 md:px-8 pb-6 flex justify-between items-center border-t border-slate-100 pt-4 mt-auto">
+                  <span className="text-[10px] font-semibold text-slate-400">By {post.author || 'Unova Team'}</span>
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="text-xs font-bold text-indigo-600 hover:text-indigo-500 flex items-center gap-1"
+                    className="text-xs font-bold text-indigo-600 hover:text-indigo-700 flex items-center gap-1 group/btn"
                   >
-                    Read Post
-                    <span>→</span>
+                    Read Article
+                    <span className="group-hover/btn:translate-x-1 transition-transform">→</span>
                   </Link>
                 </div>
               </div>

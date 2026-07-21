@@ -4,8 +4,10 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import AskAI from './AskAI';
+import Navbar from './Navbar';
 import ContactSection from './ContactSection';
 import Footer from './Footer';
+import CompanyCategoryCalculator from './CompanyCategoryCalculator';
 
 /* ─── Icon helpers ──────────────────────────────────────────── */
 const Icon = ({ d, className = 'w-6 h-6' }) => (
@@ -243,38 +245,8 @@ export default function LandingPage({ posts = [] }) {
         <div className="absolute top-[40%] right-[-10%] w-[500px] h-[500px] bg-violet-600/[0.04] rounded-full blur-[120px]" />
       </div>
 
-      {/* ════ NAVIGATION ════ */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled 
-          ? 'bg-white/95 backdrop-blur-xl shadow-sm border-b border-[#6DC042]/20 h-16' 
-          : 'bg-transparent h-20 border-b border-transparent'
-      }`}>
-        <div className="max-w-7xl mx-auto px-5 h-full flex items-center justify-between">
-          <Link href="/" className="flex items-center">
-            <img src="/unova-real-estate-software-logo.png" alt="Unova Estate Real Estate CRM & ERP Software Logo" className={`w-auto transition-all duration-300 ${scrolled ? 'h-8' : 'h-9'}`} />
-          </Link>
-
-          <div className="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
-            <button onClick={() => scrollTo('features')} className="hover:text-slate-950 transition-colors">Features</button>
-            <Link href="/solutions" className="hover:text-slate-950 transition-colors">Solutions</Link>
-            <Link href="/blog" className="hover:text-slate-950 transition-colors">Blog</Link>
-            <Link href="/docs" className="hover:text-slate-950 transition-colors">Docs</Link>
-            <button onClick={() => scrollTo('pricing')} className="hover:text-slate-950 transition-colors">Pricing</button>
-            <button onClick={() => scrollTo('contact')} className="hover:text-slate-950 transition-colors">Contact</button>
-            <AskAI onOpenChange={setAiOpen} />
-          </div>
-
-          <div className="flex items-center gap-3">
-            <Link href="https://rems.unova.bd/login" className="text-sm font-semibold text-slate-600 hover:text-slate-950 transition-colors hidden sm:block">
-              Sign in
-            </Link>
-            <button onClick={() => goToDemo('demo')}
-              className="text-sm font-semibold bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-full transition-all shadow-[0_4px_14px_rgba(99,102,241,0.25)] hover:shadow-[0_6px_20px_rgba(99,102,241,0.4)]">
-              Request a Demo
-            </button>
-          </div>
-        </div>
-      </nav>
+      {/* ════ REUSABLE NAVIGATION ════ */}
+      <Navbar activePage="home" />
 
       {/* ════ HERO ════ */}
       <section className="relative pt-40 pb-24 px-5 z-10 overflow-hidden bg-slate-50/20">
@@ -584,7 +556,7 @@ export default function LandingPage({ posts = [] }) {
 
 
       {/* ════ TESTIMONIALS ════ */}
-      <section className="relative z-10 py-24 px-5 border-t border-slate-200/60 bg-slate-50">
+      <section id="clients" className="relative z-10 py-24 px-5 border-t border-slate-200/60 bg-slate-50">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <p className="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-3">What our customers say</p>
@@ -729,9 +701,9 @@ export default function LandingPage({ posts = [] }) {
 
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { name: 'Starter',      monthly: 40, highlight: false, badge: null },
-              { name: 'Professional', monthly: 75, highlight: true,  badge: 'Most Popular' },
-              { name: 'Advanced',     monthly: 100, highlight: false, badge: null },
+              { name: 'Small',  monthly: 40, highlight: false, badge: null },
+              { name: 'Medium', monthly: 75, highlight: true,  badge: 'Most Popular' },
+              { name: 'Large',  monthly: 100, highlight: false, badge: null },
             ].map((pkg, i) => {
               const monthlyPrice = billingYearly ? Math.round(pkg.monthly * 0.9) : pkg.monthly;
               const yearlyTotal  = Math.round(pkg.monthly * 0.9 * 12);
@@ -747,6 +719,7 @@ export default function LandingPage({ posts = [] }) {
                     </div>
                   )}
                   <div className="mb-7">
+                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-indigo-600 block mb-1">Company Size</span>
                     <h3 className="text-2xl font-black text-slate-900 mb-1">{pkg.name}</h3>
                     <div className="mt-4 flex items-end gap-2">
                       <p className="text-4xl font-black text-slate-900">$ {monthlyPrice.toLocaleString()}</p>
@@ -777,26 +750,62 @@ export default function LandingPage({ posts = [] }) {
             })}
           </div>
 
-          <div className="mt-8 text-center flex flex-col items-center gap-4">
-            <div className="inline-block px-6 py-3.5 rounded-2xl border border-indigo-200 bg-indigo-50/50 shadow-sm">
-              <p className="text-sm font-bold text-slate-800">
-                <span>Need an Enterprise Plan? (Custom Private Cloud & Dedicated Setup)</span>{' '}
-                <button onClick={() => goToDemo('demo')} className="text-indigo-600 hover:text-indigo-500 font-extrabold underline ml-1 transition-colors">
-                  Contact Us for Enterprise Pricing →
-                </button>
-              </p>
-            </div>
-
-            <div className="inline-flex flex-col sm:flex-row items-center gap-4 px-6 py-4 rounded-2xl border border-[#6DC042]/20 bg-[#6DC042]/5 max-w-2xl text-left">
-              <div className="flex-shrink-0 bg-[#6DC042]/10 text-[#6DC042] text-xs font-black uppercase tracking-widest px-3 py-1.5 rounded-full text-center">
-                Custom Modules
+          {/* ULTRA-PREMIUM PRICING FOOTER CARDS */}
+          <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Card 1: Enterprise & Custom Modular Solutions */}
+            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white p-8 border border-slate-800 shadow-xl flex flex-col justify-between space-y-6">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+              <div className="space-y-3 relative z-10">
+                <div className="flex items-center gap-2">
+                  <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                    Enterprise &amp; Custom Modules
+                  </span>
+                </div>
+                <h3 className="text-xl md:text-2xl font-black text-white">
+                  Need Dedicated Enterprise Setup or Custom Modules?
+                </h3>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Choose private cloud instances, custom database pipelines, or pick specific ERP modules to fit your exact budget and team scale.
+                </p>
               </div>
-              <p className="text-xs md:text-sm text-slate-600 leading-relaxed">
-                <strong>Flexible Pricing for Small Teams:</strong> Choose only the modules you need to customize your package and scale down your bill. Unova Estate is designed to fit any business size and budget!
-              </p>
+
+              <div className="pt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-slate-800 relative z-10">
+                <span className="text-[11px] text-slate-400 font-medium">* One-time onboarding fee includes full setup &amp; training</span>
+                <button
+                  onClick={() => goToDemo('demo')}
+                  className="px-5 py-2.5 bg-white text-slate-950 hover:bg-slate-100 rounded-xl text-xs font-bold shadow-lg transition-all whitespace-nowrap shrink-0"
+                >
+                  Contact Enterprise Sales →
+                </button>
+              </div>
             </div>
 
-            <p className="text-[11px] text-slate-400 mt-2">* One-time onboarding fee of $2,000 — includes initial setup, full configuration &amp; team training.</p>
+            {/* Card 2: Interactive Plan Calculator */}
+            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-50/80 via-white to-indigo-100/50 p-8 border border-indigo-200/80 shadow-lg flex flex-col justify-between space-y-6">
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-indigo-600 text-white shadow-sm">
+                    Interactive Calculator 🧮
+                  </span>
+                </div>
+                <h3 className="text-xl md:text-2xl font-black text-slate-900">
+                  Unsure Which Plan Fits Your Business Scale?
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Input your employee count, monthly leads, and project volume to calculate your exact matrix score and recommended tier.
+                </p>
+              </div>
+
+              <div className="pt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-indigo-100">
+                <span className="text-[11px] font-bold text-slate-500">Instant Automated Scoring</span>
+                <Link
+                  href="/calculator"
+                  className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold shadow-md hover:shadow-indigo-500/25 transition-all whitespace-nowrap shrink-0"
+                >
+                  Open Plan Calculator →
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>

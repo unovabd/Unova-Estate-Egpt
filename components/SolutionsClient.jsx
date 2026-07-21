@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import AskAI from './AskAI';
+import Navbar from './Navbar';
 import Footer from './Footer';
 
 const Icon = ({ d, className = 'w-6 h-6' }) => (
@@ -158,33 +159,8 @@ export default function SolutionsClient() {
         <div className="absolute top-[40%] right-[-10%] w-[500px] h-[500px] bg-violet-600/[0.04] rounded-full blur-[120px]" />
       </div>
 
-      {/* NAVIGATION */}
-      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-slate-200/50 bg-white/80 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center">
-            <img src="/unova-real-estate-software-logo.png" alt="Unova Estate Logo" className="h-9 w-auto" loading="eager" />
-          </Link>
-
-          <div className="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
-            <Link href="/#features" className="hover:text-slate-950 transition-colors">Features</Link>
-            <Link href="/solutions" className="hover:text-slate-950 transition-colors">Solutions</Link>
-            <Link href="/blog" className="hover:text-slate-950 transition-colors">Blog</Link>
-            <Link href="/docs" className="hover:text-slate-950 transition-colors">Docs</Link>
-            <Link href="/#pricing" className="hover:text-slate-950 transition-colors">Pricing</Link>
-            <Link href="/#contact" className="hover:text-slate-950 transition-colors">Contact</Link>
-            <AskAI onOpenChange={setAiOpen} />
-          </div>
-
-          <div className="flex items-center gap-3">
-            <Link href="https://rems.unova.bd/login" className="text-sm font-semibold text-slate-600 hover:text-slate-950 transition-colors hidden sm:block">
-              Sign in
-            </Link>
-            <Link href="/demo" className="text-sm font-semibold bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-full transition-all shadow-md">
-              Request a Demo
-            </Link>
-          </div>
-        </div>
-      </nav>
+      {/* REUSABLE NAVIGATION */}
+      <Navbar activePage="solutions" />
 
       {/* MAIN CONTENT */}
       <main className="relative z-10 pt-32 pb-24 px-5 max-w-6xl mx-auto w-full flex-1">

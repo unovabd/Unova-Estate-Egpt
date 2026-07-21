@@ -34,8 +34,6 @@ export default function BlogPostClient({ post }) {
           <div className="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
             <Link href="/#features" className="hover:text-slate-950 transition-colors">Features</Link>
             <Link href="/solutions" className="hover:text-slate-950 transition-colors">Solutions</Link>
-            <Link href="/blog" className="hover:text-slate-950 transition-colors">Blog</Link>
-            <Link href="/docs" className="hover:text-slate-950 transition-colors">Docs</Link>
             <Link href="/#pricing" className="hover:text-slate-950 transition-colors">Pricing</Link>
             <Link href="/#contact" className="hover:text-slate-950 transition-colors">Contact</Link>
             <AskAI onOpenChange={setAiOpen} />
@@ -84,6 +82,13 @@ export default function BlogPostClient({ post }) {
             <span>Published on {post.date}</span>
           </div>
         </div>
+
+        {/* POST COVER IMAGE */}
+        {post.image && (
+          <div className="mb-10 rounded-3xl overflow-hidden border border-slate-200/90 shadow-md aspect-[16/9] w-full bg-slate-100">
+            <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+          </div>
+        )}
 
         {/* POST CONTENT */}
         <article className="prose prose-slate max-w-none text-slate-700 leading-relaxed text-sm md:text-base space-y-6">

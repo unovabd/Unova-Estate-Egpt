@@ -1,99 +1,107 @@
-'use client';
-
-import Link from 'next/link';
+import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Link from 'next/link';
 
-const downloadItems = [
-  {
-    title: 'Unova REMS Official Brochure (PDF)',
-    size: '4.8 MB',
-    desc: 'Get a full overview of Unova Modules, mobile apps, WhatsApp integrations, and landowner ratio allocation setups.',
-    link: '#'
+export const metadata = {
+  title: 'Downloads (Brochure, Leaflet & Company Profile) — Unova Estate',
+  description: 'Download Unova Estate ERP product brochures, feature leaflets, company profile PDF, and real estate implementation guides.',
+  alternates: {
+    canonical: '/resources/downloads',
   },
-  {
-    title: 'Real Estate Lead Tracker Template (Excel)',
-    size: '1.2 MB',
-    desc: 'A professional excel spreadsheet template containing lead scoring models, agent pipelines, and follow-up templates.',
-    link: '#'
-  },
-  {
-    title: 'Client Payment & Installment Scheduler',
-    size: '850 KB',
-    desc: 'An Excel template to calculate flat installment schedules, payment milestones, and post-dated cheque deposit dates.',
-    link: '#'
-  },
-  {
-    title: 'Property Handover Checklist (PDF)',
-    size: '620 KB',
-    desc: 'A comprehensive checklist for engineering teams to verify prior to flat handover and key dispatches.',
-    link: '#'
-  }
-];
+};
 
 export default function DownloadsPage() {
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-[#6DC042]/20 selection:text-slate-900 overflow-x-hidden relative flex flex-col justify-between">
-      
-      {/* Ambient glow */}
-      <div className="pointer-events-none fixed inset-0 z-0">
-        <div className="absolute top-[-20%] left-[10%] w-[700px] h-[700px] bg-indigo-600/[0.04] rounded-full blur-[120px]" />
-        <div className="absolute top-[40%] right-[-10%] w-[500px] h-[500px] bg-[#6DC042]/[0.03] rounded-full blur-[120px]" />
-      </div>
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col selection:bg-indigo-500 selection:text-white">
+      <Navbar activePage="resources" />
 
-      {/* NAVIGATION */}
-      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-slate-200/50 bg-white/80 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center">
-            <img src="/unova-real-estate-software-logo.png" alt="Unova Estate Logo" className="h-9 w-auto" />
-          </Link>
-          <div className="flex items-center gap-4">
-            <Link href="/resources" className="text-xs font-bold text-indigo-600 hover:text-indigo-500">
-              ← Back to Resources
-            </Link>
-            <Link href="/demo" className="text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-full transition-all shadow-md">
-              Request a Demo
-            </Link>
-          </div>
-        </div>
-      </nav>
-
-      {/* CONTENT */}
-      <main className="relative z-10 pt-32 pb-24 px-5 max-w-4xl mx-auto w-full flex-grow">
-        
-        {/* HEADER */}
-        <div className="text-center space-y-4 mb-12">
-          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#6DC042]/10 border border-[#6DC042]/20 text-xs font-semibold text-[#6DC042]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#6DC042] animate-pulse" />
-            Free Templates & Assets
+      <main className="relative z-10 pt-28 pb-24 px-5 max-w-5xl mx-auto w-full flex-1 space-y-12">
+        <div className="text-center space-y-4 max-w-3xl mx-auto">
+          <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-indigo-50 text-indigo-700 border border-indigo-100">
+            Resources & Downloads
           </span>
-          <h1 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-            Free Templates & <span className="bg-gradient-to-r from-[#6DC042] to-[#5da538] bg-clip-text text-transparent">Downloads</span>
+          <h1 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight">
+            Brochures, Leaflets & Company Profile
           </h1>
-          <p className="text-slate-500 text-sm leading-relaxed max-w-xl mx-auto">
-            Download our curated collection of real estate templates, calculators, brochures, and checklists to streamline your property business.
+          <p className="text-base text-slate-600">
+            Explore and download official Unova Estate ERP documentation, feature leaflets, and real estate developer guidebooks.
           </p>
         </div>
 
-        {/* DOWNLOAD LIST */}
-        <div className="space-y-6">
-          {downloadItems.map((item, idx) => (
-            <div key={idx} className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 hover:shadow-md transition-shadow">
-              <div className="space-y-1.5 max-w-xl">
-                <div className="flex items-center gap-2.5">
-                  <h3 className="text-base font-black text-slate-900">{item.title}</h3>
-                  <span className="text-[10px] font-bold text-slate-400 bg-slate-100 px-2 py-0.5 rounded">
-                    {item.size}
-                  </span>
-                </div>
-                <p className="text-slate-500 text-xs leading-relaxed">{item.desc}</p>
+        {/* Downloads Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-white rounded-3xl p-8 border border-slate-200/90 shadow-sm flex flex-col justify-between space-y-6">
+            <div className="space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-2xl font-bold">
+                📄
               </div>
-              <button className="flex-shrink-0 px-5 py-2.5 bg-slate-50 hover:bg-[#6DC042] hover:text-white border border-slate-200 text-slate-700 font-bold rounded-xl transition-all text-xs shadow-sm flex items-center gap-1.5">
-                <span>📥</span> Download File
-              </button>
+              <h3 className="text-xl font-bold text-slate-900">Unova Estate Product Brochure (2026)</h3>
+              <p className="text-xs text-slate-500 leading-relaxed">
+                Comprehensive 16-page PDF overview covering CRM, Lead Engine, Installment Automation, and MD Dashboards.
+              </p>
             </div>
-          ))}
-        </div>
+            <Link
+              href="/demo"
+              className="inline-flex items-center justify-center px-5 py-3 rounded-2xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-700 transition-all shadow-md"
+            >
+              Request Full Brochure (PDF)
+            </Link>
+          </div>
 
+          <div className="bg-white rounded-3xl p-8 border border-slate-200/90 shadow-sm flex flex-col justify-between space-y-6">
+            <div className="space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl font-bold">
+                🗺️
+              </div>
+              <h3 className="text-xl font-bold text-slate-900">Land Developer & Plot Registry Guide</h3>
+              <p className="text-xs text-slate-500 leading-relaxed">
+                Feature leaflet detailing CS/SA/RS Dag legal registry search and interactive plot map workflows.
+              </p>
+            </div>
+            <Link
+              href="/demo"
+              className="inline-flex items-center justify-center px-5 py-3 rounded-2xl bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition-all shadow-md"
+            >
+              Request Land Guide (PDF)
+            </Link>
+          </div>
+
+          <div className="bg-white rounded-3xl p-8 border border-slate-200/90 shadow-sm flex flex-col justify-between space-y-6">
+            <div className="space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-2xl font-bold">
+                🏗️
+              </div>
+              <h3 className="text-xl font-bold text-slate-900">Construction Milestone Billing Leaflet</h3>
+              <p className="text-xs text-slate-500 leading-relaxed">
+                Implementation guide for site inspection apps, rebar/cement store ledgers, and contractor bill audits.
+              </p>
+            </div>
+            <Link
+              href="/demo"
+              className="inline-flex items-center justify-center px-5 py-3 rounded-2xl bg-blue-600 text-white text-xs font-bold hover:bg-blue-700 transition-all shadow-md"
+            >
+              Request Construction Guide (PDF)
+            </Link>
+          </div>
+
+          <div className="bg-white rounded-3xl p-8 border border-slate-200/90 shadow-sm flex flex-col justify-between space-y-6">
+            <div className="space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-2xl font-bold">
+                🏢
+              </div>
+              <h3 className="text-xl font-bold text-slate-900">Unova Software Corporate Profile</h3>
+              <p className="text-xs text-slate-500 leading-relaxed">
+                Official corporate deck detailing Unova Software architecture, cloud security compliance, and support SLAs.
+              </p>
+            </div>
+            <Link
+              href="/demo"
+              className="inline-flex items-center justify-center px-5 py-3 rounded-2xl bg-slate-900 text-white text-xs font-bold hover:bg-slate-800 transition-all shadow-md"
+            >
+              Request Corporate Profile (PDF)
+            </Link>
+          </div>
+        </div>
       </main>
 
       <Footer />

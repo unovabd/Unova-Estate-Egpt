@@ -33,8 +33,6 @@ export default function CompareDetailClient({ comparison, relatedComparisons }) 
           <div className="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
             <Link href="/#features" className="hover:text-slate-950 transition-colors">Features</Link>
             <Link href="/solutions" className="hover:text-slate-950 transition-colors">Solutions</Link>
-            <Link href="/blog" className="hover:text-slate-950 transition-colors">Blog</Link>
-            <Link href="/docs" className="hover:text-slate-950 transition-colors">Docs</Link>
             <Link href="/#pricing" className="hover:text-slate-950 transition-colors">Pricing</Link>
             <Link href="/#contact" className="hover:text-slate-950 transition-colors">Contact</Link>
             <AskAI onOpenChange={setAiOpen} />
@@ -119,11 +117,12 @@ export default function CompareDetailClient({ comparison, relatedComparisons }) 
                 </thead>
                 <tbody className="divide-y divide-slate-100 text-slate-500">
                   {[
-                    { key: comparison.matrixKey1, comp: comparison.matrixCompValue1, unova: comparison.matrixUnovaValue1 },
-                    { key: comparison.matrixKey2, comp: comparison.matrixCompValue2, unova: comparison.matrixUnovaValue2 },
-                    { key: comparison.matrixKey3, comp: comparison.matrixCompValue3, unova: comparison.matrixUnovaValue3 },
-                    { key: comparison.matrixKey4, comp: comparison.matrixCompValue4, unova: comparison.matrixUnovaValue4 }
-                  ].map((row, ri) => (
+                    { key: comparison.feature1_name || comparison.matrixKey1, comp: comparison.feature1_comp || comparison.matrixCompValue1, unova: comparison.feature1_unova || comparison.matrixUnovaValue1 },
+                    { key: comparison.feature2_name || comparison.matrixKey2, comp: comparison.feature2_comp || comparison.matrixCompValue2, unova: comparison.feature2_unova || comparison.matrixUnovaValue2 },
+                    { key: comparison.feature3_name || comparison.matrixKey3, comp: comparison.feature3_comp || comparison.matrixCompValue3, unova: comparison.feature3_unova || comparison.matrixUnovaValue3 },
+                    { key: comparison.feature4_name || comparison.matrixKey4, comp: comparison.feature4_comp || comparison.matrixCompValue4, unova: comparison.feature4_unova || comparison.matrixUnovaValue4 },
+                    { key: comparison.feature5_name, comp: comparison.feature5_comp, unova: comparison.feature5_unova }
+                  ].filter(r => r.key).map((row, ri) => (
                     <tr key={ri} className="hover:bg-slate-50/30 transition-colors">
                       <td className="py-4 px-6 font-semibold text-slate-800">{row.key}</td>
                       <td className="py-4 px-6 text-xs leading-relaxed max-w-[200px]">
