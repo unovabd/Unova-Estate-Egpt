@@ -72,7 +72,7 @@ export default function BlogPostClient({ post }) {
             <span className="text-slate-400 font-medium">{post.readTime}</span>
           </div>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-slate-900">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-normal leading-normal text-slate-900">
             {post.title}
           </h1>
 
@@ -96,7 +96,8 @@ export default function BlogPostClient({ post }) {
             article h1, article h2, article h3 {
               color: #0f172a;
               font-weight: 900;
-              letter-spacing: -0.025em;
+              letter-spacing: normal;
+              line-height: 1.4;
               margin-top: 1.75em;
               margin-bottom: 0.5em;
             }
