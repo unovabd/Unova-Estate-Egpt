@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
+import { useLanguage } from '@/context/LanguageContext';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api-estate-unova.free.laravel.cloud';
 
@@ -24,28 +25,46 @@ const CloseIcon = () => (
   </svg>
 );
 
-const SUGGESTIONS = [
-  'Unova Estate কেন দরকার?',
-  'Unova Estate কী কী করতে পারে?',
-  'Unova Estate এর advantage কী?',
-  'এটা use করলে sales কীভাবে বাড়বে?',
-  'Commission ও payroll কীভাবে কাজ করে?',
+const SUGGESTIONS_EN = [
+  'Why do real estate developers need Unova Estate?',
+  'What key features are included in Unova Estate?',
+  'How does installment collection automation work?',
+  'How does it prevent lead leakage in sales teams?',
+  'How are agent commissions calculated?',
+];
+
+const SUGGESTIONS_AR = [
+  'لماذا تحتاج شركات التطوير العقاري لنظام يونوفا؟',
+  'ما هي أهم مميزات وأقسام نظام يونوفا إستيت؟',
+  'كيف تعمل أتمتة وتحصيل الأقساط الشهرية؟',
+  'كيف يمنع النظام ضياع عملاء المبيعات؟',
+  'كيف يتم حساب عمولات مسوقي العقارات؟',
 ];
 
 export default function AskAI({ open: externalOpen, isOpen, onOpenChange }) {
+  const { t, isRtl } = useLanguage();
   const isControlled = externalOpen !== undefined || isOpen !== undefined;
   const activeOpenProp = externalOpen !== undefined ? externalOpen : isOpen;
 
   const [internalOpen, setInternalOpen] = useState(false);
   const open = isControlled ? activeOpenProp : internalOpen;
 
-  const [input, setInput]       = useState('');
-  const [messages, setMessages] = useState([
-    { role: 'bot', text: "Hi! I'm the Unova Estate AI assistant. Ask me anything about the software — in Bangla, English, or Banglish! 😊" },
-  ]);
-  const [loading, setLoading]   = useState(false);
+  const [input, setInput] = useState('');
+  const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(false);
   const bottomRef = useRef(null);
   const inputRef  = useRef(null);
+
+  useEffect(() => {
+    setMessages([
+      {
+        role: 'bot',
+        text: isRtl
+          ? "مرحباً بك! أنا المساعد الذكي لنظام يونوفا إستيت. يمكنك سؤالي عن المميزات والأسعار أو كيفية التشغيل! 😊"
+          : "Hi! I'm the Unova Estate AI assistant. Ask me anything about the software features, pricing, or deployment! 😊"
+      }
+    ]);
+  }, [isRtl]);
 
   const toggle = (v) => {
     const next = typeof v === 'function' ? v(open) : v;
@@ -83,8 +102,8 @@ export default function AskAI({ open: externalOpen, isOpen, onOpenChange }) {
       setMessages(prev => [...prev, { role: 'bot', text: data.reply }]);
     } catch (err) {
       const errMsg = err.response?.status === 429
-        ? 'Too many messages. Please wait a moment.'
-        : 'Something went wrong. Please try again.';
+        ? (isRtl ? 'رسائل كثيرة. يرجى الانتظار دقيقة.' : 'Too many messages. Please wait a moment.')
+        : (isRtl ? 'حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.' : 'Something went wrong. Please try again.');
       setMessages(prev => [...prev, { role: 'error', text: errMsg }]);
     } finally {
       setLoading(false);
@@ -94,6 +113,8 @@ export default function AskAI({ open: externalOpen, isOpen, onOpenChange }) {
   const handleKey = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
   };
+
+  const suggestions = isRtl ? SUGGESTIONS_AR : SUGGESTIONS_EN;
 
   return (
     <>
@@ -107,7 +128,7 @@ export default function AskAI({ open: externalOpen, isOpen, onOpenChange }) {
         }`}
       >
         <GeminiIcon className="w-4 h-4 shrink-0" />
-        <span>Ask AI</span>
+        <span>{t('askAi.triggerText')}</span>
       </button>
 
       {/* Overlay */}
@@ -119,8 +140,8 @@ export default function AskAI({ open: externalOpen, isOpen, onOpenChange }) {
       )}
 
       {/* Drawer */}
-      <div className={`fixed top-0 right-0 z-50 h-screen w-[380px] flex flex-col bg-white border-l border-slate-200 shadow-2xl transition-transform duration-300 ${
-        open ? 'translate-x-0' : 'translate-x-full'
+      <div className={`fixed top-0 ${isRtl ? 'left-0 border-r' : 'right-0 border-l'} z-50 h-screen w-[380px] flex flex-col bg-white border-slate-200 shadow-2xl transition-transform duration-300 ${
+        open ? 'translate-x-0' : isRtl ? '-translate-x-full' : 'translate-x-full'
       }`}>
 
         {/* Header */}
@@ -132,8 +153,8 @@ export default function AskAI({ open: externalOpen, isOpen, onOpenChange }) {
             </svg>
           </div>
           <div className="flex-1">
-            <p className="text-xs font-black text-slate-900">Unova AI Assistant</p>
-            <p className="text-[10px] text-indigo-600">Ask anything about the software</p>
+            <p className="text-xs font-black text-slate-900">{t('askAi.modalTitle')}</p>
+            <p className="text-[10px] text-indigo-600">{t('askAi.modalSubtitle')}</p>
           </div>
           <button onClick={() => toggle(false)} className="text-slate-400 hover:text-slate-800 transition-colors p-1">
             <CloseIcon />
@@ -145,7 +166,7 @@ export default function AskAI({ open: externalOpen, isOpen, onOpenChange }) {
           {messages.map((m, i) => (
             <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
               {m.role !== 'user' && (
-                <div className="w-6 h-6 rounded-md bg-indigo-50 flex items-center justify-center flex-shrink-0 mr-2 mt-0.5">
+                <div className={`w-6 h-6 rounded-md bg-indigo-50 flex items-center justify-center flex-shrink-0 ${isRtl ? 'ml-2' : 'mr-2'} mt-0.5`}>
                   <GeminiIcon className="w-3.5 h-3.5" />
                 </div>
               )}
@@ -164,7 +185,7 @@ export default function AskAI({ open: externalOpen, isOpen, onOpenChange }) {
           {/* Loading dots */}
           {loading && (
             <div className="flex justify-start">
-              <div className="w-6 h-6 rounded-md bg-indigo-50 flex items-center justify-center flex-shrink-0 mr-2 mt-0.5">
+              <div className={`w-6 h-6 rounded-md bg-indigo-50 flex items-center justify-center flex-shrink-0 ${isRtl ? 'ml-2' : 'mr-2'} mt-0.5`}>
                 <GeminiIcon className="w-3.5 h-3.5" />
               </div>
               <div className="bg-slate-100 border border-slate-200 rounded-xl rounded-bl-sm px-4 py-3 flex gap-1.5 items-center">
@@ -179,8 +200,8 @@ export default function AskAI({ open: externalOpen, isOpen, onOpenChange }) {
           {/* Suggestions */}
           {messages.length === 1 && !loading && (
             <div className="space-y-2 pt-2">
-              <p className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Try asking:</p>
-              {SUGGESTIONS.map((s, i) => (
+              <p className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">{isRtl ? 'مقترحات للأسئلة:' : 'Try asking:'}</p>
+              {suggestions.map((s, i) => (
                 <button key={i} onClick={() => send(s)}
                   className="block w-full text-left text-xs text-slate-600 bg-slate-50 hover:bg-indigo-50 hover:text-indigo-600 border border-slate-200 hover:border-indigo-200 rounded-lg px-3.5 py-2 transition-all">
                   {s}
@@ -200,7 +221,7 @@ export default function AskAI({ open: externalOpen, isOpen, onOpenChange }) {
               value={input}
               onChange={e => setInput(e.target.value)}
               onKeyDown={handleKey}
-              placeholder="Ask a question..."
+              placeholder={t('askAi.placeholder')}
               maxLength={300}
               rows={1}
               className="flex-1 bg-transparent text-xs text-slate-800 placeholder-slate-400 outline-none resize-none leading-relaxed max-h-24"
@@ -214,7 +235,7 @@ export default function AskAI({ open: externalOpen, isOpen, onOpenChange }) {
               <SendIcon />
             </button>
           </div>
-          <p className="text-[10px] text-slate-400 mt-2 text-center">Powered by Unova AI · Press Enter to send</p>
+          <p className="text-[10px] text-slate-400 mt-2 text-center">Powered by Unova AI · Egypt & MENA</p>
         </div>
       </div>
     </>

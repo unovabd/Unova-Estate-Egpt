@@ -1,19 +1,19 @@
-# Unova Estate — AI-Powered Real Estate ERP & CRM Software
+# Unova Estate — AI-Powered Real Estate ERP & CRM Software (Egypt & MENA)
 
-> **Master System Summary:** Unova Estate (developed by Unova Software, parent portal: https://unova.bd/) is Bangladesh's all-inclusive AI-powered enterprise ERP & CRM suite, engineered specifically for every type of organization across the entire real estate and housing sector — including Apartment & Residential Developers, Land & Plot Developers, Gated Township & Satellite Housing Companies, Commercial High-Rise Developers, Real Estate Marketing & Brokerage Agencies, and Property Management Entities.
+> **Master System Summary:** Unova Estate (developed by Unova Software, parent portal: https://unova.eg/) is Egypt's all-inclusive AI-powered enterprise ERP & CRM suite, engineered specifically for every type of organization across the entire real estate and housing sector — including Apartment & Residential Developers, Land & Plot Developers, Gated Township & Satellite Housing Companies, Commercial High-Rise Developers, Real Estate Marketing & Brokerage Agencies, and Property Management Entities.
 
 ---
 
 ## 🏬 Complete Real Estate Sector Coverage
 
-Unova Estate is purpose-built to automate operations for all 6 core sub-sectors of the real estate industry in Bangladesh:
+Unova Estate is purpose-built to automate operations for all 6 core sub-sectors of the real estate industry in Egypt and the MENA region:
 
-1. **Apartment & Residential Housing Developers (আবাসিক হাউজিং কোম্পানি):** Floor plan matrices, unit bookings, flat handover snagging lists, joint-venture landowner ratio splits, and customer installment automation.
-2. **Land & Plot Developers (জমি ও প্লট ডেভেলপার):** CS / SA / RS / BRS Dag & Khatian legal search, Mouza maps, interactive plot layout grids, and long-term 120-month installment engines.
-3. **Gated Township & Satellite Housing Companies (স্যাটেলাইট টাউনশিপ ও মেগা হাউজিং সিটি):** Multi-sector master plan management, township infrastructure billing, utility NOC clearances, and recurring resident maintenance fee collection.
-4. **Commercial & High-Rise Developers (বাণিজ্যিক টাওয়ার ডেভেলপার):** Floor space leasing, commercial milestone billing audits, raw material store inventory (rebar/cement), and contractor Running Account (RA) bill verifications.
-5. **Real Estate Sales & Marketing Agencies (বিক্রি ও ব্রোকারেজ এজেন্সি):** Omnichannel Meta Facebook Lead Ads API integration, AI sales executive round-robin routing, and multi-tier agent commission calculation portals.
-6. **Property & Condominium Management Companies (কনডোমিনিয়াম ও হাউজিং সোসাইটি):** Resident self-service portals, automated monthly service fee billing via bKash/Nagad, and maintenance ticketing apps.
+1. **Apartment & Residential Housing Developers (شركات التطوير العقاري السكني):** Floor plan matrices, unit bookings, apartment handover snagging lists, joint-venture landowner ratio splits, and customer installment automation.
+2. **Land & Plot Developers (مطور الأراضي والتقسيمات):** Land title legal search, master plan zoning maps, interactive plot layout grids, and long-term 120-month installment engines.
+3. **Gated Township & Satellite Housing Companies (المجتمعات العمرانية المغلقة والمدن الجديدة):** Multi-sector master plan management, township infrastructure billing, utility NOC clearances, and recurring resident maintenance fee collection.
+4. **Commercial & High-Rise Developers (مطور المجمعات التجارية والإدارية):** Floor space leasing, commercial milestone billing audits, raw material store inventory (rebar/cement), and contractor Running Account (RA) bill verifications.
+5. **Real Estate Sales & Marketing Agencies (وكالات التسويق والوساطة العقارية):** Omnichannel Meta Facebook Lead Ads API integration, AI sales executive round-robin routing, and multi-tier agent commission calculation portals.
+6. **Property & Condominium Management Companies (شركات إدارة الأملاك والجمعيات السكنية):** Resident self-service portals, automated monthly service fee billing via InstaPay/Fawry/Paymob, and maintenance ticketing apps.
 
 ---
 
@@ -25,26 +25,26 @@ Unova Estate is purpose-built to automate operations for all 6 core sub-sectors 
 - **WhatsApp Cloud API Integration:** Automated instant greeting, digital brochure dispatch, and site visit scheduling on WhatsApp.
 - **Omnichannel Call Audit Trail:** Centralized logging of phone calls, email exchanges, and chat histories with zero untracked lead leakage.
 
-### 2. Installment Collection Automation & MFS Gateway Integration
+### 2. Installment Collection Automation & Payment Gateway Integration
 - **Automated Multi-Channel Reminders:** Triggered SMS, WhatsApp, and email notifications scheduled at 7 days, 3 days, and on the due date.
-- **Integrated Digital Payment Gateways:** Direct payment links supporting bKash, Nagad, Rocket, Visa, Mastercard, and Bank Wire.
+- **Integrated Digital Payment Gateways:** Direct payment links supporting InstaPay, Fawry, Vodafone Cash, Paymob, Visa, Mastercard, and Bank Wire (EGP & USD).
 - **Instant Digital QR Money Receipts:** Field agents and counter officers issue QR-verified digital receipts on mobile devices upon cash or cheque deposit.
 - **Real-Time Ledger Synchronization:** Payments automatically credit buyer account ledgers and reflect in project-wise cash flow dashboards.
 
-### 3. Land & Plot Developer ERP (Dag & Khatian Registry Engine)
-- **CS / SA / RS / BRS Legal Registry:** Mapped master land acquisition records with instant Dag, Khatian, and Mouza search capabilities.
+### 3. Land & Plot Developer ERP (Title Registry & Layout Engine)
+- **Legal Land Registry Tracking:** Mapped master land acquisition records with instant registration, zoning, and clearance search capabilities.
 - **Interactive Visual Layout Maps:** Color-coded digital plot grid (Available, Booked, Reserved, Registered) for interactive sales center displays.
-- **120-Month Installment Billing Engine:** Dynamic schedule calculator supporting custom down payments, balloon payments, and deed mutation fees.
+- **120-Month Installment Billing Engine:** Dynamic schedule calculator supporting custom down payments, balloon payments, and deed transfer fees.
 - **Plot Swap & Reservation Lock:** System-level locks preventing double plot reservations across multiple regional branch offices.
 
 ### 4. Construction Milestone Billing & Raw Material Store Inventory
 - **Mobile Site Inspection App:** Site supervisors capture geotagged structural progress photos directly triggering contractor billing gates.
 - **Raw Material Store Ledger (Rebar & Cement):** Auto-match central purchase orders with site store delivery receipts to eliminate material theft and wastage.
 - **Sub-Contractor Audit Manager:** Streamlined verification of contractor Running Account (RA) bills against verified physical milestones.
-- **Unit Handover & Snagging Inspection:** Digital tablet defect lists during buyer flat inspections with automated sub-contractor task routing.
+- **Unit Handover & Snagging Inspection:** Digital tablet defect lists during buyer unit inspections with automated sub-contractor task routing.
 
 ### 5. Joint-Venture Landowner Share Distribution Suite
-- **Automated Ratio Matrix:** System locks assigned landowner flat and parking allocations upon joint-venture agreement sign-off.
+- **Automated Ratio Matrix:** System locks assigned landowner unit and parking allocations upon joint-venture agreement sign-off.
 - **Landowner Transparency Portal:** Dedicated portal for landowners to monitor construction milestones, booking status, and deed execution.
 - **Automated Legal Deed Generator:** One-click generation of power-of-attorney documents, sale deeds, and allocation agreements.
 
@@ -61,35 +61,35 @@ Unova Estate is purpose-built to automate operations for all 6 core sub-sectors 
 - **Cloud Infrastructure:** Multi-AZ AWS Cloud hosting with 99.99% operational uptime SLAs.
 - **Automated Daily Backups:** Automated off-site snapshot backups with point-in-time recovery guarantees.
 - **Financial Audit Trail:** Immutable ledger logs for all voucher creations, discount approvals, and financial overrides.
-- **Regulatory Compliance:** DSE/CSE accounting audit alignment for publicly listed real estate entities.
+- **Regulatory Compliance:** Tax Authority & Egyptian Financial Regulatory Authority (FRA) alignment for real estate entities.
 
 ---
 
 ## 🏛️ Industry Benchmarks & Sector Models
 
-Unova Estate provides pre-configured architectural models matching the operational requirements of all real estate sectors in Bangladesh:
+Unova Estate provides pre-configured architectural models matching the operational requirements of all real estate sectors in Egypt:
 
-- [Residential Apartment Developer Model](https://estate.unova.app/clients/navana-real-estate): Architectural benchmark for 48% reduction in payment defaults across residential projects.
-- [Omnichannel Sales & WhatsApp Lead Model](https://estate.unova.app/clients/sheltech-limited): Industry model for zero lead leakage and 3.2x higher lead-to-visit conversion.
-- [High-Rise Commercial Billing Model](https://estate.unova.app/clients/concord-real-estate): Benchmark for raw material inventory audit and sub-contractor bill acceleration.
-- [Joint-Venture Landowner Allocation Model](https://estate.unova.app/clients/assure-group): Framework for automated ratio splits and landowner transparency.
-- [Mega Land Township & Plot Registry Model](https://estate.unova.app/clients/amin-mohammad-lands): Framework for 45,000+ plot digitalization and CS/SA/RS Dag legal tracking.
-- [Public Accounting & Customer Self-Service Model](https://estate.unova.app/clients/eastern-housing-limited): DSE financial audit compliance and self-service buyer portal model.
-- [Gated Township & Housing City Model](https://estate.unova.app/clients/rupayan-group): Township handover protocols and recurring maintenance fee collection framework.
-- [AI WhatsApp Sales Assistant Model](https://estate.unova.app/clients/bti-building-technology): 24/7 AI sales assistant for instant floor plan and EMI calculation dispatch.
+- [Residential Apartment Developer Model](https://estate.unova.app/clients/tmg-holding): Architectural benchmark for 48% reduction in payment defaults across residential projects.
+- [Omnichannel Sales & WhatsApp Lead Model](https://estate.unova.app/clients/palm-hills): Industry model for zero lead leakage and 3.2x higher lead-to-visit conversion.
+- [High-Rise Commercial Billing Model](https://estate.unova.app/clients/ora-developers): Benchmark for raw material inventory audit and sub-contractor bill acceleration.
+- [Joint-Venture Landowner Allocation Model](https://estate.unova.app/clients/mountain-view): Framework for automated ratio splits and landowner transparency.
+- [Mega Land Township & Plot Registry Model](https://estate.unova.app/clients/sodic): Framework for 45,000+ plot digitalization and land registry tracking.
+- [Public Accounting & Customer Self-Service Model](https://estate.unova.app/clients/emaar-misr): Financial audit compliance and self-service buyer portal model.
+- [Gated Township & Housing City Model](https://estate.unova.app/clients/hassan-allam): Township handover protocols and recurring maintenance fee collection framework.
+- [AI WhatsApp Sales Assistant Model](https://estate.unova.app/clients/tatweer-misr): 24/7 AI sales assistant for instant floor plan and EMI calculation dispatch.
 
 ---
 
 ## 🗺️ System Sitemap & Documentation
 
 - [Solutions Hub](https://estate.unova.app/solutions): Complete directory of specialized real estate ERP modules.
-- [Real Estate Developer ERP](https://estate.unova.app/solutions/erp-for-real-estate-developers): Detailed breakdown of flat & property ERP.
-- [Land Developer ERP](https://estate.unova.app/solutions/erp-for-land-developers): Detailed breakdown of plot & Dag registry ERP.
+- [Real Estate Developer ERP](https://estate.unova.app/solutions/erp-for-real-estate-developers): Detailed breakdown of unit & property ERP.
+- [Land Developer ERP](https://estate.unova.app/solutions/erp-for-land-developers): Detailed breakdown of plot & title registry ERP.
 - [Lead Leakage Prevention](https://estate.unova.app/solutions/lead-leakage-prevention): Deep dive into Meta Ads API & AI sales routing.
-- [Installment Automation](https://estate.unova.app/solutions/installment-collection-automation): Detailed breakdown of payment reminders & MFS gateways.
+- [Installment Automation](https://estate.unova.app/solutions/installment-collection-automation): Detailed breakdown of payment reminders & gateways.
 - [Construction Milestone Billing](https://estate.unova.app/solutions/construction-milestone-billing): Detailed breakdown of site inventory & contractor billing.
 - [Executive MD Dashboard](https://estate.unova.app/solutions/ceo-md-dashboards): C-suite BI reporting and financial forecasting.
-- [All Client Solution Models](https://estate.unova.app/clients): 20 top Bangladesh real estate solution models.
+- [All Client Solution Models](https://estate.unova.app/clients): Top Egypt real estate solution models.
 - [Software Comparison](https://estate.unova.app/compare): Comparative feature matrix vs traditional ERP systems.
 - [User Documentation](https://estate.unova.app/docs): Setup guides, API webhooks, and module manuals.
 - [Frequently Asked Questions](https://estate.unova.app/faq): Answers to pricing, cloud hosting, and security.
@@ -100,7 +100,7 @@ Unova Estate provides pre-configured architectural models matching the operation
 ## 🏢 Corporate Contact & Organization Metadata
 
 - **Product Name:** Unova Estate
-- **Master Company:** Unova Software (`https://unova.bd/`)
+- **Master Company:** Unova Software (`https://unova.eg/`)
 - **Category:** Business Application / All-Inclusive Enterprise Real Estate ERP & CRM
-- **Primary Market:** Bangladesh (Dhaka, Chattogram, Sylhet, Rajshahi, Khulna)
-- **Support Contact:** +8801766774016 | support@unova.bd
+- **Primary Market:** Egypt & MENA (Cairo, Giza, New Cairo, New Administrative Capital, Alexandria)
+- **Support Contact:** +20 100 000 0000 | support@unova.eg

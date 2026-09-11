@@ -23,12 +23,12 @@ feature4_comp: "No (Requires AppExchange tools)"
 feature4_unova: "Yes (Site photo logs & milestones)"
 feature5_name: "Withholding Tax/AIT ledger"
 feature5_comp: "No"
-feature5_unova: "Yes (Bangladeshi tax-rules compliant)"
+feature5_unova: "Yes (Egyptian Tax Authority compliant)"
 ---
 
-# Unova vs Salesforce: Cost vs Performance for Property Promoters
+# Unova vs Salesforce: Property Vertical vs Enterprise Platform
 
-Salesforce is the global giant of cloud CRMs, but its massive scale comes at a cost: complexity and expense. For real estate developers in Bangladesh, deploying Salesforce typically means spending millions on customization consultants, only to end up with a system that feels over-engineered.
+Salesforce is the global giant of cloud CRMs, but its massive scale comes at a cost: complexity and expense. For real estate developers in Egypt, deploying Salesforce typically means spending millions on customization consultants, only to end up with a system that feels over-engineered.
 
 ### 1. The Cost of Customization
 To track plot inventory or apartment bookings in Salesforce, you must build custom visual components. Unova comes preloaded with an interactive Unit Matrix that color-codes available, booked, and blocked units out-of-the-box.

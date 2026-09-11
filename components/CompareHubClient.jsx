@@ -2,11 +2,12 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import AskAI from './AskAI';
+import Navbar from './Navbar';
 import Footer from './Footer';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function CompareHubClient({ comparisons }) {
-  const [aiOpen, setAiOpen] = useState(false);
+  const { t, isRtl } = useLanguage();
   const [searchQuery, setSearchQuery] = useState('');
   const [activeFilter, setActiveFilter] = useState('all');
 
@@ -26,60 +27,39 @@ export default function CompareHubClient({ comparisons }) {
         <div className="absolute top-[40%] right-[-10%] w-[500px] h-[500px] bg-violet-600/[0.04] rounded-full blur-[120px]" />
       </div>
 
-      {/* NAVIGATION */}
-      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-slate-200/50 bg-white/80 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center">
-            <img src="/unova-real-estate-software-logo.png" alt="Unova Estate Logo" className="h-9 w-auto" loading="eager" />
-          </Link>
-
-          <div className="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
-            <Link href="/#features" className="hover:text-slate-950 transition-colors">Features</Link>
-            <Link href="/solutions" className="hover:text-slate-950 transition-colors">Solutions</Link>
-            <Link href="/#pricing" className="hover:text-slate-950 transition-colors">Pricing</Link>
-            <Link href="/#contact" className="hover:text-slate-950 transition-colors">Contact</Link>
-            <AskAI onOpenChange={setAiOpen} />
-          </div>
-
-          <div className="flex items-center gap-3">
-            <Link href="https://rems.unova.bd/login" className="text-sm font-semibold text-slate-600 hover:text-slate-950 transition-colors hidden sm:block">
-              Sign in
-            </Link>
-            <Link href="/demo" className="text-sm font-semibold bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-full transition-all shadow-md">
-              Request a Demo
-            </Link>
-          </div>
-        </div>
-      </nav>
+      <Navbar activePage="compare" />
 
       {/* MAIN CONTENT */}
-      <main className="relative z-10 pt-32 pb-24 px-5 max-w-6xl mx-auto w-full flex-grow">
+      <main className="relative z-10 pt-36 pb-24 px-5 max-w-6xl mx-auto w-full flex-grow">
         
         {/* HEADER SECTION */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#6DC042]/10 border border-[#6DC042]/20 text-xs font-semibold text-[#6DC042]">
             <span className="w-1.5 h-1.5 rounded-full bg-[#6DC042] animate-pulse" />
-            Unova Comparisons
+            {isRtl ? 'مقارنات يونوفا' : 'Unova Comparisons'}
           </div>
 
           <h1 className="text-4xl md:text-5xl font-black tracking-tight leading-tight text-slate-900">
-            Unova Vs <span className="bg-gradient-to-r from-[#6DC042] to-[#5da538] bg-clip-text text-transparent">Generic CRMs & Workflows</span>
+            {isRtl ? 'يونوفا مقابل' : 'Unova Vs'}{' '}
+            <span className="bg-gradient-to-r from-[#6DC042] to-[#5da538] bg-clip-text text-transparent">
+              {isRtl ? 'الأنظمة التقليدية وCRM العام' : 'Generic CRMs & Workflows'}
+            </span>
           </h1>
 
           <p className="text-slate-500 text-sm leading-relaxed max-w-2xl mx-auto">
-            See how specialized real estate modules, local check tracking vaults, and integrated cost-centers stack up against general-purpose sales tools and manual workflows.
+            {isRtl 
+              ? 'شاهد كيف تتفوق أنظمة التطوير العقاري المخصصة في تحصيل الأقساط، وعمولات الوكلاء مقارنة بالأنظمة العامة ورسوم الإكسل.' 
+              : 'See how specialized real estate modules, local check tracking vaults, and integrated cost-centers stack up against general-purpose sales tools.'}
           </p>
         </div>
 
         {/* SEARCH & FILTERS */}
         <div className="max-w-4xl mx-auto mb-12 flex flex-col md:flex-row gap-4 items-center justify-between">
-          
-          {/* Filters */}
           <div className="flex flex-wrap gap-2 justify-center">
             {[
-              { id: 'all', label: 'All Comparisons' },
-              { id: 'competitor', label: 'Competitor Comparison' },
-              { id: 'process', label: 'Process Comparison' }
+              { id: 'all', label: isRtl ? 'كافة المقارنات' : 'All Comparisons' },
+              { id: 'competitor', label: isRtl ? 'مقارنة المنصات' : 'Competitor Comparison' },
+              { id: 'process', label: isRtl ? 'مقارنة العمليات' : 'Process Comparison' }
             ].map(f => (
               <button
                 key={f.id}
@@ -95,11 +75,10 @@ export default function CompareHubClient({ comparisons }) {
             ))}
           </div>
 
-          {/* Search bar */}
           <div className="relative w-full md:w-72">
             <input
               type="text"
-              placeholder="Search comparisons..."
+              placeholder={isRtl ? 'البحث في المقارنات...' : 'Search comparisons...'}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-4 py-2 rounded-full text-xs bg-white border border-slate-200 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 shadow-sm"
@@ -127,14 +106,13 @@ export default function CompareHubClient({ comparisons }) {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent" />
                     <span className="absolute bottom-4 left-4 px-2.5 py-0.5 bg-[#6DC042] text-white text-[10px] font-black uppercase tracking-wider rounded-md">
-                      {comp.category === 'competitor' ? `vs ${comp.competitorName}` : 'Process Comparison'}
+                      {comp.category === 'competitor' ? `vs ${comp.competitorName}` : (isRtl ? 'مقارنة عملية' : 'Process Comparison')}
                     </span>
                   </div>
                   <h3 className="text-base font-black text-slate-900 mb-3 group-hover:text-[#6DC042] transition-colors">
                     {comp.title}
                   </h3>
                   
-                  {/* Summary bullets list */}
                   <ul className="space-y-2 mb-6">
                     {[comp.summaryPoint1, comp.summaryPoint2].map((pt, pi) => (
                       <li key={pi} className="flex items-start gap-2.5 text-xs text-slate-500">
@@ -150,8 +128,8 @@ export default function CompareHubClient({ comparisons }) {
                     href={`/compare/${comp.slug}`} 
                     className="text-xs font-bold text-indigo-600 hover:text-indigo-500 flex items-center gap-1 group-hover:gap-1.5 transition-all"
                   >
-                    Read Detailed Report
-                    <span>→</span>
+                    {isRtl ? 'قراءة التقرير المفصل' : 'Read Detailed Report'}
+                    <span className={isRtl ? 'rotate-180 inline-block' : ''}>→</span>
                   </Link>
                 </div>
               </div>
@@ -160,17 +138,13 @@ export default function CompareHubClient({ comparisons }) {
         ) : (
           <div className="text-center py-16 bg-white border border-slate-200/60 rounded-3xl max-w-xl mx-auto shadow-sm">
             <span className="text-4xl mb-4 block">🔍</span>
-            <h3 className="text-base font-bold text-slate-800 mb-1">No comparisons found</h3>
-            <p className="text-slate-500 text-xs">Try adjusting your query words.</p>
+            <h3 className="text-base font-bold text-slate-800 mb-1">{isRtl ? 'لم يتم العثور على مقارنات' : 'No comparisons found'}</h3>
+            <p className="text-slate-500 text-xs">{isRtl ? 'جرب تغيير كلمة البحث.' : 'Try adjusting your query words.'}</p>
           </div>
         )}
       </main>
 
       <Footer />
-
-      {/* Ask AI chat box */}
-      <AskAI open={aiOpen} onOpenChange={setAiOpen} />
-
     </div>
   );
 }

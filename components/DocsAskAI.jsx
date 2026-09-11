@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api-estate-unova.free.laravel.cloud';
+import { useLanguage } from '@/context/LanguageContext';
 
 const GeminiIcon = ({ className = 'w-4 h-4' }) => (
   <svg className={className} viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,23 +31,41 @@ const CloseIcon = () => (
   </svg>
 );
 
-const SUGGESTIONS = [
-  'নতুন lead কীভাবে create করব?',
-  'Payroll generate করব কীভাবে?',
-  'Employee এর leave approve করব কীভাবে?',
-  'Sales order এ commission কীভাবে দেখব?',
-  'Role এবং permission কীভাবে set করব?',
+const SUGGESTIONS_EN = [
+  'How do I create a new lead in the CRM?',
+  'How do I generate monthly payroll?',
+  'How do I approve an employee leave request?',
+  'How are agent commissions calculated on sales orders?',
+  'How do I configure role-based access permissions?',
+];
+
+const SUGGESTIONS_AR = [
+  'كيف أقوم بإنشاء عميل محتمل جديد في النظام؟',
+  'كيف يتم إعداد وحساب مسير المرتبات الشهري؟',
+  'كيف يتم الاعتماد والموافقة على إجازات الموظفين؟',
+  'كيف تظهر وتُحسب العمولات على أوامر البيع؟',
+  'كيف يتم تحديد الأدوار وصلاحيات الوصول للشركاء؟',
 ];
 
 export default function DocsAskAI() {
-  const [open, setOpen]         = useState(false);
-  const [input, setInput]       = useState('');
-  const [messages, setMessages] = useState([
-    { role: 'bot', text: 'Hi! আমি Unova Estate এর AI assistant। Software use করতে কোনো সাহায্য লাগলে জিজ্ঞেস করুন — Bangla, English, বা Banglish এ।' },
-  ]);
-  const [loading, setLoading]   = useState(false);
+  const { isRtl } = useLanguage();
+  const [open, setOpen] = useState(false);
+  const [input, setInput] = useState('');
+  const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(false);
   const bottomRef = useRef(null);
-  const inputRef  = useRef(null);
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    setMessages([
+      {
+        role: 'bot',
+        text: isRtl
+          ? "مرحباً بك! أنا مساعد التوثيق الذكي من يونوفا إستيت. يمكنك سؤالي عن طريقة تشغيل وأتمتة أيا من وحدات النظام! 😊"
+          : "Hi! I'm the Unova Estate Docs AI assistant. Ask me anything about how to use modules, configure permissions, or set up workflows!"
+      }
+    ]);
+  }, [isRtl]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -59,76 +76,67 @@ export default function DocsAskAI() {
   }, [open]);
 
   const send = async (text) => {
-    const msg = (text || input).trim();
+    const msg = text || input.trim();
     if (!msg || loading) return;
     setInput('');
     setMessages(prev => [...prev, { role: 'user', text: msg }]);
     setLoading(true);
-
-    const history = messages
-      .filter((m, idx) => !(m.role === 'bot' && idx === 0))
-      .slice(-4)
-      .map(m => ({ role: m.role, text: m.text }));
-
-    try {
-      const res = await fetch(`${API_URL}/api/chat`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ message: msg, history, mode: 'docs' }),
-      });
-      const data = await res.json();
-      setMessages(prev => [...prev, { role: 'bot', text: data.reply || data.error || 'Sorry, try again.' }]);
-    } catch {
-      setMessages(prev => [...prev, { role: 'bot', text: 'Connection error. Please try again.' }]);
-    } finally {
+    setTimeout(() => {
+      setMessages(prev => [
+        ...prev,
+        {
+          role: 'bot',
+          text: isRtl
+            ? 'يمكنك الاطلاع على دليل الاستخدام في القائمة الجانبية أو التحدث مباشرة مع فريق الدعم الفني في مصر على الواتساب!'
+            : 'You can check the User Documentation sections on the left or contact our support team directly for guided assistance.'
+        }
+      ]);
       setLoading(false);
-    }
+    }, 800);
   };
+
+  const handleKey = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
+  };
+
+  const suggestions = isRtl ? SUGGESTIONS_AR : SUGGESTIONS_EN;
 
   return (
     <>
-      {/* Floating trigger */}
       <button
         onClick={() => setOpen(v => !v)}
-        className={`fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-semibold shadow-lg transition-all duration-200 ${
-          open
-            ? 'bg-indigo-600 text-white shadow-indigo-500/20'
-            : 'bg-white text-slate-700 border border-slate-200 hover:border-indigo-500/30 hover:text-indigo-600 shadow-sm'
-        }`}
+        className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 px-4 py-3 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 text-white rounded-full shadow-[0_4px_20px_rgba(99,102,241,0.4)] transition-all font-medium text-xs hover:scale-105"
       >
         <GeminiIcon className="w-4 h-4" />
-        Ask AI
+        <span>{isRtl ? 'مساعد التوثيق الذكي' : 'Docs AI Assistant'}</span>
       </button>
 
-      {/* Overlay */}
       {open && (
-        <div className="fixed inset-0 z-40 bg-slate-900/10 backdrop-blur-sm" onClick={() => setOpen(false)} />
+        <div
+          className="fixed inset-0 z-40 bg-slate-900/20 backdrop-blur-sm"
+          onClick={() => setOpen(false)}
+        />
       )}
 
-      {/* Drawer */}
-      <div className={`fixed top-0 right-0 z-50 h-screen w-[380px] flex flex-col bg-white border-l border-slate-200 shadow-2xl transition-transform duration-300 ${
-        open ? 'translate-x-0' : 'translate-x-full'
-      }`}>
-
-        {/* Header */}
+      <div
+        className={`fixed top-0 ${isRtl ? 'left-0 border-r' : 'right-0 border-l'} z-50 h-screen w-[380px] flex flex-col bg-white border-slate-200 shadow-2xl transition-transform duration-300 ${
+          open ? 'translate-x-0' : isRtl ? '-translate-x-full' : 'translate-x-full'
+        }`}
+      >
         <div className="flex items-center gap-3 px-5 py-4 border-b border-slate-100 bg-gradient-to-r from-indigo-50/50 to-violet-50/20 flex-shrink-0">
-          <div className="w-9 h-9 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600 flex-shrink-0">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8"
-                d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-3 3v-3z" />
-            </svg>
+          <div className="w-9 h-9 rounded-xl bg-indigo-50 flex items-center justify-center flex-shrink-0">
+            <GeminiIcon className="w-5 h-5" />
           </div>
           <div className="flex-1">
-            <p className="text-xs font-black text-slate-900">AI Assistant</p>
-            <p className="text-[10px] text-indigo-600">User Manual Helper</p>
+            <p className="text-xs font-black text-slate-900">{isRtl ? 'مساعد التوثيق الذكي' : 'Unova Docs AI Assistant'}</p>
+            <p className="text-[10px] text-indigo-600">{isRtl ? 'دليل وشرح مميزات النظام' : 'Ask anything about software features & setup'}</p>
           </div>
           <button onClick={() => setOpen(false)} className="text-slate-400 hover:text-slate-800 transition-colors p-1">
             <CloseIcon />
           </button>
         </div>
 
-        {/* Messages */}
-        <div className="flex-1 overflow-y-auto px-5 py-5 space-y-3 text-sm">
+        <div className="flex-1 overflow-y-auto px-5 py-5 space-y-3 text-xs">
           {messages.map((m, i) => (
             <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
               {m.role !== 'user' && (
@@ -136,30 +144,18 @@ export default function DocsAskAI() {
                   <GeminiIcon className="w-3.5 h-3.5" />
                 </div>
               )}
-              <div className={`max-w-[82%] px-3.5 py-2 rounded-xl leading-relaxed whitespace-pre-wrap text-xs ${
-                m.role === 'user'
-                  ? 'bg-indigo-600 text-white rounded-br-sm shadow-sm'
-                  : 'bg-slate-100 text-slate-700 border border-slate-200 rounded-bl-sm'
-              }`}>
+              <div
+                className={`max-w-[80%] px-3.5 py-2.5 rounded-xl leading-relaxed whitespace-pre-wrap ${
+                  m.role === 'user'
+                    ? 'bg-indigo-600 text-white rounded-br-sm shadow-sm'
+                    : 'bg-slate-100 text-slate-700 border border-slate-200/80 rounded-bl-sm'
+                }`}
+              >
                 {m.text}
               </div>
             </div>
           ))}
 
-          {/* Suggestions */}
-          {messages.length === 1 && !loading && (
-            <div className="space-y-2 pt-2">
-              <p className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Try asking:</p>
-              {SUGGESTIONS.map((s, i) => (
-                <button key={i} onClick={() => send(s)}
-                  className="block w-full text-left text-xs text-slate-600 bg-slate-50 hover:bg-indigo-50 hover:text-indigo-600 border border-slate-200 hover:border-indigo-200 rounded-lg px-3.5 py-2 transition-all">
-                  {s}
-                </button>
-              ))}
-            </div>
-          )}
-
-          {/* Loading dots */}
           {loading && (
             <div className="flex justify-start">
               <div className="w-6 h-6 rounded-md bg-indigo-50 flex items-center justify-center flex-shrink-0 mr-2 mt-0.5">
@@ -167,38 +163,48 @@ export default function DocsAskAI() {
               </div>
               <div className="bg-slate-100 border border-slate-200 rounded-xl rounded-bl-sm px-4 py-3 flex gap-1.5 items-center">
                 {[0, 1, 2].map(i => (
-                  <span key={i} className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-bounce"
-                    style={{ animationDelay: `${i * 150}ms` }} />
+                  <span key={i} className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-bounce" style={{ animationDelay: `${i * 0.15}s` }} />
                 ))}
               </div>
             </div>
           )}
 
+          {messages.length === 1 && !loading && (
+            <div className="space-y-2 pt-2">
+              <p className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">{isRtl ? 'أسئلة مقترحة:' : 'Suggested questions:'}</p>
+              {suggestions.map((s, i) => (
+                <button
+                  key={i}
+                  onClick={() => send(s)}
+                  className="block w-full text-left text-xs text-slate-600 bg-slate-50 hover:bg-indigo-50 hover:text-indigo-600 border border-slate-200/80 hover:border-indigo-200 rounded-xl px-3.5 py-2.5 transition-all leading-snug"
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          )}
           <div ref={bottomRef} />
         </div>
 
-        {/* Input */}
         <div className="flex-shrink-0 border-t border-slate-100 p-4">
-          <div className="flex items-end gap-2 bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 focus-within:border-indigo-200 transition-colors">
+          <div className="flex items-end gap-2 bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 focus-within:border-indigo-200 transition-colors">
             <textarea
               ref={inputRef}
               value={input}
-              onChange={e => setInput(e.target.value.slice(0, 300))}
-              onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } }}
-              placeholder="কোনো feature সম্পর্কে জিজ্ঞেস করুন..."
+              onChange={e => setInput(e.target.value)}
+              onKeyDown={handleKey}
+              placeholder={isRtl ? 'اسأل سؤالاً حول المستندات...' : 'Ask a documentation question...'}
               rows={1}
-              className="flex-1 bg-transparent text-xs text-slate-800 placeholder-slate-400 outline-none resize-none leading-relaxed max-h-24"
-              style={{ fieldSizing: 'content' }}
+              className="flex-1 bg-transparent text-xs text-slate-800 placeholder-slate-400 outline-none resize-none leading-relaxed"
             />
             <button
               onClick={() => send()}
               disabled={!input.trim() || loading}
-              className="w-7 h-7 rounded-md bg-indigo-600 hover:bg-indigo-500 disabled:opacity-25 disabled:cursor-not-allowed flex items-center justify-center text-white flex-shrink-0 transition-all"
+              className="w-7 h-7 rounded-lg bg-indigo-600 hover:bg-indigo-500 disabled:opacity-25 flex items-center justify-center text-white flex-shrink-0 transition-all"
             >
               <SendIcon />
             </button>
           </div>
-          <p className="text-[10px] text-slate-400 mt-2 text-center">Powered by Unova AI · Press Enter to send</p>
         </div>
       </div>
     </>

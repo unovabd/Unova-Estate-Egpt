@@ -102,7 +102,7 @@ const NAV = [
     items: [
       { id: 'config-general', label: 'General Settings' },
       { id: 'config-hr',      label: 'HR Settings' },
-      { id: 'config-bd',      label: 'Bangladesh Features' },
+      { id: 'config-egypt',   label: 'Egypt Features' },
       { id: 'integrations',   label: 'API Integrations' },
       { id: 'file-manager',   label: 'File Manager' },
     ],
@@ -147,7 +147,7 @@ const SECTIONS = {
     title: 'Introduction',
     content: (
       <div>
-        <p className={S.p}>Unova Estate is Bangladesh&apos;s first AI-powered real estate ERP — one platform that manages your entire property business from first lead to final settlement.</p>
+        <p className={S.p}>Unova Estate is Egypt&apos;s first AI-powered real estate ERP — one platform that manages your entire property business from first lead to final settlement.</p>
         <p className={S.p}>Instead of juggling a separate CRM, HR tool, WhatsApp panel, accounting software, and spreadsheets, Unova Estate brings everything into one login with fully connected modules.</p>
         <h3 className={S.h3}>Modules included</h3>
         <ul className={S.ul}>
@@ -560,10 +560,10 @@ const SECTIONS = {
   },
 
   'config-bd': {
-    title: 'Bangladesh Features & Compliance',
+    title: 'Egypt Features & Compliance',
     content: (
       <div>
-        <p className={S.p}>Localizations tailored for Bangladesh real estate rules and regulatory bodies.</p>
+        <p className={S.p}>Localizations tailored for Egypt real estate rules and regulatory bodies.</p>
         <h3 className={S.h3}>RAJUK Plan & Utility Tracking</h3>
         <p className={S.p}>Track RAJUK approval stages, plan version numbers, and NOCs from civil aviation and fire department. Monitor gas connection pipelines, WASA water connections, and DESCO/DPDC substation installation files.</p>
         <h3 className={S.h3}>VAT, Tax & Bank Loan Coordination</h3>
@@ -1014,9 +1014,9 @@ const SECTIONS = {
             ['VAT Settings', 'Configuration → VAT Setting', 'VAT percentage and application rules for invoices'],
             ['Designations', 'Configuration → Designations', 'Job titles used in employee records'],
             ['Property Types', 'Configuration → Property Types', 'Apartment, Commercial, Land, etc.'],
-            ['Measurement Units', 'Configuration → Measurement Units', 'sqft, sqm, katha, bigha, etc.'],
+            ['Measurement Units', 'Configuration → Measurement Units', 'sqm, feddan, kirat, sahm, etc.'],
             ['Holiday Calendar', 'Configuration → Holiday Calendar', 'Add public holidays with date range — auto-marks attendance as Holiday'],
-            ['Locations', 'Configuration → Location', 'Division → District → Upazila → Union hierarchy for Bangladesh'],
+            ['Locations', 'Configuration → Location', 'Governorate → City → District hierarchy for Egypt'],
             ['Challenges', 'Configuration → Challenges', 'Tracking reasons why leads were lost'],
           ]}
         />
@@ -1136,15 +1136,15 @@ const SECTIONS = {
       <div className="space-y-3">
         {[
           { q: 'Can I import existing leads from a spreadsheet?', a: 'Yes. CRM → Leads → Import → upload a CSV file. Download the template first to ensure correct column format.' },
-          { q: 'Commission কীভাবে pay করব?', a: 'Commission payroll এর সাথে যায় না। Sales order খুলুন → agent এর commission row → "+ Record Commission Payment" → amount দিন → bank account select করুন → Save।' },
-          { q: 'Payroll finalize করার পর ভুল পেলে কী করব?', a: 'Finalized payroll edit করা যায় না। Admin কে বলুন accounting journal entry reverse করতে, তারপর payroll run delete করে পুনরায় generate করতে হবে।' },
-          { q: 'একটা sale এ multiple agent commission পাবে?', a: 'হ্যাঁ। Sales order create করার সময় multiple agent assign করা যায়, প্রত্যেকের আলাদা commission type ও value দিন।' },
-          { q: 'Unit sold দেখাচ্ছে কিন্তু sale cancel করতে চাই?', a: 'Admin কে বলুন sales order cancel করতে। Order cancel হলে unit status আবার Available হয়ে যাবে।' },
-          { q: 'Employee নিজে leave apply করতে পারে?', a: 'হ্যাঁ। Employee তাদের নিজের dashboard থেকে leave apply করতে পারে। Leave type select করে date দিয়ে submit করলে manager এর কাছে approval এর জন্য যাবে।' },
-          { q: 'Comp-off কীভাবে কাজ করে?', a: 'কোনো employee weekend বা holiday তে কাজ করলে সেটা Extra Work হিসেবে record হয়। সেই দিনগুলো দিয়ে comp-off apply করা যায়। HR → Leaves → Apply → request type = Comp-off → date select করুন।' },
-          { q: 'Can I export reports to Excel?', a: 'Yes. Every report page has an Export button. Payroll runs and PF ledger can also be exported from HR → Payroll and HR → Provident Fund respectively.' },
-          { q: 'WhatsApp campaign কাজ করছে না?', a: 'Configuration → API Integrations → WhatsApp check করুন। Meta App ID, Business Account ID, Phone Number ID, এবং Access Token সব correct কিনা verify করুন। Outbound messages Meta-approved template ছাড়া পাঠানো যাবে না।' },
-          { q: 'নতুন employee add করলে payroll এ আসছে না?', a: 'Employee এর Grade এবং Salary Structure assign করা আছে কিনা দেখুন। Grade ছাড়া বা salary structure ছাড়া employee payroll generate এ include হবে না।' },
+          { q: 'How do I payout agent commissions?', a: 'Open the Sales Order → Agent Commission section → Click "+ Record Commission Payment" → Enter payout amount → Select bank account → Save.' },
+          { q: 'What if I find an error after finalizing payroll?', a: 'Finalized payroll cannot be edited directly. Request an Admin to reverse the journal entry, delete the payroll run, and regenerate it.' },
+          { q: 'Can multiple agents earn commission on a single sale?', a: 'Yes. When creating a Sales Order, you can assign multiple agents and specify custom commission percentage splits for each.' },
+          { q: 'How do I cancel a sale and release the unit back to inventory?', a: 'Request an Admin user to cancel the Sales Order. Once canceled, the unit status automatically reverts to Available.' },
+          { q: 'Can employees apply for leave directly from their portal?', a: 'Yes. Employees can submit leave requests from their dashboard under HR → Leaves → Apply. Submissions flow to their manager for approval.' },
+          { q: 'How does Comp-Off (Compensatory Off) work?', a: 'When an employee works on a weekend or public holiday, it is logged as Extra Work. They can apply for Comp-Off under HR → Leaves → Apply → Request Type: Comp-Off.' },
+          { q: 'Can I export reports to Excel?', a: 'Yes. Every report page has an Export button. Payroll runs and PF ledgers can also be exported to Excel and PDF formats.' },
+          { q: 'Why is my WhatsApp campaign not sending?', a: 'Check Configuration → API Integrations → WhatsApp. Ensure Meta App ID, Business Account ID, Phone ID, and Access Token are valid, and messages use Meta-approved templates.' },
+          { q: 'Why is a newly added employee missing from the payroll run?', a: 'Verify that a Grade and Salary Structure are assigned to the employee. Employees without an assigned grade or structure are excluded from payroll.' },
         ].map((item, i) => (
           <div key={i} className="px-4 py-3.5 bg-white border border-slate-200 rounded-xl shadow-sm">
             <p className="text-sm font-bold text-slate-800 mb-1">{item.q}</p>
@@ -1159,13 +1159,13 @@ const SECTIONS = {
     title: 'Contact Support',
     content: (
       <div>
-        <p className="text-sm text-slate-500 mb-5">Our support team is available Sunday – Thursday, 9 am – 6 pm (Bangladesh Standard Time).</p>
+        <p className="text-sm text-slate-500 mb-5">Our support team is available Sunday – Thursday, 9 am – 6 pm (Egypt Standard Time / EET).</p>
         <div className="grid sm:grid-cols-2 gap-3">
           {[
-            { icon: '💬', label: 'WhatsApp', value: '+880 1766-774016', href: 'https://wa.me/8801766774016', desc: 'Fastest response — usually within minutes' },
-            { icon: '📧', label: 'Email Support', value: 'support@unovaestate.com', href: 'mailto:support@unovaestate.com', desc: 'For detailed technical queries' },
-            { icon: '📞', label: 'Phone', value: '+880 1766-774016', href: 'tel:+8801766774016', desc: 'Available during office hours' },
-            { icon: '📍', label: 'Office', value: 'Flat: B-5, House: 12, Road: 02, Block: J, Baridhara, Vatara, Dhaka-1212', href: null, desc: 'By appointment only' },
+            { icon: '💬', label: 'WhatsApp', value: '+20 100 000 0000', href: 'https://wa.me/201000000000', desc: 'Fastest response — usually within minutes' },
+            { icon: '📧', label: 'Email Support', value: 'support@unova.eg', href: 'mailto:support@unova.eg', desc: 'For detailed technical queries' },
+            { icon: '📞', label: 'Phone', value: '+20 2 2345 6789', href: 'tel:+20223456789', desc: 'Available during office hours' },
+            { icon: '📍', label: 'Office', value: 'Building 14, 90th Street North, Fifth Settlement, New Cairo, Egypt', href: null, desc: 'By appointment only' },
           ].map((c, i) => (
             <div key={i} className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
               <div className="flex items-center gap-2 mb-1">

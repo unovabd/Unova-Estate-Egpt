@@ -50,10 +50,10 @@ const faqs = [
     category: 'general',
     question: 'What is Unova Estate and how does it work?',
     updated: 'Updated on Jan 12, 2026',
-    summary: "Bangladesh's first AI-powered all-in-one ERP & CRM software built for real estate developers.",
+    summary: "Egypt's first AI-powered all-in-one ERP & CRM software built for real estate developers.",
     answerHtml: `
       <div class="space-y-6 text-xs md:text-sm text-slate-600 leading-relaxed">
-        <p>Unova Estate is Bangladesh's first AI-powered all-in-one ERP & CRM software built exclusively for real estate developers, housing companies, and property builders. It helps developers manage their entire lifecycle—from land acquisition to sales pipelines, instalment collections, store inventories, and construction progress—within a single unified platform.</p>
+        <p>Unova Estate is Egypt's first AI-powered all-in-one ERP & CRM software built exclusively for real estate developers, housing companies, and property builders. It helps developers manage their entire lifecycle—from land acquisition to sales pipelines, instalment collections, store inventories, and construction progress—within a single unified platform.</p>
         
         <h4 class="font-extrabold text-slate-800 text-sm md:text-base mt-4">Core Benefits:</h4>
         <ul class="list-disc pl-5 space-y-2">
@@ -246,7 +246,7 @@ const faqs = [
         
         <div class="p-4 bg-amber-50 border border-amber-100 rounded-xl mt-4">
           <h5 class="font-bold text-amber-950 mb-1">💻 Cloud Redundancy:</h5>
-          <p class="text-xs text-amber-900 leading-relaxed">Our cloud architecture utilizes local CDN edge caches in Dhaka, ensuring that pages load instantly from any internet connection in Bangladesh.</p>
+          <p class="text-xs text-amber-900 leading-relaxed">Our cloud architecture utilizes local CDN edge caches in Cairo, ensuring that pages load instantly from any internet connection in Egypt.</p>
         </div>
       </div>
     `
@@ -390,7 +390,7 @@ export default function FaqClient() {
           </div>
 
           <div className="flex items-center gap-3">
-            <Link href="https://rems.unova.bd/login" className="text-sm font-semibold text-slate-600 hover:text-slate-950 transition-colors hidden sm:block">
+            <Link href="https://rems.unova.eg/login" className="text-sm font-semibold text-slate-600 hover:text-slate-950 transition-colors hidden sm:block">
               Sign in
             </Link>
             <Link href="/demo" className="text-sm font-semibold bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-full transition-all shadow-md">
@@ -621,7 +621,7 @@ export default function FaqClient() {
               Ask Unova AI
             </button>
             <a
-              href="https://wa.me/8801766774016"
+              href="https://wa.me/201000000000"
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3.5 bg-[#6DC042] hover:bg-[#5da538] text-white font-bold rounded-xl transition-all text-xs shadow-md flex items-center justify-center gap-2"

@@ -1,13 +1,14 @@
 'use client';
 
 import Link from 'next/link';
+import { useLanguage } from '@/context/LanguageContext';
 
 const CONTACT = {
-  phones:   [{ label: 'Sales', number: '+880 1766-774016' }, { label: 'Support', number: '+880 1766-774016' }],
+  phones:   [{ label: 'Sales', number: '+20 100 000 0000' }, { label: 'Support', number: '+20 100 000 0001' }],
   emails:   [{ label: 'Sales', address: 'sales@unovaestate.com' }, { label: 'Support', address: 'support@unovaestate.com' }],
-  location: 'Flat: B-5, House: 12, Road: 02, Block: J, Baridhara, Vatara, Dhaka-1212',
+  location: 'Cairo & Alexandria, Egypt / New Cairo Business District',
   hours:    'Sunday – Thursday (09 am – 06 pm)',
-  whatsapp: 'https://wa.me/8801766774016',
+  whatsapp: 'https://wa.me/201000000000',
 };
 
 const PhoneIcon = () => (
@@ -39,6 +40,8 @@ const ClockIcon = () => (
 );
 
 export default function ContactSection() {
+  const { t, isRtl } = useLanguage();
+
   return (
     <section id="contact" className="relative z-10 py-24 px-5 md:px-12 lg:px-24 border-t border-slate-200 bg-slate-50">
 
@@ -55,15 +58,14 @@ export default function ContactSection() {
           <div>
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-xs font-semibold text-indigo-600 mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
-              Contact Us
+              {t('contact.badge')}
             </div>
 
             <h2 className="text-4xl md:text-5xl font-black tracking-tight leading-tight mb-4 text-slate-900">
-              <span className="text-indigo-600">Get In Touch</span><br />
-              <span>With Our Team</span>
+              <span className="text-indigo-600">{t('contact.title')}</span>
             </h2>
             <p className="text-slate-500 text-sm leading-relaxed mb-10">
-              Reach out to us directly via phone, email, or chat, or schedule a live personalized walkthrough of the ERP.
+              {t('contact.subtitle')}
             </p>
 
             <div className="grid sm:grid-cols-2 gap-6">
@@ -72,7 +74,7 @@ export default function ContactSection() {
                   <div className="w-7 h-7 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center flex-shrink-0">
                     <LocationIcon />
                   </div>
-                  <p className="text-xs font-bold text-slate-900">Head Office</p>
+                  <p className="text-xs font-bold text-slate-900">{isRtl ? 'المقر الرئيسي' : 'Head Office'}</p>
                 </div>
                 <p className="text-xs text-slate-500 leading-relaxed">{CONTACT.location}</p>
               </div>
@@ -82,7 +84,7 @@ export default function ContactSection() {
                   <div className="w-7 h-7 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center flex-shrink-0">
                     <PhoneIcon />
                   </div>
-                  <p className="text-xs font-bold text-slate-900">Call Center</p>
+                  <p className="text-xs font-bold text-slate-900">{isRtl ? 'مركز الاتصالات' : 'Call Center'}</p>
                 </div>
                 {CONTACT.phones.map((p, i) => (
                   <a key={i} href={`tel:${p.number.replace(/\s|-/g, '')}`}
@@ -97,7 +99,7 @@ export default function ContactSection() {
                   <div className="w-7 h-7 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center flex-shrink-0">
                     <EmailIcon />
                   </div>
-                  <p className="text-xs font-bold text-slate-900">Email</p>
+                  <p className="text-xs font-bold text-slate-900">{isRtl ? 'البريد الإلكتروني' : 'Email'}</p>
                 </div>
                 {CONTACT.emails.map((em, i) => (
                   <a key={i} href={`mailto:${em.address}`}
@@ -112,9 +114,9 @@ export default function ContactSection() {
                   <div className="w-7 h-7 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center flex-shrink-0">
                     <ClockIcon />
                   </div>
-                  <p className="text-xs font-bold text-slate-900">Working Hours</p>
+                  <p className="text-xs font-bold text-slate-900">{isRtl ? 'أوقات العمل' : 'Working Hours'}</p>
                 </div>
-                <p className="text-xs text-slate-500 leading-relaxed">{CONTACT.hours}</p>
+                <p className="text-xs text-slate-500 leading-relaxed">{isRtl ? 'الأحد – الخميس (09:00 ص – 06:00 م)' : CONTACT.hours}</p>
               </div>
             </div>
           </div>
@@ -127,10 +129,10 @@ export default function ContactSection() {
               </svg>
             </div>
             <div>
-              <p className="text-xs font-bold text-emerald-600">Chat on WhatsApp</p>
-              <p className="text-xs text-slate-500">Usually replies within minutes</p>
+              <p className="text-xs font-bold text-emerald-600">{isRtl ? 'التواصل عبر الواتساب' : 'Chat on WhatsApp'}</p>
+              <p className="text-xs text-slate-500">{isRtl ? 'رد سريع خلال دقائق' : 'Usually replies within minutes'}</p>
             </div>
-            <svg className="w-4 h-4 text-slate-400 ml-auto group-hover:text-emerald-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className={`w-4 h-4 text-slate-400 ${isRtl ? 'mr-auto rotate-180' : 'ml-auto'} group-hover:text-emerald-600 transition-colors`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
           </a>
@@ -139,31 +141,28 @@ export default function ContactSection() {
         {/* RIGHT — Demo CTA Card */}
         <div className="bg-white rounded-3xl overflow-hidden shadow-[0_15px_50px_-15px_rgba(0,0,0,0.06)] border border-slate-200 p-8 md:p-10 flex flex-col justify-between relative group hover:border-indigo-500/40 transition-all duration-300">
           
-          {/* Top colored accent bar */}
           <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-indigo-600 via-violet-500 to-indigo-500" />
-          
-          {/* Subtle bg glow */}
           <div className="absolute inset-0 pointer-events-none bg-indigo-50/[0.1] group-hover:bg-indigo-50/[0.2] transition-colors" />
 
           <div className="space-y-6 relative z-10">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-xs font-semibold text-indigo-600">
-              ⚡ Live Product Walkthrough
+              ⚡ {isRtl ? 'عرض مباشر وتجربة للنظام' : 'Live Product Walkthrough'}
             </div>
 
             <h3 className="text-3xl font-black text-slate-900 leading-tight">
-              Ready to increase your real estate sales by 20%?
+              {isRtl ? 'جاهز لزيادة مبيعاتك العقارية بنسبة 20%؟' : 'Ready to increase your real estate sales by 20%?'}
             </h3>
 
             <p className="text-slate-500 text-sm leading-relaxed">
-              Book a live, 30-minute tailored tour of Unova Estate with our product experts and see the platform in action. No manual setup or complex forms needed.
+              {t('contact.subtitle')}
             </p>
 
             <div className="space-y-3.5 pt-2">
               {[
-                'Explore the lead pipeline & CRM system',
-                'See property inventory & booking status live',
-                'Learn how payroll and salary structures work',
-                'Get direct answers to technical & pricing queries'
+                isRtl ? 'استعراض نظام إدارة وتحويل العملاء CRM' : 'Explore the lead pipeline & CRM system',
+                isRtl ? 'متابعة حالة توفر الوحدات والمشروعات لحظياً' : 'See property inventory & booking status live',
+                isRtl ? 'معرفة طرق أتمتة العمولات والأقساط' : 'Learn how payroll and salary structures work',
+                isRtl ? 'الإجابة المباشرة على كافة استفساراتكم' : 'Get direct answers to technical & pricing queries'
               ].map((item, idx) => (
                 <div key={idx} className="flex items-center gap-3 text-xs text-slate-600">
                   <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 flex-shrink-0" />
@@ -176,8 +175,8 @@ export default function ContactSection() {
           <div className="mt-10 relative z-10">
             <Link href="/demo"
               className="w-full py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-black rounded-xl shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(99,102,241,0.5)] transition-all flex items-center justify-center gap-2 text-sm group-hover:scale-[1.01]">
-              Schedule a Live Demo
-              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {t('contact.submitBtn')}
+              <svg className={`w-4 h-4 ${isRtl ? 'rotate-180' : ''} group-hover:translate-x-1 transition-transform`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </Link>

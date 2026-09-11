@@ -41,7 +41,7 @@ export default function ClientsHubClient() {
           </div>
 
           <h1 className="text-3xl md:text-5xl font-black tracking-tight leading-tight text-slate-900">
-            Bangladesh&apos;s Top Real Estate <span className="bg-gradient-to-r from-indigo-600 to-indigo-500 bg-clip-text text-transparent">Developers &amp; Agencies</span>
+            Egypt&apos;s Top Real Estate <span className="bg-gradient-to-r from-indigo-600 to-indigo-500 bg-clip-text text-transparent">Developers &amp; Agencies</span>
           </h1>
 
           <p className="text-slate-500 text-xs md:text-sm leading-relaxed max-w-xl mx-auto">

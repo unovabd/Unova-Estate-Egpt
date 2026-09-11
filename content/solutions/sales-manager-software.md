@@ -1,6 +1,6 @@
 ---
 title: "Software for Sales Managers"
-metaDescription: "Manage real estate sales teams in Bangladesh. Track pipeline stages, log interactions, and lock property units."
+metaDescription: "Manage real estate sales teams in Egypt. Track pipeline stages, log interactions, and lock property units."
 layoutStyle: "split-feature"
 heroImage: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
 statsLabel: "Lead Response Time"

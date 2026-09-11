@@ -34,7 +34,7 @@ export default function RefundPage() {
 
             <h2 className="text-lg font-bold text-slate-900 pt-2">2. Subscription Cancellation</h2>
             <p>
-              Clients may cancel monthly or annual recurring SaaS subscriptions at any time via the admin portal or by emailing <code>support@unova.bd</code>. Cancellation takes effect at the end of the current billing cycle.
+              Clients may cancel monthly or annual recurring SaaS subscriptions at any time via the admin portal or by emailing <code>support@unova.eg</code>. Cancellation takes effect at the end of the current billing cycle.
             </p>
 
             <h2 className="text-lg font-bold text-slate-900 pt-2">3. Non-Refundable Services</h2>
@@ -44,7 +44,7 @@ export default function RefundPage() {
 
             <h2 className="text-lg font-bold text-slate-900 pt-2">4. Refund Process</h2>
             <p>
-              Approved refunds are processed within 7 business days back to the original payment method (bKash, Nagad, Bank Wire).
+              Approved refunds are processed within 7 business days back to the original payment method (Fawry, InstaPay, Paymob, Bank Wire).
             </p>
           </div>
         </div>

@@ -28,7 +28,7 @@ feature4: "Role-Based Executive Audit Log & Lock Override"
 
 In the fast-moving real estate industry, Managing Directors, Board Chairmen, and Chief Executive Officers require instant access to accurate business intelligence. Waiting for manual month-end Excel reports or chasing department heads for collection updates creates strategic blind spots, delaying crucial business decisions.
 
-**Unova Executive Dashboard** is an AI-powered C-level decision portal built specifically for real estate leaders in Bangladesh. By consolidating real-time sales pipelines, project cashflows, site construction timelines, and inventory availability into intuitive visual graphs, Unova ERP empowers leaders to steer their company with total clarity.
+**Unova Executive Dashboard** is an AI-powered C-level decision portal built specifically for real estate leaders in Egypt. By consolidating real-time sales pipelines, project cashflows, site construction timelines, and inventory availability into intuitive visual graphs, Unova ERP empowers leaders to steer their company with total clarity.
 
 Calculate your company's operational savings with our [Unova ROI Calculator](/resources/roi-calculator) or explore our [Central FAQ Portal](/faq).
 
@@ -119,4 +119,4 @@ Setting up the Executive Dashboard is fast and seamless:
 
 Empower your leadership with real-time decision intelligence. Connect with our senior solution architects for a private executive demonstration.
 
-[Book a Free Live Demo](/demo) | [Contact Sales via WhatsApp](https://wa.me/8801766774016) | [Explore All ERP Solutions](/solutions)
+[Book a Free Live Demo](/demo) | [Contact Sales via WhatsApp](https://wa.me/201000000000) | [Explore All ERP Solutions](/solutions)

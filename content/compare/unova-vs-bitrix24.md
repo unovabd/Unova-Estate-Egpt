@@ -23,7 +23,7 @@ feature4_comp: "No (Generic task lists only)"
 feature4_unova: "Yes (For photo uploads & store issues)"
 feature5_name: "Local Bank Sync"
 feature5_comp: "No"
-feature5_unova: "Yes (Bangladeshi check clearance checklists)"
+feature5_unova: "Yes (PDC & Bank clearance checklists)"
 ---
 
 # Unova vs Bitrix24: Dedicated Real Estate vs General Project Tools

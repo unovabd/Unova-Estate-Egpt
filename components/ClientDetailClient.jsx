@@ -22,7 +22,7 @@ export default function ClientDetailClient({ client, relatedClients = [] }) {
       'name': 'Unova Estate',
       'logo': {
         '@type': 'ImageObject',
-        'url': 'https://rems.unova.bd/unova-real-estate-software-logo.png'
+        'url': 'https://rems.unova.eg/unova-real-estate-software-logo.png'
       }
     },
     'about': {

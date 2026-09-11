@@ -1,34 +1,34 @@
 ---
 title: "Real Estate CRM & Sales Automation"
-metaDescription: "Omnichannel real estate CRM software in Bangladesh. Automate Meta ad lead capture, WhatsApp notifications, sales pipeline tracking, and agent performance."
+metaDescription: "Omnichannel real estate CRM software in Egypt. Automate Meta ad lead capture, WhatsApp notifications, sales pipeline tracking, and agent performance."
 layoutStyle: "modern-hero"
 heroImage: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
-statsLabel: "Lead Conversion Lift"
-statsValue: "38%"
-benefit1_icon: "🎯"
-benefit1_title: "Meta Cloud API Sync"
-benefit1_desc: "Auto-sync Facebook & Instagram lead forms instantly with zero lead leakage."
-benefit2_icon: "📱"
-benefit2_title: "WhatsApp & SMS Automation"
-benefit2_desc: "Send instant site visit schedules, project brochures, and follow-up alerts."
-benefit3_icon: "⚡"
-benefit3_title: "Round-Robin Lead Routing"
-benefit3_desc: "Auto-assign incoming enquiries to active sales executives within seconds."
-faq1_q: "Does Unova CRM integrate directly with Facebook Lead Ads and Instagram?"
-faq1_a: "Yes! Unova CRM connects via Meta Webhook Cloud API. Lead ad submissions flow directly into your CRM database in under 2 seconds."
-faq2_q: "Can sales executives update lead status and call logs from mobile devices?"
-faq2_a: "Yes, sales representatives have dedicated mobile app portals to record call logs, schedule site visits, and log client notes on the go."
-faq3_q: "How does the system prevent lead stealing or unauthorized contacts export?"
-faq3_a: "Unova CRM features phone number masking, role-based data view limits, and audit logs that block export actions without Director authorization."
-feature1: "Meta & Webhook Omnichannel Lead Capture"
-feature2: "Phone Number Masking & Data Leakage Security"
-feature3: "Site Visit Scheduler & Auto SMS Reminders"
-feature4: "Sales Executive Target & Activity Matrix"
+statsLabel: "Lead Leakage Reduction"
+statsValue: "0%"
+benefit1_icon: "⚡"
+benefit1_title: "Instant Meta Leads API Capture"
+benefit1_desc: "Direct webhook sync ingests Facebook and Instagram lead form submissions in < 2 seconds, triggering instant sales alerts."
+benefit2_icon: "🔄"
+benefit2_title: "AI Round-Robin Auto Routing"
+benefit2_desc: "Automatically route fresh leads to available sales executives based on workload, response time, and project specialization."
+benefit3_icon: "💬"
+benefit3_title: "Native WhatsApp Cloud Integration"
+benefit3_desc: "Send instant automated WhatsApp greetings, digital PDF brochures, and site visit confirmation links."
+faq1_q: "How fast are Meta Facebook leads ingested into Unova CRM?"
+faq1_a: "In under 2 seconds. Direct server-to-server Webhook integration means your sales agents receive WhatsApp and mobile push notifications before the prospect even closes Facebook."
+faq2_q: "Can Unova CRM block duplicate leads from multiple ad campaigns?"
+faq2_a: "Yes. Unova's smart deduplication engine checks incoming phone numbers and emails against existing client profiles, merging duplicate enquiries into a single timeline."
+faq3_q: "Does Unova track call logs and agent performance metrics?"
+faq3_a: "Yes. Sales managers can monitor call durations, follow-up response times, site visit completion rates, and individual agent conversion ratios in real time."
+feature1: "Direct Meta Lead Ads API Webhook Sync (< 2s lead capture)"
+feature2: "AI-Driven Round-Robin & Workload Lead Assignment"
+feature3: "WhatsApp Cloud API Greeting & Digital Brochure Dispatch"
+feature4: "Omnichannel Interaction History & Call Log Tracking"
 ---
 
-In the competitive property development market, sales speed and lead response time determine deal outcomes. Prospective buyer enquiries captured from social media campaigns or property portals often sit unassigned in spreadsheet downloads for days, resulting in lost sales opportunities and wasted marketing budget.
+In modern real estate sales, response speed is everything. Slow follow-ups, lost customer phone numbers, and unassigned Facebook ad leads cause massive lead leakage, blowing your marketing budget without generating bookings.
 
-**Unova Real Estate CRM** is Bangladesh’s leading sales automation software engineered specifically for property developers, housing companies, and real estate agencies. Unova CRM automates lead capture, enforces fast follow-ups, tracks executive call logs, and manages the entire customer sales journey from first inquiry to property booking.
+**Unova Real Estate CRM** is Egypt’s leading sales automation software engineered specifically for property developers, housing companies, and real estate agencies. Unova CRM automates lead capture, enforces fast follow-ups, tracks executive call logs, and manages the entire customer sales journey from first inquiry to property booking.
 
 Calculate your sales conversion uplift with our [Unova ROI Calculator](/resources/roi-calculator) or explore our [Central FAQ Portal](/faq).
 
@@ -119,4 +119,4 @@ Deploying Unova CRM across your sales force takes four structured phases:
 
 Accelerate your sales pipeline and eliminate lead leakage today. Connect with our solution engineers for a customized live CRM demonstration.
 
-[Book a Free Live Demo](/demo) | [Contact Sales via WhatsApp](https://wa.me/8801766774016) | [Explore All ERP Solutions](/solutions)
+[Book a Free Live Demo](/demo) | [Contact Sales via WhatsApp](https://wa.me/201000000000) | [Explore All ERP Solutions](/solutions)

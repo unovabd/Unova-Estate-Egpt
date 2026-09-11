@@ -5,24 +5,24 @@ layoutStyle: "split-feature"
 heroImage: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=80"
 statsLabel: "Agreement Clashes"
 statsValue: "0%"
-benefit1_icon: "📐"
-benefit1_title: "Share Allocation Matrix"
-benefit1_desc: "Divide developer vs landowner shares visually."
-benefit2_icon: "📝"
-benefit2_title: "JV Agreement Builder"
-benefit2_desc: "Store percentage splits, mutual terms, and milestones."
+benefit1_icon: "🚫"
+benefit1_title: "Landowner Units Auto-Excluded"
+benefit1_desc: "Units reserved for the landowner never enter the cost pool or the sale pipeline — the flag is enforced server-side, not just hidden in the UI."
+benefit2_icon: "🔁"
+benefit2_title: "Recalculate Allocation"
+benefit2_desc: "One click re-splits cost and size project → type → unit, automatically skipping units already sold or reserved for the landowner."
 benefit3_icon: "💸"
 benefit3_title: "JV Share Accounting"
 benefit3_desc: "Track construction payments and adjustments directly."
-faq1_q: "How are landowner shares split?"
-faq1_a: "Allocate specific flats or square footage percentage directly in the project setup."
-faq2_q: "Can we generate signing money bills?"
-faq2_a: "Yes, track landowner advance and signing money ledger balances."
+faq1_q: "How are landowner-reserved units kept separate from the units we're actually selling?"
+faq1_a: "Each unit can be flagged 'Reserved for Landowner' — but only on a JV project; the flag is silently dropped if you try it on any other project type. A landowner unit is then excluded from pricing requirements, from the project's cost-pool allocation, and from the sale pipeline entirely — it never accidentally shows up as available inventory."
+faq2_q: "If the project's total cost or size changes after some units are already sold, what happens to the landowner's units?"
+faq2_a: "Recalculate Allocation re-splits the remaining cost and size across whatever's still unsold — and it automatically skips both already-sold units and landowner-reserved units, so neither a past buyer's numbers nor the landowner's share get disturbed. It's idempotent: running it again with nothing new to allocate changes nothing."
 faq3_q: "Is there notification for handover milestones?"
 faq3_a: "Yes, automatic notifications send upon milestone completion."
-feature1: "JV flat split visual planner"
-feature2: "Landowner accounting ledger"
-feature3: "Advance payment tracker"
+feature1: "Landowner-reserved unit flag (JV projects only, server-enforced)"
+feature2: "Automatic exclusion from cost pool & sale pipeline"
+feature3: "Recalculate Allocation — skips sold and landowner units"
 feature4: "Milestone notifications"
 ---
 
@@ -52,7 +52,16 @@ By deploying **Joint-Venture Landowner Share**, developers unify these workstrea
 
 ---
 
-## 2. Omnichannel Lead Integration & Security
+## 2. How the Landowner Split Actually Works
+
+A landowner's units in a JV project aren't inventory — they're compensation, and treating them as "just another unit with a discount" is how cost allocations quietly go wrong. Unova enforces the distinction at the data layer, not just in the UI:
+
+* **Server-enforced exclusion:** a unit flagged "Reserved for Landowner" is excluded from pricing requirements, from the project's cost-pool allocation, and from the sale pipeline entirely — it can never accidentally appear as sellable inventory. The flag only applies on JV projects; setting it on any other project type is silently ignored rather than left as a dangling bypass.
+* **Recalculate Allocation, done safely:** when a project's total cost or size changes, one click re-splits the remainder proportionally across every still-unsold, non-landowner unit — automatically skipping units that are already sold *and* every landowner-reserved unit. Nothing about a past buyer's numbers or the landowner's agreed share moves. It's idempotent: run it twice with nothing new to allocate, and nothing changes the second time.
+
+---
+
+## 3. Omnichannel Lead Integration & Security
 
 Our system connects directly to Meta Cloud API and local website forms. When a user submits an ad form on Facebook or contacts your team via WhatsApp, the data flows instantly into your CRM database within seconds.
 
@@ -62,7 +71,7 @@ All database profiles are hosted under isolated cloud networks with daily automa
 
 ---
 
-## 3. Step-by-Step Implementation Strategy
+## 4. Step-by-Step Implementation Strategy
 
 Achieving high adoption rates requires a structured onboarding workflow:
 1. **Data Migration:** Cleaning and loading active inventory maps, buyer tables, and charts of accounts.
@@ -74,10 +83,10 @@ Following this roadmap ensures a smooth transition, keeping property operations 
 
 ---
 
-## 4. Business ROI and Metrics
+## 5. Business Impact
 
 Deploying specialized real estate software delivers measurable operational benefits:
-* **0% Improvement** in key metrics like collection speed and conversion tracking.
+* **Zero landowner-unit leakage** — a landowner-reserved unit cannot enter the sale pipeline even by accident, enforced server-side rather than by process discipline alone.
 * **Zero double bookings** via real-time property locker locks.
 * **Reduced manual billing hours** by automating invoices.
 

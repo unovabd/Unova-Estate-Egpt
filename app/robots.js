@@ -27,6 +27,18 @@ export default function robots() {
       {
         userAgent: 'PerplexityBot',
         allow: '/',
+      },
+      {
+        userAgent: 'OAI-SearchBot',
+        allow: '/',
+      },
+      {
+        userAgent: 'Amazonbot',
+        allow: '/',
+      },
+      {
+        userAgent: 'Applebot-Extended',
+        allow: '/',
       }
     ],
     sitemap: `${baseUrl}/sitemap.xml`,

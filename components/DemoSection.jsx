@@ -1,11 +1,11 @@
 'use client';
 
 const CONTACT = {
-  phones:   [{ label: 'Sales', number: '+880 1766-774016' }, { label: 'Support', number: '+880 1766-774016' }],
-  emails:   [{ label: 'Sales', address: 'sales@unovaestate.com' }, { label: 'Support', address: 'support@unovaestate.com' }],
-  location: 'Flat: B-5, House: 12, Road: 02, Block: J, Baridhara, Vatara, Dhaka-1212',
+  phones:   [{ label: 'Sales', number: '+20 100 000 0000' }, { label: 'Support', number: '+20 100 000 0000' }],
+  emails:   [{ label: 'Sales', address: 'sales@unova.eg' }, { label: 'Support', address: 'support@unova.eg' }],
+  location: 'Cairo, Egypt',
   hours:    'Sunday – Thursday (09 am – 06 pm)',
-  whatsapp: 'https://wa.me/8801766774016',
+  whatsapp: 'https://wa.me/201000000000',
 };
 
 const PhoneIcon = () => (

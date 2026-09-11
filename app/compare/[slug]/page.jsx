@@ -35,10 +35,35 @@ export default async function Page({ params }) {
     .filter(c => c.slug !== slug)
     .slice(0, 3); // Suggest other comparisons
 
+  const baseUrl = 'https://estate.unova.app';
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
+      { '@type': 'ListItem', position: 2, name: 'Compare', item: `${baseUrl}/compare` },
+      { '@type': 'ListItem', position: 3, name: data.title, item: `${baseUrl}/compare/${slug}` },
+    ],
+  };
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: data.title,
+    description: data.metaDescription,
+    image: data.heroImage,
+    author: { '@type': 'Organization', name: 'Unova Team', '@id': `${baseUrl}/#organization` },
+    publisher: { '@id': `${baseUrl}/#organization` },
+    mainEntityOfPage: `${baseUrl}/compare/${slug}`,
+  };
+
   return (
-    <CompareDetailClient 
-      comparison={data} 
-      relatedComparisons={relatedComparisons} 
-    />
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <CompareDetailClient
+        comparison={data}
+        relatedComparisons={relatedComparisons}
+      />
+    </>
   );
 }

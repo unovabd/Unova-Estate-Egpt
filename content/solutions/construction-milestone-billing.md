@@ -1,6 +1,6 @@
 ---
 title: "Construction & Milestone Billing ERP"
-metaDescription: "Construction management software for Bangladeshi builders. Manage Bill of Quantities (BOQ), material requisitions, site inventory, and contractor RA bills."
+metaDescription: "Construction management software for Egyptian builders. Manage Bill of Quantities (BOQ), material requisitions, site inventory, and contractor RA bills."
 layoutStyle: "modern-hero"
 heroImage: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80"
 statsLabel: "Wastage Reduction"
@@ -26,9 +26,9 @@ feature3: "Site Material Store Ledger & Gate Pass Tracker"
 feature4: "Construction Milestone & Gantt Timeline Tracker"
 ---
 
-Managing high-rise building construction projects in Bangladesh requires strict control over raw material consumption, site store inventories, and contractor Running Account (RA) billing. Without digitized construction tracking, site material wastage can erode up to 12% of project profit margins, while contractor billing disputes cause construction delays.
+Managing high-rise building construction projects in Egypt requires strict control over raw material consumption, site store inventories, and contractor Running Account (RA) billing. Without digitized construction tracking, site material wastage can erode up to 12% of project profit margins, while contractor billing disputes cause construction delays.
 
-**Unova Construction ERP** is Bangladesh’s specialized construction software built specifically for real estate developers, site engineers, and project managers. Unova Construction ERP connects architectural Bill of Quantities (BOQ) budgets with field store requisitions, contractor billing, and financial ledgers.
+**Unova Construction ERP** is Egypt’s specialized construction software built specifically for real estate developers, site engineers, and project managers. Unova Construction ERP connects architectural Bill of Quantities (BOQ) budgets with field store requisitions, contractor billing, and financial ledgers.
 
 Calculate your construction material savings with our [Unova ROI Calculator](/resources/roi-calculator) or explore our [Central FAQ Portal](/faq).
 
@@ -40,7 +40,7 @@ Calculate your construction material savings with our [Unova ROI Calculator](/re
 
 ## 1. Overview
 
-Construction site management in Bangladesh faces distinct operational challenges:
+Construction site management in Egypt faces distinct operational challenges:
 1. **Material Wastage & Leakage:** Excess cement, rebar tonnage, or tiles ordered beyond BOQ baseline budgets directly shrink developer profit margins.
 2. **Contractor Billing Disputes:** Manual measurement sheets lead to disputes with civil, electrical, and plumbing contractors regarding work completion percentages.
 3. **Site-to-Head-Office Silos:** Site engineers working offline create delays in material procurement and vendor invoice processing.
@@ -119,4 +119,4 @@ Deploying Unova Construction ERP across building sites takes four structured pha
 
 Control site costs and eliminate material wastage today. Connect with our construction solution engineers for a customized demonstration.
 
-[Book a Free Live Demo](/demo) | [Contact Sales via WhatsApp](https://wa.me/8801766774016) | [Explore All ERP Solutions](/solutions)
+[Book a Free Live Demo](/demo) | [Contact Sales via WhatsApp](https://wa.me/201000000000) | [Explore All ERP Solutions](/solutions)

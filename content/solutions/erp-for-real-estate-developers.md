@@ -1,6 +1,6 @@
 ---
 title: "ERP for Real Estate Developers"
-metaDescription: "Comprehensive enterprise real estate builder ERP software in Bangladesh. Manage land acquisitions, joint ventures, inventory locks, payment schedules, and sales handover."
+metaDescription: "Comprehensive enterprise real estate builder ERP software in Egypt. Manage land acquisitions, joint ventures, inventory locks, payment schedules, and sales handover."
 layoutStyle: "modern-hero"
 heroImage: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80"
 statsLabel: "Efficiency Increase"
@@ -28,7 +28,7 @@ feature4: "Handover & Registry Management Workflows"
 
 In today's fast-expanding property market, real estate developers, housing companies, and land promoters face unprecedented operational complexity. Managing multi-year construction lifecycles, tracking hundreds of client instalment schedules, verifying contractor running account (RA) bills, and ensuring zero property inventory double-bookings require an enterprise-grade digital backbone.
 
-**Unova Estate ERP** is Bangladesh’s first AI-powered, fully integrated ERP software engineered specifically for the real estate sector. Designed to replace error-prone Excel ledgers and disjointed software tools, Unova Estate unifies every department—from land acquisition to sales pipelines, construction site engineering, and executive accounting—into a single cloud platform.
+**Unova Estate ERP** is Egypt’s first AI-powered, fully integrated ERP software engineered specifically for the real estate sector. Designed to replace error-prone Excel ledgers and disjointed software tools, Unova Estate unifies every department—from land acquisition to sales pipelines, construction site engineering, and executive accounting—into a single cloud platform.
 
 Learn more about calculating your company's operational savings with our [Unova ROI Calculator](/resources/roi-calculator) or explore our [Frequently Asked Questions](/faq) portal.
 
@@ -40,7 +40,7 @@ Learn more about calculating your company's operational savings with our [Unova 
 
 ## 1. Overview
 
-The Bangladeshi housing and property development sector operates under distinct structural challenges:
+The Egyptian housing and property development sector operates under distinct structural challenges:
 1. **Multi-Year Financial Lifecycles:** Real estate transactions span 3 to 5 years of regular monthly or quarterly instalments. Manually tracking post-dated cheques (PDC) and interest penalties without automated software leads to revenue leakage.
 2. **Joint-Venture Allocation Conflicts:** Landowner vs. developer unit sharing ratios must be tracked with strict legal precision to avoid disputes during booking and handover.
 3. **Site Expenditure Waste:** Construction material wastage on building sites can erode up to 12% of total project profit margins if store requisitions are not reconciled against baseline Bill of Quantities (BOQ) estimates.
@@ -132,4 +132,4 @@ Developers migrating from paper files or generic software to Unova ERP report im
 
 Ready to streamline your property development business and boost operational profits? Connect with our solution architects for a tailored system demonstration.
 
-[Book a Free Live Demo](/demo) | [Contact Sales via WhatsApp](https://wa.me/8801766774016) | [Explore All ERP Solutions](/solutions)
+[Book a Free Live Demo](/demo) | [Contact Sales via WhatsApp](https://wa.me/201000000000) | [Explore All ERP Solutions](/solutions)

@@ -24,17 +24,17 @@ export default function PrivacyPage() {
 
           <div className="prose prose-slate max-w-none text-sm text-slate-600 leading-relaxed space-y-6">
             <p>
-              At <strong>Unova Estate</strong> (developed by <strong>Unova Software</strong>), accessible from <code>https://estate.unova.app</code> and <code>https://unova.bd</code>, protecting user, organizational, and buyer financial data is our top priority. This Privacy Policy outlines the types of information we collect and how we safeguard it.
+              At <strong>Unova Estate</strong> (developed by <strong>Unova Software</strong>), accessible from <code>https://estate.unova.app</code> and <code>https://unova.eg</code>, protecting user, organizational, and buyer financial data is our top priority. This Privacy Policy outlines the types of information we collect and how we safeguard it.
             </p>
 
             <h2 className="text-lg font-bold text-slate-900 pt-2">1. Information We Collect</h2>
             <p>
-              We collect information to provide superior ERP and CRM services to real estate developers, housing companies, and land plot developers in Bangladesh. This includes:
+              We collect information to provide superior ERP and CRM services to real estate developers, housing companies, and land plot developers in Egypt and the MENA region. This includes:
             </p>
             <ul className="list-disc pl-5 space-y-1">
               <li><strong>Organizational & Contact Information:</strong> Name, phone number, corporate email address, and office address upon requesting a demo or registering.</li>
               <li><strong>Lead & Customer Data:</strong> Information entered into the CRM via Meta Lead Ads API, website webhooks, or manual entry by sales officers.</li>
-              <li><strong>Financial & Transactional Records:</strong> Installment collection schedules, payment gateway tokens (bKash, Nagad, bank wire), and digital money receipt logs.</li>
+              <li><strong>Financial & Transactional Records:</strong> Installment collection schedules, payment gateway tokens (Fawry, InstaPay, Paymob, Vodafone Cash, bank wire), and digital money receipt logs.</li>
             </ul>
 
             <h2 className="text-lg font-bold text-slate-900 pt-2">2. How We Use Your Information</h2>
@@ -53,14 +53,14 @@ export default function PrivacyPage() {
 
             <h2 className="text-lg font-bold text-slate-900 pt-2">4. Third-Party Sharing</h2>
             <p>
-              We do not sell, trade, or rent organizational or buyer data to third parties. Data is shared only with authorized payment gateways (e.g. bKash, Nagad, bank APIs) and Meta/WhatsApp APIs strictly for requested notification services.
+              We do not sell, trade, or rent organizational or buyer data to third parties. Data is shared only with authorized payment gateways (e.g. Fawry, Paymob, InstaPay, bank APIs) and Meta/WhatsApp APIs strictly for requested notification services.
             </p>
 
             <h2 className="text-lg font-bold text-slate-900 pt-2">5. Contact Us</h2>
             <p>
               If you have questions regarding this Privacy Policy, please contact our Data Protection Officer at:
               <br />
-              <strong>Email:</strong> support@unova.bd | <strong>Hotline:</strong> +8801766774016
+              <strong>Email:</strong> support@unova.eg | <strong>Hotline:</strong> +20 100 000 0000
             </p>
           </div>
         </div>

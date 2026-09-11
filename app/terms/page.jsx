@@ -52,7 +52,7 @@ export default function TermsPage() {
 
             <h2 className="text-lg font-bold text-slate-900 pt-2">5. Governing Law</h2>
             <p>
-              These Terms and Conditions are governed by and construed in accordance with the laws of the People&apos;s Republic of Bangladesh.
+              These Terms and Conditions are governed by and construed in accordance with the laws of the Arab Republic of Egypt.
             </p>
           </div>
         </div>

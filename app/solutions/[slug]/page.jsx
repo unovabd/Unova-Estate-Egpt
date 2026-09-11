@@ -38,10 +38,39 @@ export default async function Page({ params }) {
     .filter(s => s.slug !== slug)
     .slice(0, 3);
 
+  const baseUrl = 'https://estate.unova.app';
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
+      { '@type': 'ListItem', position: 2, name: 'Solutions', item: `${baseUrl}/solutions` },
+      { '@type': 'ListItem', position: 3, name: data.title, item: `${baseUrl}/solutions/${slug}` },
+    ],
+  };
+  const faqEntries = [1, 2, 3]
+    .filter((n) => data[`faq${n}_q`] && data[`faq${n}_a`])
+    .map((n) => ({
+      '@type': 'Question',
+      name: data[`faq${n}_q`],
+      acceptedAnswer: { '@type': 'Answer', text: data[`faq${n}_a`] },
+    }));
+  const faqSchema = faqEntries.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqEntries,
+  } : null;
+
   return (
-    <SolutionDetailClient 
-      solution={data} 
-      relatedSolutions={relatedSolutions} 
-    />
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      {faqSchema && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      )}
+      <SolutionDetailClient
+        solution={data}
+        relatedSolutions={relatedSolutions}
+      />
+    </>
   );
 }

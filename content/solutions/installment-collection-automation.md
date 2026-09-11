@@ -1,6 +1,6 @@
 ---
 title: "Installment & Collection Automation"
-metaDescription: "Automate real estate installment collections in Bangladesh. Invoicing, money receipts, and payment scheduling."
+metaDescription: "Automate real estate installment collections in Egypt. Invoicing, money receipts, and payment scheduling."
 layoutStyle: "case-study"
 heroImage: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80"
 statsLabel: "On-Time Payments"

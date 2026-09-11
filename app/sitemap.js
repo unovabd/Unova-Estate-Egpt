@@ -1,5 +1,7 @@
 import { CLIENT_CASE_STUDIES } from '../lib/clients';
 import { getSortedSolutionsData } from '../lib/solutions';
+import { getSortedPostsData } from '../lib/blog';
+import { getSortedCompareData } from '../lib/compare';
 
 export default async function sitemap() {
   const baseUrl = 'https://estate.unova.app';
@@ -39,5 +41,23 @@ export default async function sitemap() {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...solutionUrls, ...clientUrls];
+  // Dynamic Blog post routes
+  const posts = getSortedPostsData();
+  const postUrls = posts.map((p) => ({
+    url: `${baseUrl}/blog/${p.slug}`,
+    lastModified: p.date || new Date().toISOString().split('T')[0],
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  }));
+
+  // Dynamic Compare routes
+  const compares = getSortedCompareData();
+  const compareUrls = compares.map((c) => ({
+    url: `${baseUrl}/compare/${c.slug}`,
+    lastModified: new Date().toISOString().split('T')[0],
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  }));
+
+  return [...staticPages, ...solutionUrls, ...clientUrls, ...postUrls, ...compareUrls];
 }

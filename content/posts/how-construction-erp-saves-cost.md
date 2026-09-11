@@ -1,16 +1,16 @@
 ---
-title: "How Construction ERP Saves 15% Cost in Bangladesh"
+title: "How Construction ERP Saves 15% Cost in Egypt"
 date: "2026-07-15"
-excerpt: "Discover how real-time material tracking, contractor billing reconciliation, and automated store requisitions save millions for builders in Dhaka."
+excerpt: "Discover how real-time material tracking, contractor billing reconciliation, and automated store requisitions save millions for builders in Cairo."
 author: "Unova Team"
 readTime: "6 min read"
 category: "Cost Control"
 image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=800&auto=format&fit=crop"
 ---
 
-# How Construction ERP Saves 15% Cost in Bangladesh
+# How Construction ERP Saves 15% Cost in Egypt
 
-Material wastage and contractor overbilling are the silent killers of profitability for real estate developers in Dhaka and Chittagong. Without real-time project oversight, builders struggle to manage supply chain inflation and project delays.
+Material wastage and contractor overbilling are the silent killers of profitability for real estate developers in Cairo and Alexandria. Without real-time project oversight, builders struggle to manage supply chain inflation and project delays.
 
 An integrated **Construction ERP** provides the visibility required to curb leakage and optimize structural project costs.
 

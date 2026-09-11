@@ -18,7 +18,7 @@ export default function FaqPage() {
         "name": "What is Unova Estate and how does it help real estate developers?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Unova Estate is Bangladesh's first AI-powered enterprise ERP & CRM platform built specifically for real estate developers, housing companies, and land developers. It streamlines lead tracking, installment collection, contractor billing, and MD executive dashboards in one unified cloud system."
+          "text": "Unova Estate is Egypt's first AI-powered enterprise ERP & CRM platform built specifically for real estate developers, housing companies, and land developers. It streamlines lead tracking, installment collection, contractor billing, and MD executive dashboards in one unified cloud system."
         }
       },
       {

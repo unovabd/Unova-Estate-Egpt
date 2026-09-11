@@ -34,7 +34,7 @@ export default function CookiesPage() {
 
             <h2 className="text-lg font-bold text-slate-900 pt-2">2. Performance & Analytics Cookies</h2>
             <p>
-              We use aggregated analytics cookies to monitor page load times, system response speeds, and optimize cloud server performance for users in Bangladesh.
+              We use aggregated analytics cookies to monitor page load times, system response speeds, and optimize cloud server performance for users in Egypt and the MENA region.
             </p>
 
             <h2 className="text-lg font-bold text-slate-900 pt-2">3. Cookie Preference Management</h2>

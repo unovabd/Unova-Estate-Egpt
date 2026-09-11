@@ -4,7 +4,7 @@ import CompanyCategoryCalculator from '@/components/CompanyCategoryCalculator';
 
 export const metadata = {
   title: 'Company Category & Plan Calculator — Unova Estate',
-  description: 'Calculate your real estate company scale score and get instant recommended ERP pricing plans for property & land developers in Bangladesh.',
+  description: 'Calculate your real estate company scale score and get instant recommended ERP pricing plans for property & land developers in Egypt.',
   alternates: {
     canonical: '/calculator',
   },

@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export const metadata = {
   title: 'About Unova Estate — Mission, Vision & Leadership | Unova Software',
-  description: 'Learn about Unova Software, our mission to digitize Bangladesh real estate sector, our vision, and leadership team.',
+  description: 'Learn about Unova Software, our mission to digitize real estate in Egypt & MENA region, our vision, and leadership team.',
   alternates: {
     canonical: '/about',
   },
@@ -22,7 +22,7 @@ export default function AboutPage() {
             About Unova Software
           </span>
           <h1 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight">
-            Pioneering AI Technology for Bangladesh Real Estate
+            Pioneering AI Technology for Egypt &amp; MENA Real Estate
           </h1>
           <p className="text-base md:text-lg text-slate-600 font-normal">
             Unova Estate (by Unova Software) is on a mission to empower housing developers, land plot developers, and building conglomerates with enterprise AI automation.
@@ -37,7 +37,7 @@ export default function AboutPage() {
             </div>
             <h2 className="text-2xl font-black text-slate-900">Our Mission</h2>
             <p className="text-sm text-slate-600 leading-relaxed">
-              To eliminate operational inefficiencies, payment defaults, and lead leakage in Bangladesh&apos;s real estate industry by delivering bank-grade, AI-driven ERP and CRM systems built specifically for Bangladeshi business workflows.
+              To eliminate operational inefficiencies, payment defaults, and lead leakage in Egypt and MENA&apos;s real estate industry by delivering bank-grade, AI-driven ERP and CRM systems built specifically for regional business workflows.
             </p>
           </div>
 
@@ -47,7 +47,7 @@ export default function AboutPage() {
             </div>
             <h2 className="text-2xl font-black text-slate-900">Our Vision</h2>
             <p className="text-sm text-slate-600 leading-relaxed">
-              To become the undisputed #1 operating system for real estate and infrastructure developers across South Asia, setting the benchmark for transparency, digital customer experience, and smart automation.
+              To become the undisputed #1 operating system for real estate and infrastructure developers across Egypt and the Middle East, setting the benchmark for transparency, digital customer experience, and smart automation.
             </p>
           </div>
         </div>
@@ -55,7 +55,7 @@ export default function AboutPage() {
         {/* LEADERSHIP */}
         <div className="bg-white rounded-3xl p-8 md:p-12 border border-slate-200/90 shadow-sm space-y-8">
           <div className="text-center max-w-2xl mx-auto space-y-2">
-            <h2 className="text-2xl md:text-3xl font-black text-slate-900">Leadership & Values</h2>
+            <h2 className="text-2xl md:text-3xl font-black text-slate-900">Leadership &amp; Values</h2>
             <p className="text-sm text-slate-500">
               Guided by engineering ethics, innovation, and an unrelenting commitment to customer success.
             </p>
@@ -67,7 +67,7 @@ export default function AboutPage() {
                 US
               </div>
               <h3 className="font-bold text-slate-900 text-base">Unova Engineering Team</h3>
-              <p className="text-xs text-indigo-600 font-semibold">Core Product & AI Development</p>
+              <p className="text-xs text-indigo-600 font-semibold">Core Product &amp; AI Development</p>
               <p className="text-xs text-slate-500 mt-2">Dedicated engineers building next-gen cloud architectures for real estate automation.</p>
             </div>
 
@@ -76,17 +76,17 @@ export default function AboutPage() {
                 CS
               </div>
               <h3 className="font-bold text-slate-900 text-base">Customer Success Specialists</h3>
-              <p className="text-xs text-emerald-600 font-semibold">24/7 Onboarding & Support</p>
-              <p className="text-xs text-slate-500 mt-2">Ensuring 100% smooth data migration and training for real estate staff.</p>
+              <p className="text-xs text-emerald-600 font-semibold">24/7 Onboarding &amp; Support</p>
+              <p className="text-xs text-slate-500 mt-2">Ensuring 100% smooth data migration and training for real estate staff in Cairo &amp; Alexandria.</p>
             </div>
 
             <div className="p-6 rounded-2xl bg-slate-50 border border-slate-100 space-y-2 text-center">
               <div className="w-16 h-16 rounded-full bg-sky-600 text-white font-bold text-xl flex items-center justify-center mx-auto shadow-md">
                 SE
               </div>
-              <h3 className="font-bold text-slate-900 text-base">Security & Compliance Officers</h3>
-              <p className="text-xs text-sky-600 font-semibold">Data Protection & Audit</p>
-              <p className="text-xs text-slate-500 mt-2">Maintaining bank-grade encryption and DSE/CSE financial compliance.</p>
+              <h3 className="font-bold text-slate-900 text-base">Security &amp; Compliance Officers</h3>
+              <p className="text-xs text-sky-600 font-semibold">Data Protection &amp; Audit</p>
+              <p className="text-xs text-slate-500 mt-2">Maintaining bank-grade encryption and regional financial compliance.</p>
             </div>
           </div>
         </div>
@@ -95,7 +95,7 @@ export default function AboutPage() {
         <div className="bg-gradient-to-r from-indigo-900 to-slate-900 text-white rounded-3xl p-8 md:p-12 text-center space-y-6 shadow-xl">
           <h2 className="text-2xl md:text-4xl font-black">Ready to Transform Your Real Estate Business?</h2>
           <p className="text-slate-300 text-sm md:text-base max-w-2xl mx-auto">
-            Join leading property and land developers across Bangladesh operating on Unova Estate.
+            Join leading property and land developers across Egypt operating on Unova Estate.
           </p>
           <div className="pt-2">
             <Link

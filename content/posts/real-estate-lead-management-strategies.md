@@ -10,7 +10,7 @@ image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&
 
 # 5 Strategies to Convert 3x More Property Leads
 
-Real estate sales cycles in Bangladesh are notoriously long. A customer looking for a premium apartment in Gulshan or a commercial space in Motijheel takes several months to commit. If your sales team is not organized, leads will fall through the cracks.
+Real estate sales cycles in Egypt are notoriously long. A customer looking for a premium apartment in New Cairo or a commercial space in the New Administrative Capital takes several months to commit. If your sales team is not organized, leads will fall through the cracks.
 
 Here are 5 battle-tested strategies to maximize your conversion rates using automation.
 

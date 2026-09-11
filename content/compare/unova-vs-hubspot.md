@@ -37,4 +37,4 @@ HubSpot does a great job of capturing leads, but once a lead books an apartment,
 Unova integrates your marketing CRM directly with double-entry accounting ledgers. When material is released from the site store, the project's cost center is updated immediately.
 
 ### 3. Local Gateway Support
-HubSpot supports international payment gateways. Unova is tailored for Bangladesh, supporting local channels like SSLCommerz and bKash for installment collections.
+HubSpot supports international payment gateways. Unova is tailored for Egypt & MENA, supporting local channels like Fawry, InstaPay, and Paymob for installment collections.

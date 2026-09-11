@@ -10,31 +10,31 @@ const glossaryTerms = [
     definition: 'A cheque written by a property buyer with a future collection date. Unova REMS automatically tracks PDCs, sends automated WhatsApp reminders to clients 7 days prior to deposit, and alerts the developer\'s finance team.'
   },
   {
-    term: 'Land Joint-Venture (যৌথ অংশীদারিত্ব)',
-    definition: 'An agreement between a landowner and a developer. Unova manages joint-venture flat ratio splits (e.g., 40/60), automatic revenue share disbursal, and landowner allocation grids.'
+    term: 'Land Joint-Venture (الشراكة العقارية)',
+    definition: 'An agreement between a landowner and a developer. Unova manages joint-venture unit ratio splits (e.g., 40/60), automatic revenue share disbursal, and landowner allocation grids.'
   },
   {
-    term: 'Lead Leakage (লিড লিক)',
+    term: 'Lead Leakage (تسرب العملاء المحتملين)',
     definition: 'The loss of potential customer sales due to delayed response times or unassigned follow-ups. Unova prevents lead leakage using AI-driven routing, instantly assigning leads to agents with WhatsApp alerts within 60 seconds.'
   },
   {
-    term: 'Flat Inventory Grid (ফ্ল্যাট ইনভেন্টরি গ্রিড)',
-    definition: 'A live, color-coded visual matrix showing the exact status (Available, Booked, Blocked, Sold) of all flats, parking spots, and commercial spaces across real estate projects.'
+    term: 'Unit Inventory Grid (مصفوفة الوحدات)',
+    definition: 'A live, color-coded visual matrix showing the exact status (Available, Booked, Blocked, Sold) of all units, parking spots, and commercial spaces across real estate projects.'
   },
   {
-    term: 'Milestone Billing (মাইলস্টোন বিলিং)',
+    term: 'Milestone Billing (الفواتير حسب مراحل الإنجاز)',
     definition: 'A payment scheme where customers are billed based on construction progress (e.g., foundation casting, 1st-floor slab, brickwork) rather than strict calendar dates. Unova automates milestone billing.'
   },
   {
-    term: 'Land Mutation (ভূমি নামজারি)',
-    definition: 'The government process of updating ownership logs in the land registry. Unova\'s legal module includes a tracker for mutation filings, registry document vaults, and government clearance logs.'
+    term: 'Land Title Registration (الشهر العقاري والتسجيل)',
+    definition: 'The official process of updating ownership logs in the land registry (Real Estate Registration and Documentation Department / El Shahr El Aqary). Unova\'s legal module includes a tracker for title filings, registry document vaults, and government clearance logs.'
   },
   {
-    term: 'RAJUK & CDA Compliance',
-    definition: 'Building approval and setback guidelines set by the Capital Development Authority (RAJUK) and Chittagong Development Authority (CDA). Unova maps floor layouts and deviations to stay compliant.'
+    term: 'NUCA & Civil Protection Compliance (هيئة المجتمعات العمرانية)',
+    definition: 'Building approval, setback guidelines, and safety standards set by the New Urban Communities Authority (NUCA) and Egyptian regulatory bodies. Unova maps floor layouts and deviations to stay compliant.'
   },
   {
-    term: 'Post-Dated Cheque Vault (PDC ভল্ট)',
+    term: 'Post-Dated Cheque Vault (خزينة الشيكات الآجلة)',
     definition: 'A secure digital ledger inside Unova Accounting where physically received customer cheques are logged, tracked by bank drawer, and cleared against outstanding installment invoices.'
   }
 ];
@@ -86,7 +86,7 @@ export default function GlossaryPage() {
             Real Estate <span className="bg-gradient-to-r from-[#6DC042] to-[#5da538] bg-clip-text text-transparent">ERP Glossary</span>
           </h1>
           <p className="text-slate-500 text-sm leading-relaxed max-w-xl mx-auto">
-            A comprehensive reference dictionary covering local Bangladesh property registry terms, land codes, and ERP billing terminology.
+            A comprehensive reference dictionary covering local Egyptian property registry terms, land codes, and ERP billing terminology.
           </p>
 
           {/* Search bar */}
