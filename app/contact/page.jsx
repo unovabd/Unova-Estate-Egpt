@@ -1,12 +1,44 @@
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import ContactSection from '@/components/ContactSection';
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import ContactSection from "@/components/ContactSection";
 
 export const metadata = {
-  title: 'Contact Us — Unova Estate | Unova Software',
-  description: 'Get in touch with Unova Software. Call our hotline, email support, or visit our Dhaka office for real estate ERP consultations.',
+  title: "Contact Us — Unova Estate | Unova Software",
+  description:
+    "Get in touch with Unova Software. Call our hotline, email our support team, or book a consultation about our AI-powered real estate ERP & CRM.",
   alternates: {
-    canonical: '/contact',
+    canonical: "https://unovasoftware.com/contact",
+    languages: {
+      en: "https://unovasoftware.com/contact",
+      // ar: 'https://unovasoftware.com/ar/contact', // uncomment when /ar/contact exists
+      "x-default": "https://unovasoftware.com/contact",
+    },
+  },
+  openGraph: {
+    title: "Contact Us — Unova Estate | Unova Software",
+    description:
+      "Get in touch with Unova Software. Call our hotline, email our support team, or book a consultation about our AI-powered real estate ERP & CRM.",
+    url: "https://unovasoftware.com/contact",
+    siteName: "Unova Software",
+    type: "website",
+    locale: "en_US",
+    images: [
+      {
+        url: "https://unovasoftware.com/unova-real-estate-crm-sales-dashboard-mockup.png",
+        width: 1200,
+        height: 630,
+        alt: "Unova Estate AI-Powered Real Estate ERP CRM Dashboard",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Us — Unova Estate | Unova Software",
+    description:
+      "Talk to Unova Software about our AI-powered real estate ERP & CRM.",
+    images: [
+      "https://unovasoftware.com/unova-real-estate-crm-sales-dashboard-mockup.png",
+    ],
   },
 };
 
@@ -24,7 +56,8 @@ export default function ContactPage() {
             We&apos;re Here to Help Digitized Your Real Estate Business
           </h1>
           <p className="text-base text-slate-600">
-            Have questions about Unova Estate ERP? Talk to our software specialists or visit our corporate office in Dhaka.
+            Have questions about Unova Estate ERP? Talk to our software
+            specialists or visit our corporate office in Dhaka.
           </p>
         </div>
 

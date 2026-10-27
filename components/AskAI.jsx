@@ -235,7 +235,7 @@ export default function AskAI({ open: externalOpen, isOpen, onOpenChange }) {
               <SendIcon />
             </button>
           </div>
-          <p className="text-[10px] text-slate-400 mt-2 text-center">Powered by Unova AI · Egypt & MENA</p>
+          <p className="text-[10px] text-slate-400 mt-2 text-center">Powered by Unova AI.</p>
         </div>
       </div>
     </>

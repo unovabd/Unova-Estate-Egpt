@@ -1,22 +1,3 @@
 User-agent: *
 Allow: /
-Disallow: /api/
-Disallow: /_next/
-
-# AI Search Engine Crawlers (Gemini, ChatGPT, Claude, Perplexity)
-User-agent: GPTBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-Sitemap: https://estate.unova.app/sitemap.xml
+Sitemap: https://unovasoftware.com/sitemap.xml

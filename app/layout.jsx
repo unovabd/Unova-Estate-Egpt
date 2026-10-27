@@ -1,50 +1,53 @@
-import './globals.css';
-import { LanguageProvider } from '@/context/LanguageContext';
-import HoverPrefetch from '@/components/HoverPrefetch';
+import "./globals.css";
+import { LanguageProvider } from "@/context/LanguageContext";
+import HoverPrefetch from "@/components/HoverPrefetch";
 
 export const metadata = {
-  title: 'Unova Estate — #1 AI-Powered Real Estate ERP in Egypt & MENA | Unova',
+  title: "Unova Estate — AI-Powered Real Estate ERP & CRM | Unova Software",
   description:
-    'Unova Estate (by Unova Software) is the #1 AI-powered real estate ERP & CRM in Egypt and MENA. Automate lead tracking, installment collections, property sales, commissions, and construction billing.',
+    "Unova Estate by Unova Software is an AI-powered real estate ERP & CRM. Automate lead tracking, installment collections, property sales, commissions, and construction billing.",
   keywords:
-    'unova, unova estate, unova egypt, real estate software egypt, property management software cairo, CRM real estate egypt, ERP real estate mena, lead management cairo, installment collection egypt, عقارات مصر, أتمتة العقارات, برنامج إدارة العقارات',
-  metadataBase: new URL('https://estate.unova.app'),
+    "unova, unova estate, unova software, real estate erp, real estate crm, property management software, real estate sales software, installment collection software, lead management real estate, برنامج إدارة العقارات, نظام إدارة المبيعات العقارية",
+  metadataBase: new URL("https://unovasoftware.com"),
   alternates: {
-    canonical: '/',
+    canonical: "/",
     languages: {
-      'en-EG': '/en',
-      'ar-EG': '/ar',
-      'x-default': '/',
+      en: "https://unovasoftware.com/",
+      // Uncomment when the /ar route exists, otherwise it points to a 404.
+      // ar: "https://unovasoftware.com/ar",
+      "x-default": "https://unovasoftware.com/",
     },
   },
   openGraph: {
-    title: 'Unova Estate — Real Estate ERP & CRM in Egypt & MENA | Unova Software',
+    title: "Unova Estate — AI-Powered Real Estate ERP & CRM | Unova Software",
     description:
-      'The #1 AI-powered real estate ERP & CRM in Egypt & MENA. CRM, HR, payroll, commissions & installment collection automation.',
-    url: 'https://estate.unova.app',
-    siteName: 'Unova Estate (Unova Software Egypt)',
-    type: 'website',
-    locale: 'ar_EG',
-    alternateLocale: ['en_US', 'ar_EG'],
+      "AI-powered real estate ERP & CRM. CRM, HR, payroll, commissions & installment collection automation.",
+    url: "https://unovasoftware.com/",
+    siteName: "Unova Software",
+    type: "website",
+    locale: "en_US",
+    alternateLocale: ["ar_AR"],
     images: [
       {
-        url: '/unova-real-estate-crm-sales-dashboard-mockup.png',
+        url: "https://unovasoftware.com/unova-real-estate-crm-sales-dashboard-mockup.png",
         width: 1200,
         height: 630,
-        alt: 'Unova Estate AI-Powered Real Estate ERP CRM Sales Dashboard Mockup',
+        alt: "Unova Estate AI-Powered Real Estate ERP CRM Sales Dashboard Mockup",
       },
     ],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Unova Estate — #1 Real Estate ERP in Egypt & MENA',
-    description: 'The #1 AI-powered real estate ERP & CRM by Unova Software for Egypt & MENA market.',
-    images: ['/unova-real-estate-crm-sales-dashboard-mockup.png'],
+    card: "summary_large_image",
+    title: "Unova Estate — AI-Powered Real Estate ERP & CRM",
+    description: "AI-powered real estate ERP & CRM by Unova Software.",
+    images: [
+      "https://unovasoftware.com/unova-real-estate-crm-sales-dashboard-mockup.png",
+    ],
   },
   icons: {
-    icon: '/favicon.png',
-    shortcut: '/favicon.png',
-    apple: '/favicon.png',
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
   },
   robots: {
     index: true,
@@ -55,120 +58,107 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   const organizationSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    '@id': 'https://estate.unova.app/#organization',
-    name: 'Unova Estate Egypt',
-    legalName: 'Unova Software Ltd.',
-    url: 'https://estate.unova.app',
-    logo: 'https://estate.unova.app/unova-real-estate-software-logo.png',
-    foundingDate: '2020',
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://unovasoftware.com/#organization",
+    name: "Unova Software",
+    legalName: "Unova Software Ltd.",
+    url: "https://unovasoftware.com",
+    logo: "https://unovasoftware.com/unova-real-estate-software-logo.png",
+    email: "info@unovasoftware.com",
+    telephone: "+201022631668",
+    foundingDate: "2020",
+    // Main office: marketing, sales & international relations
     address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Cairo',
-      addressCountry: 'EG',
+      "@type": "PostalAddress",
+      addressLocality: "Cairo",
+      addressCountry: "EG",
     },
     contactPoint: {
-      '@type': 'ContactPoint',
-      telephone: '+201000000000',
-      contactType: 'customer service',
-      areaServed: ['EG', 'MENA'],
-      availableLanguage: ['Arabic', 'English'],
+      "@type": "ContactPoint",
+      telephone: "+201022631668",
+      email: "info@unovasoftware.com",
+      contactType: "sales",
+      availableLanguage: ["Arabic", "English"],
+    },
+    // Development centre
+    department: {
+      "@type": "Organization",
+      name: "Unova Software — Development Centre",
+      description: "Backend engineering and product development.",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Dhaka",
+        addressCountry: "BD",
+      },
     },
     sameAs: [
-      'https://unova.eg/',
-      'https://www.facebook.com/unovarem',
-      'https://www.youtube.com/@UnovaSoftware',
-      'https://www.linkedin.com/company/theunova/',
+      "https://unova.eg/", // TODO: keep only if you own this site, otherwise remove
+      "https://www.facebook.com/unovarem",
+      "https://www.youtube.com/@UnovaSoftware",
+      "https://www.linkedin.com/company/theunova/",
     ],
   };
 
   const softwareSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
-    '@id': 'https://estate.unova.app/#software',
-    name: 'Unova Estate',
-    operatingSystem: 'Web, Windows, iOS, Android',
-    applicationCategory: 'BusinessApplication',
-    applicationSubCategory: 'Real Estate ERP & CRM Software',
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": "https://unovasoftware.com/#software",
+    name: "Unova Estate",
+    operatingSystem: "Web, Windows, iOS, Android",
+    applicationCategory: "BusinessApplication",
+    applicationSubCategory: "Real Estate ERP & CRM Software",
     description:
-      'The #1 AI-powered real estate ERP & CRM in Egypt and MENA region. Manage leads, properties, sales orders, commissions, HR, payroll, and marketing.',
-    url: 'https://estate.unova.app',
-    publisher: { '@id': 'https://estate.unova.app/#organization' },
+      "AI-powered real estate ERP & CRM. Manage leads, properties, sales orders, commissions, HR, payroll, and marketing.",
+    // Change to "https://unovasoftware.com/real-estate-erp-software" when that page is live.
+    url: "https://unovasoftware.com",
+    publisher: { "@id": "https://unovasoftware.com/#organization" },
     featureList: [
-      'Installment Collection Automation',
-      'Lead Leakage Prevention Engine',
-      'Construction Milestone Billing ERP',
-      'WhatsApp Business API Integration',
-      'Executive MD & CEO Dashboard',
-      'Full Arabic & English Multi-lingual Support',
+      "Installment Collection Automation",
+      "Lead Leakage Prevention Engine",
+      "Construction Milestone Billing ERP",
+      "WhatsApp Business API Integration",
+      "Executive MD & CEO Dashboard",
+      "Full Arabic & English Multi-lingual Support",
     ],
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'EGP',
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      ratingCount: '145',
-      bestRating: '5',
-    },
-    areaServed: {
-      '@type': 'Country',
-      name: 'Egypt',
-    },
     targetAudience: {
-      '@type': 'Audience',
-      audienceType: 'Real Estate Developers & Agencies in Egypt & MENA',
+      "@type": "Audience",
+      audienceType: "Real Estate Developers & Agencies",
     },
   };
 
   const productSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    '@id': 'https://estate.unova.app/#product',
-    name: 'Unova Estate — AI-Powered Real Estate ERP & CRM Egypt',
-    image: 'https://estate.unova.app/unova-real-estate-crm-sales-dashboard-mockup.png',
-    description: 'The #1 AI-powered real estate ERP & CRM platform for housing and land developers in Egypt.',
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "@id": "https://unovasoftware.com/#product",
+    name: "Unova Estate — AI-Powered Real Estate ERP & CRM",
+    image:
+      "https://unovasoftware.com/unova-real-estate-crm-sales-dashboard-mockup.png",
+    description:
+      "AI-powered real estate ERP & CRM platform for housing and land developers.",
     brand: {
-      '@type': 'Brand',
-      name: 'Unova Software',
+      "@type": "Brand",
+      name: "Unova Software",
     },
-    manufacturer: { '@id': 'https://estate.unova.app/#organization' },
-    offers: {
-      '@type': 'AggregateOffer',
-      priceCurrency: 'EGP',
-      lowPrice: '0',
-      offerCount: '1',
-      url: 'https://estate.unova.app/demo',
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      reviewCount: '145',
-      bestRating: '5',
-      worstRating: '1',
-    },
+    manufacturer: { "@id": "https://unovasoftware.com/#organization" },
   };
 
   const websiteSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: 'Unova Estate Egypt',
-    url: 'https://estate.unova.app',
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: 'https://estate.unova.app/clients?q={search_term_string}',
-      'query-input': 'required name=search_term_string',
-    },
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Unova Software",
+    url: "https://unovasoftware.com",
   };
 
   return (
     <html lang="en">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
         <link
           href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Public+Sans:wght@400;500;600;700;800;900&display=swap"
           rel="stylesheet"
@@ -179,7 +169,9 @@ export default function RootLayout({ children }) {
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
         />
         <script
           type="application/ld+json"
